@@ -8,10 +8,10 @@ public abstract class Account {
 	private double blockedAmount;
 	private String iban;
 	private long userId;
-	private Currency currency;
+	private String currency;
 	
 	public Account(long acountId, double netAvlbBalance, double currentBalance, double blockedAmount, String iban,
-			long userId, Currency currency) {
+			long userId, String currency) {
 		super();
 		this.acountId = acountId;
 		this.netAvlbBalance = netAvlbBalance;

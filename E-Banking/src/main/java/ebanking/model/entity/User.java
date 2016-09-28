@@ -9,9 +9,9 @@ import ebanking.exceptions.IdException;
 import ebanking.exceptions.InvalidEmailException;
 import ebanking.exceptions.InvalidNameException;
 import ebanking.exceptions.InvalidPhoneNumberException;
-import ebanking.exceptions.TypeException;
-import ebanking.exceptions.UserException;
+import ebanking.exceptions.InvalidStringException;
 import ebanking.validators.EmailValidator;
+import ebanking.validators.IValidator;
 import ebanking.validators.NameValidator;
 import ebanking.validators.PhoneNumberValidator;
 
@@ -27,10 +27,11 @@ public class User {
 	private String type;
 	private Set<Message> messages = new LinkedHashSet<>();
 	private Set<Account> accounts = new HashSet<>();
-
+	private Set<UserSession> userSessions = new LinkedHashSet<>();
+	
 	public User(long userId, String firstName, String middleName, String lastName, String phoneNumber, String email,
-			String address, String type) throws TypeException, IdException, InvalidNameException,
-			InvalidPhoneNumberException, InvalidEmailException, AddressException {
+			String address, String type) throws IdException, InvalidNameException,
+			InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException {
 		if (userId > 0) {
 			this.userId = userId;
 		} else {
@@ -56,10 +57,8 @@ public class User {
 		} else {
 			throw new AddressException("Incorrect address");
 		}
-		if (type != null && !type.trim().isEmpty()) {
+		if (IValidator.isValidString(type)) {
 			this.type = type;
-		} else {
-			throw new TypeException("Incorrect user type");
 		}
 	}
 

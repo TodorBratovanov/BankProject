@@ -10,7 +10,7 @@ public class Credit extends Account {
 	private double payment;
 
 	public Credit(long acountId, double netAvlbBalance, double currentBalance, double blockedAmount, String iban,
-			long userId, Currency currency) {
+			long userId, String currency) {
 		super(acountId, netAvlbBalance, currentBalance, blockedAmount, iban, userId, currency);
 		// TODO Auto-generated constructor stub
 	}

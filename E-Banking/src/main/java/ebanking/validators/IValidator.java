@@ -1,12 +1,14 @@
 package ebanking.validators;
 
+import ebanking.exceptions.InvalidStringException;
+
 public interface IValidator {
 
-	static boolean isValidString(String string) {
+	static boolean isValidString(String string) throws InvalidStringException {
 		if (string != null && !string.trim().isEmpty()) {
 			return true;
 		}
-		return false;
+		throw new InvalidStringException("Incorrect string");
 	}
 	
 }

@@ -8,7 +8,7 @@ public class CurrentAccount extends Account {
 	private double creditLimit;
 
 	public CurrentAccount(long acountId, double netAvlbBalance, double currentBalance, double blockedAmount,
-			String iban, long userId, Currency currency, long currentAccountId, double creditLimit) throws AccountException {
+			String iban, long userId, String currency, long currentAccountId, double creditLimit) throws AccountException {
 		super(acountId, netAvlbBalance, currentBalance, blockedAmount, iban, userId, currency);
 		if(currentAccountId > 0) {
 			this.currentAccountId = currentAccountId;
