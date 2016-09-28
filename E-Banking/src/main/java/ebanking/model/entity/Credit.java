@@ -2,6 +2,9 @@ package ebanking.model.entity;
 
 import java.time.LocalDateTime;
 
+import ebanking.exceptions.AccountException;
+import ebanking.exceptions.IbanException;
+
 public class Credit extends Account {
 
 	private long creditId;
@@ -9,10 +12,13 @@ public class Credit extends Account {
 	private LocalDateTime expireDate;
 	private double payment;
 
-	public Credit(long acountId, double netAvlbBalance, double currentBalance, double blockedAmount, String iban,
-			long userId, Currency currency) {
-		super(acountId, netAvlbBalance, currentBalance, blockedAmount, iban, userId, currency);
-		// TODO Auto-generated constructor stub
+	public Credit(long acountId, double netAvlbBalance, double currentBalance, String iban,
+			long userId, String currency) throws AccountException, IbanException {
+		super(acountId, netAvlbBalance, currentBalance, iban, userId, currency);
+		
+		if (creditId > 0) {
+			
+		}
 	}
 	
 }
