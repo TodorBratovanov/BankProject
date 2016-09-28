@@ -3,8 +3,11 @@ package ebanking.model.entity;
 import java.time.LocalDateTime;
 
 import ebanking.exceptions.AccountException;
+import ebanking.exceptions.DateTimeException;
 import ebanking.exceptions.IbanException;
+import ebanking.exceptions.IdException;
 import ebanking.exceptions.InvalidStringException;
+import ebanking.validators.IValidator;
 
 public class Deposit extends Account {
 
@@ -13,11 +16,32 @@ public class Deposit extends Account {
 	private LocalDateTime maturity;
 	private double interest;
 
-	public Deposit(long acountId, double netAvlbBalance, double currentBalance, String iban,
-			long userId, String currency) throws AccountException, IbanException, InvalidStringException {
-		super(acountId, netAvlbBalance, currentBalance, iban, userId, currency);
+	public Deposit(long accountId, double netAvlbBalance, double currentBalance, String iban, long userId,
+			String currency, long depositId, LocalDateTime dateOpen, LocalDateTime maturity, double interest)
+			throws AccountException, IbanException, InvalidStringException, IdException, DateTimeException {
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
 
-		// TODO Auto-generated constructor stub
+		if (IValidator.isPositive(depositId)) {
+			this.depositId = depositId;
+		} else {
+			throw new IdException("Invalid deposit ID");
+		}
+
+		if (dateOpen != null && dateOpen.isBefore(LocalDateTime.now())) {
+			this.dateOpen = dateOpen;
+		} else {
+			throw new DateTimeException("Incorrect deposit opening");
+		}
+
+		if (maturity != null && maturity.isAfter(LocalDateTime.now())) {
+			this.maturity = maturity;
+		} else {
+			throw new DateTimeException("Incorrect deposit maturity");
+		}
+
+		if (IValidator.isValidInterest(interest)) {
+			this.interest = interest;
+		}
 	}
-	
+
 }

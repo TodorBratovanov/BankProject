@@ -21,6 +21,7 @@ public class UserSession {
 		} else {
 			throw new DateTimeException("Invalid date and time");
 		}
+
 		if (IValidator.isValidString(description)) {
 			this.description = description;
 		}

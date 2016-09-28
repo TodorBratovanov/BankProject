@@ -37,26 +37,33 @@ public class User {
 		} else {
 			throw new IdException("Invalid user ID");
 		}
+		
 		if (NameValidator.isValidName(firstName)) {
 			this.firstName = firstName;
 		}
+		
 		if (NameValidator.isValidName(middleName)) {
 			this.middleName = middleName;
 		}
+		
 		if (NameValidator.isValidName(lastName)) {
 			this.lastName = lastName;
 		}
+		
 		if (PhoneNumberValidator.isValidPhoneNumber(phoneNumber)) {
 			this.phoneNumber = phoneNumber;
 		}
+		
 		if (EmailValidator.isValidEmail(email)) {
 			this.email = email;
 		}
+		
 		if (address != null && !address.trim().isEmpty()) {
 			this.address = address;
 		} else {
 			throw new AddressException("Incorrect address");
 		}
+		
 		if (IValidator.isValidString(type)) {
 			this.type = type;
 		}
