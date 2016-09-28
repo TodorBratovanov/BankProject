@@ -6,6 +6,7 @@ import ebanking.exceptions.AccountException;
 import ebanking.exceptions.DateTimeException;
 import ebanking.exceptions.IbanException;
 import ebanking.exceptions.IdException;
+import ebanking.exceptions.InterestException;
 import ebanking.exceptions.InvalidStringException;
 import ebanking.validators.IValidator;
 
@@ -18,7 +19,7 @@ public class Deposit extends Account {
 
 	public Deposit(long accountId, double netAvlbBalance, double currentBalance, String iban, long userId,
 			String currency, long depositId, LocalDateTime dateOpen, LocalDateTime maturity, double interest)
-			throws AccountException, IbanException, InvalidStringException, IdException, DateTimeException {
+			throws AccountException, IbanException, InvalidStringException, IdException, DateTimeException, InterestException {
 		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
 
 		if (IValidator.isPositive(depositId)) {

@@ -2,6 +2,7 @@ package ebanking.model.entity;
 
 import ebanking.exceptions.AccountException;
 import ebanking.exceptions.IbanException;
+import ebanking.exceptions.IdException;
 import ebanking.exceptions.InvalidStringException;
 import ebanking.validators.IValidator;
 import ebanking.validators.IbanValidator;
@@ -17,11 +18,11 @@ public abstract class Account {
 	private String currency;
 	
 	public Account(long accountId, double netAvlbBalance, double currentBalance, String iban,
-			long userId, String currency) throws AccountException, IbanException, InvalidStringException {
+			long userId, String currency) throws AccountException, IbanException, InvalidStringException, IdException {
 		if (IValidator.isPositive(accountId)) {
 			this.accountId = accountId;
 		} else {
-			throw new AccountException("Invalid account id!");
+			throw new IdException("Invalid account id!");
 		}
 		if (IValidator.isPositive(netAvlbBalance)) {
 			this.netAvlbBalance = netAvlbBalance;
@@ -47,6 +48,8 @@ public abstract class Account {
 			this.currency = currency;
 		} else {
 			throw new AccountException("Invalid currency!");
-		}	}
+		}	
+		
+	}
 	
 }
