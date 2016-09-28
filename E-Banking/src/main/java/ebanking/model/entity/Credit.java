@@ -3,24 +3,48 @@ package ebanking.model.entity;
 import java.time.LocalDateTime;
 
 import ebanking.exceptions.AccountException;
+import ebanking.exceptions.DateTimeException;
 import ebanking.exceptions.IbanException;
+import ebanking.exceptions.IdException;
+import ebanking.exceptions.InterestException;
 import ebanking.exceptions.InvalidStringException;
+import ebanking.validators.IValidator;
 
 public class Credit extends Account {
 
+	
 	private long creditId;
-	private double interest;
+	private double interest;// from 0-1
 	private LocalDateTime expireDate;
 	private double payment;
 
-	public Credit(long acountId, double netAvlbBalance, double currentBalance, String iban,
-			long userId, String currency) throws AccountException, IbanException, InvalidStringException {
-		super(acountId, netAvlbBalance, currentBalance, iban, userId, currency);
+	public Credit(long accountId, double netAvlbBalance, double currentBalance, String iban, long userId,
+			String currency, long creditId, double interest, LocalDateTime expireDate, double payment) throws AccountException, IbanException, InvalidStringException, IdException, InterestException, DateTimeException {
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
 		
-		if (creditId > 0) {
-			
+		if (IValidator.isPositive(creditId)) {
+			this.creditId = creditId;
+		}else {
+			throw new IdException("Invalid credit id!");
 		}
-
+		
+		if (IValidator.isValidInterest(interest)) {
+			this.interest = interest;
+		}
+		
+		if ((expireDate != null) && (expireDate.isAfter(LocalDateTime.now()))) {
+			this.expireDate =  expireDate;
+		}else {
+			throw new DateTimeException("Incorrect date!");
+		}
+		
+		if (IValidator.isPositive(payment)) {
+			this.payment = payment;
+		} else {
+			throw new AccountException("Incorrect payment!");
+		}
 	}
+
+	
 	
 }
