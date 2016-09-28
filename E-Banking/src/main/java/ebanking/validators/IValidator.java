@@ -10,5 +10,9 @@ public interface IValidator {
 		}
 		throw new InvalidStringException("Incorrect string");
 	}
+
 	
+	static boolean isPositive(double number) {
+		return number > 0;
+	}
 }

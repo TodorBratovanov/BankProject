@@ -1,15 +1,19 @@
 package ebanking.model.entity;
 
 import ebanking.exceptions.AccountException;
+import ebanking.exceptions.IbanException;
+import ebanking.exceptions.InvalidStringException;
 
 public class CurrentAccount extends Account {
 
 	private long currentAccountId;
 	private double creditLimit;
 
-	public CurrentAccount(long acountId, double netAvlbBalance, double currentBalance, double blockedAmount,
-			String iban, long userId, String currency, long currentAccountId, double creditLimit) throws AccountException {
-		super(acountId, netAvlbBalance, currentBalance, blockedAmount, iban, userId, currency);
+	public CurrentAccount(long acountId, double netAvlbBalance, double currentBalance,
+			String iban, long userId, String currency, long currentAccountId, double creditLimit) 
+					throws AccountException, IbanException, InvalidStringException {
+		super(acountId, netAvlbBalance, currentBalance, iban, userId, currency);
+
 		if(currentAccountId > 0) {
 			this.currentAccountId = currentAccountId;
 		} else {
