@@ -1,2 +1,10 @@
 \E-Banking\target\m2e-wtp\web-resources\META-INF\maven\bank.project\ebanking\pom.properties
 \E-Banking\.classpath
+\E-Banking\.settings\*
+\E-Banking\build\*
+\E-Banking\main\*
+\E-Banking\target\*
+\E-Banking\.classpath
+\E-Banking\.project
+\E-Banking\pom.xml
+
