@@ -8,11 +8,13 @@ import ebanking.exceptions.AddressException;
 import ebanking.exceptions.IdException;
 import ebanking.exceptions.InvalidEmailException;
 import ebanking.exceptions.InvalidNameException;
+import ebanking.exceptions.InvalidPasswordException;
 import ebanking.exceptions.InvalidPhoneNumberException;
 import ebanking.exceptions.InvalidStringException;
 import ebanking.validators.EmailValidator;
 import ebanking.validators.IValidator;
 import ebanking.validators.NameValidator;
+import ebanking.validators.PasswordValidator;
 import ebanking.validators.PhoneNumberValidator;
 
 public class User {
@@ -23,15 +25,16 @@ public class User {
 	private String lastName;
 	private String phoneNumber;
 	private String email;
+	private String password;
 	private String address;
-	private String type;
+	private boolean isAdmin;
 	private Set<Message> messages = new LinkedHashSet<>();
 	private Set<Account> accounts = new HashSet<>();
 	private Set<UserSession> userSessions = new LinkedHashSet<>();
 	
-	public User(long userId, String firstName, String middleName, String lastName, String phoneNumber, String email,
-			String address, String type) throws IdException, InvalidNameException,
-			InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException {
+	public User(long userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
+			String password, String address, boolean isAdmin) throws IdException, InvalidNameException,
+			InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException, InvalidPasswordException {
 		if (userId > 0) {
 			this.userId = userId;
 		} else {
@@ -58,15 +61,52 @@ public class User {
 			this.email = email;
 		}
 		
+		if (PasswordValidator.isValidPassword(password)) {
+			this.password = password;
+		}
+		
 		if (address != null && !address.trim().isEmpty()) {
 			this.address = address;
 		} else {
 			throw new AddressException("Incorrect address");
 		}
 		
-		if (IValidator.isValidString(type)) {
-			this.type = type;
-		}
+			this.isAdmin = isAdmin;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 }
