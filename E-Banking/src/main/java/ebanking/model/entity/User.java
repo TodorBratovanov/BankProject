@@ -74,6 +74,10 @@ public class User {
 			this.isAdmin = isAdmin;
 	}
 
+	public long getUserId() {
+		return userId;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
