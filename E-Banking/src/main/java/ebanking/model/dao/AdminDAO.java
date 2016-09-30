@@ -13,16 +13,19 @@ public class AdminDAO {
 
 	private static final String CONFIRM_USER_SQL = "UPDATE Users SET registered = true WHERE user_id = ?";
 	private static final String DELETE_USER_SQL = "DELETE FROM Users WHERE user_id = ?";
+	private static final String SELECT_IS_USER_REGISTERED = "SELECT registered FROM Users WHERE user_id = ?";
 
-	public void confirmUserRegistration(long id) throws UserException {
+	public void confirmUserRegistration(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 		
 		try {
-			connection.setAutoCommit(false);
-			
 			PreparedStatement ps = connection.prepareStatement(CONFIRM_USER_SQL);
-			ps.setLong(1, id);
+			ps.setLong(1, user.getUserId());
 			ps.executeUpdate();
+			ps = connection.prepareStatement(SELECT_IS_USER_REGISTERED, Statement.RETURN_GENERATED_KEYS);
+			ps.setLong(1, user.getUserId());
+			ps.executeQuery();
+			user.setRegistered(true);
 			
 		} catch (SQLException e) {
 			throw new UserException("User registration failed!");

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import ebanking.exceptions.AddressException;
 import ebanking.exceptions.IdException;
+import ebanking.exceptions.InvalidEgnException;
 import ebanking.exceptions.InvalidEmailException;
 import ebanking.exceptions.InvalidNameException;
 import ebanking.exceptions.InvalidPasswordException;
@@ -19,9 +20,9 @@ public class UserTest {
 	@Test
 	public void testRegisterUser() throws UserException, IdException, InvalidNameException, 
 	InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException,
-	InvalidPasswordException {
+	InvalidPasswordException, InvalidEgnException {
 		
-		int id = new UserDAO().registerUser(new User(1,"Sve", "SKk", "SKjj", "+359877706176", 
+			int id = new UserDAO().registerUser(new User(1,"Sve", "SKk", "SKjj", "+359877706176", 
 				"kochev.svetoslav@gmail.com", "asdAa09875dcs", "asdzcd", "8805193502",false));
 		
 		assertNotEquals(id, 0);
