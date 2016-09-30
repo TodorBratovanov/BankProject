@@ -17,6 +17,7 @@ public class DBConnection {
 
 	private DBConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
+
 		this.connection = DriverManager.getConnection("jdbc:mysql://" + 
 			DB_HOST + ":" + DB_PORT + "/" + DB_SCHEMA + SSL_DISABLE, DB_USERNAME, DB_PASSWORD);
 	}

@@ -1,7 +1,5 @@
 package ebanking;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import ebanking.exceptions.AddressException;
@@ -13,17 +11,21 @@ import ebanking.exceptions.InvalidPasswordException;
 import ebanking.exceptions.InvalidPhoneNumberException;
 import ebanking.exceptions.InvalidStringException;
 import ebanking.exceptions.UserException;
-import ebanking.model.dao.AdminDAO;
+import ebanking.model.dao.UserDAO;
 import ebanking.model.entity.User;
+import static org.junit.Assert.*;
 
-public class AdminTest {
+public class UserTest {
 
 	@Test
-	public void testUserRegisterConfirmation() throws UserException, IdException, InvalidNameException, InvalidPhoneNumberException, 
-	InvalidEmailException, AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
+	public void testRegisterUser() throws UserException, IdException, InvalidNameException, 
+	InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException,
+	InvalidPasswordException, InvalidEgnException {
 		
-		new AdminDAO().confirmUserRegistration(new User(1, "Ivan", "Ivanov", "Ivanov", "+35987555555", "ivan@abv.bg", "Ivan1234", "Sofia", 
-				"9005159015", false));
+		int id = new UserDAO().registerUser(new User(1,"Sve", "SKk", "SKjj", "+359877706176", 
+				"kochev.svetoslav@gmail.com", "asdAa09875dcs", "asdzcd", "8805193502",false));
+		
+		assertNotEquals(id, 0);
 	}
 
 }
