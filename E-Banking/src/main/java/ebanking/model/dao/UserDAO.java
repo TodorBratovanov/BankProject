@@ -12,7 +12,7 @@ import ebanking.model.entity.User;
 public class UserDAO {
 	
 	private static final String INSERT_USER_SQL = "INSERT INTO Users VALUES (null, ?, ?, ?, ?, ?, md5(?), ?, ?, ?, ?)";
-	private static final String SELECT_USER_SQL = "SELECT id FROM Users WHERE username = ? AND password = md5(?)";
+	private static final String SELECT_USER_SQL = "SELECT user_id FROM Users WHERE email = ? AND password = md5(?);";
 
 	
 	public int registerUser(User user) throws UserException {
@@ -44,7 +44,7 @@ public class UserDAO {
 		}
 	}
 	
-	public int loginUser(User user) throws UserException {
+	public boolean loginUser(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 		
 		try {
@@ -53,13 +53,14 @@ public class UserDAO {
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
 			ResultSet rs = ps.executeQuery();
-			if (rs.next() == false) {
+			boolean isRegistered = rs.next();
+			if (isRegistered == false) {
 				throw new UserException("User login failed!");
 			}
 
-			return rs.getInt(1);
+			return isRegistered;
 		}
-		catch (Exception e) {
+		catch (SQLException e) {
 			throw new UserException("Something went wrong!");
 		}
 	}

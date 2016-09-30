@@ -12,7 +12,7 @@ public class DBConnection {
 	private static final String SSL_DISABLE = "?autoReconnect=true&useSSL=false";
 	private static final String DB_PORT = "3306";
 	private static final String DB_HOST = "127.0.0.1";
-	private static final String DB_PASSWORD = "06011028";
+	private static final String DB_PASSWORD = "qwerty1818";
 	private static final String DB_USERNAME = "root";
 
 	private DBConnection() throws Exception {
