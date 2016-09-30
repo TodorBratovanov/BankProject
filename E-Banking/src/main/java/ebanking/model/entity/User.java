@@ -37,7 +37,7 @@ public class User {
 	public User(long userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
 			String password, String address,String egn, boolean isAdmin) throws IdException, InvalidNameException,
 			InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException, InvalidPasswordException {
-		if (userId > 0) {
+		if (IValidator.isPositive(userId)) {
 			this.userId = userId;
 		} else {
 			throw new IdException("Invalid user ID");
