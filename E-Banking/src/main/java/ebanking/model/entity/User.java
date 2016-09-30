@@ -28,12 +28,14 @@ public class User {
 	private String password;
 	private String address;
 	private boolean isAdmin;
+	private boolean isRegistered;
+	private String egn;
 	private Set<Message> messages = new LinkedHashSet<>();
 	private Set<Account> accounts = new HashSet<>();
 	private Set<UserSession> userSessions = new LinkedHashSet<>();
 	
 	public User(long userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
-			String password, String address, boolean isAdmin) throws IdException, InvalidNameException,
+			String password, String address,String egn, boolean isAdmin) throws IdException, InvalidNameException,
 			InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException, InvalidPasswordException {
 		if (userId > 0) {
 			this.userId = userId;
@@ -65,7 +67,7 @@ public class User {
 			this.password = password;
 		}
 		
-		if (address != null && !address.trim().isEmpty()) {
+		if (IValidator.isValidString(address)) {
 			this.address = address;
 		} else {
 			throw new AddressException("Incorrect address");
@@ -74,6 +76,15 @@ public class User {
 			this.isAdmin = isAdmin;
 	}
 
+	
+
+	public boolean isRegistered() {
+		return isRegistered;
+	}
+	
+	public void setRegistered(boolean isRegistered) {
+		this.isRegistered = isRegistered;
+	}
 	public long getUserId() {
 		return userId;
 	}
@@ -112,5 +123,11 @@ public class User {
 	
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+
+
+
+	public String getEgn() {
+		return this.egn;
 	}
 }
