@@ -27,5 +27,5 @@ public class CurrentAccount extends Account {
 			throw new AccountException("Invalid credit limit");
 		}
 	}
-	
+
 }

@@ -1,5 +1,6 @@
 package ebanking.model.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import ebanking.exceptions.AccountException;
@@ -15,11 +16,13 @@ public class Credit extends Account {
 	
 	private int creditId;
 	private double interest;// from 0-1
-	private LocalDateTime expireDate;
+	private LocalDate expireDate;
 	private double payment;
 
 	public Credit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
-			String currency, int creditId, double interest, LocalDateTime expireDate, double payment) throws AccountException, IbanException, InvalidStringException, IdException, InterestException, DateTimeException {
+			String currency, int creditId, double interest, LocalDate expireDate, double payment) 
+					throws AccountException, IbanException, InvalidStringException, IdException, InterestException, DateTimeException {
+
 		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
 		
 		if (IValidator.isPositive(creditId)) {
@@ -32,7 +35,7 @@ public class Credit extends Account {
 			this.interest = interest;
 		}
 		
-		if ((expireDate != null) && (expireDate.isAfter(LocalDateTime.now()))) {
+		if ((expireDate != null) && (expireDate.isAfter(LocalDate.now()))) {
 			this.expireDate =  expireDate;
 		}else {
 			throw new DateTimeException("Incorrect date!");
