@@ -51,5 +51,55 @@ public abstract class Account {
 		}	
 		
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (accountId ^ (accountId >>> 32));
+		long temp;
+		temp = Double.doubleToLongBits(blockedAmount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
+		temp = Double.doubleToLongBits(currentBalance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((iban == null) ? 0 : iban.hashCode());
+		temp = Double.doubleToLongBits(netAvlbBalance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (int) (userId ^ (userId >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Account other = (Account) obj;
+		if (accountId != other.accountId)
+			return false;
+		if (Double.doubleToLongBits(blockedAmount) != Double.doubleToLongBits(other.blockedAmount))
+			return false;
+		if (currency == null) {
+			if (other.currency != null)
+				return false;
+		} else if (!currency.equals(other.currency))
+			return false;
+		if (Double.doubleToLongBits(currentBalance) != Double.doubleToLongBits(other.currentBalance))
+			return false;
+		if (iban == null) {
+			if (other.iban != null)
+				return false;
+		} else if (!iban.equals(other.iban))
+			return false;
+		if (Double.doubleToLongBits(netAvlbBalance) != Double.doubleToLongBits(other.netAvlbBalance))
+			return false;
+		if (userId != other.userId)
+			return false;
+		return true;
+	}
 	
 }

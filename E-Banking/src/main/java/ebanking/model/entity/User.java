@@ -21,7 +21,7 @@ import ebanking.validators.PhoneNumberValidator;
 
 public class User {
 
-	private long userId;
+	private int userId;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -36,7 +36,7 @@ public class User {
 	private Set<Account> accounts = new HashSet<>();
 	private Set<UserSession> userSessions = new LinkedHashSet<>();
 	
-	public User(long userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
+	public User(int userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
 			String password, String address,String egn, boolean isAdmin) throws IdException, InvalidNameException, InvalidPhoneNumberException, 
 			InvalidEmailException, AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
 
@@ -84,7 +84,7 @@ public class User {
 		this.isAdmin = isAdmin;
 	}
 
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
@@ -128,7 +128,7 @@ public class User {
 		this.isRegistered = isRegistered;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

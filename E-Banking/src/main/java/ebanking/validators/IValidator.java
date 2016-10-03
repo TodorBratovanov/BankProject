@@ -5,7 +5,7 @@ import ebanking.exceptions.InvalidStringException;
 
 public interface IValidator {
 	 static final int MIN_INTEREST = 0;
-	 static final int MAX_INTEREST = 1;
+	 static final int MAX_INTEREST = 2;
 	
 	static boolean isValidString(String string) throws InvalidStringException {
 		if (string != null && !string.trim().isEmpty()) {
