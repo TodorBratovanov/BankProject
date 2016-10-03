@@ -14,7 +14,7 @@ public class DBConnection {
 	private static DBConnection instance;
 
 	private Connection connection;
-
+	
 	private static final String DB_SCHEMA;
 	private static final String SSL_DISABLE;
 	private static final String DB_PORT;
@@ -64,6 +64,7 @@ public class DBConnection {
 		}
 
 	}
+
 
 	private DBConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
