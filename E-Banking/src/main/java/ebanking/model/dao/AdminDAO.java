@@ -14,7 +14,7 @@ import ebanking.exceptions.UserException;
 import ebanking.model.entity.Message;
 import ebanking.model.entity.User;
 
-public class AdminDAO {
+public class AdminDAO{
 
 	private static final String NUMBER_OF_ACCOUNTS = "SELECT count(a.account_id) FROM accounts a" 
 	+ " JOIN users u ON(a.user_id = u.?);";
@@ -26,7 +26,7 @@ public class AdminDAO {
 	private static final String INSERT_MESSAGE_SQL = "INSERT INTO Messages VALUES (null, ?, ?, ?, ?)";
 	private static final String DELETE_ACCOUNT_SQL = "DELETE FROM Accounts WHERE account_id = ?";
 
-	public void confirmUserRegistration(User user) throws UserException {
+	public boolean confirmUserRegistration(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
@@ -37,12 +37,13 @@ public class AdminDAO {
 			ps.setLong(1, user.getUserId());
 			ps.executeQuery();
 			user.setRegistered(true);
+			return true;
 
 		} catch (SQLException e) {
 			throw new UserException("User registration failed!");
 		}
 	}
-
+	
 	public boolean deleteUser(int userId) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
@@ -56,9 +57,9 @@ public class AdminDAO {
 		}
 	}
 
-	public void sendMessageToUser(Message message, int userId) throws MessageException {
+	public boolean sendMessageToUser(Message message, int userId) throws MessageException {
 		Connection connection = DBConnection.getInstance().getConnection();
-
+		
 		try {
 			PreparedStatement ps = connection.prepareStatement(INSERT_MESSAGE_SQL);
 			ps.setString(1, message.getTitle());
@@ -67,7 +68,7 @@ public class AdminDAO {
 			ps.setInt(4, userId);
 
 			ps.executeUpdate();
-
+			return true;
 		} catch (SQLException e) {
 			throw new MessageException("Sending message failed");
 		}

@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.util.Properties;
 
 public class DBConnection {
+	private static final int FINALIZE_TRANSACTION_TIME = 60000;
+
 	private static DBConnection instance;
 
 	private Connection connection;
@@ -68,6 +70,26 @@ public class DBConnection {
 
 		this.connection = DriverManager.getConnection(
 				"jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_SCHEMA + SSL_DISABLE, DB_USERNAME, DB_PASSWORD);
+
+
+		Thread transactionFinalizer = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						Thread.sleep(FINALIZE_TRANSACTION_TIME);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					new UserDAO().finalizeAllUserTransactions();
+				}
+			}
+		});
+
+		transactionFinalizer.setDaemon(true);
+		transactionFinalizer.start();
+
 	}
 
 	public static DBConnection getInstance() {
