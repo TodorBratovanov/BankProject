@@ -13,13 +13,13 @@ import ebanking.validators.IValidator;
 public class Credit extends Account {
 
 	
-	private long creditId;
+	private int creditId;
 	private double interest;// from 0-1
 	private LocalDateTime expireDate;
 	private double payment;
 
-	public Credit(long accountId, double netAvlbBalance, double currentBalance, String iban, long userId,
-			String currency, long creditId, double interest, LocalDateTime expireDate, double payment) throws AccountException, IbanException, InvalidStringException, IdException, InterestException, DateTimeException {
+	public Credit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
+			String currency, int creditId, double interest, LocalDateTime expireDate, double payment) throws AccountException, IbanException, InvalidStringException, IdException, InterestException, DateTimeException {
 		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
 		
 		if (IValidator.isPositive(creditId)) {

@@ -8,12 +8,12 @@ import ebanking.validators.IValidator;
 
 public class UserSession {
 
-	private long sessionId;
+	private int sessionId;
 	private LocalDateTime dateTime;
 	private String description;
 	private String ipAddress;
 
-	public UserSession(long sessionId, LocalDateTime dateTime, String description, String ipAddress)
+	public UserSession(int sessionId, LocalDateTime dateTime, String description, String ipAddress)
 			throws DateTimeException, InvalidStringException {
 		this.sessionId = sessionId;
 		if (dateTime != null) {

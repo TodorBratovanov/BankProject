@@ -10,14 +10,14 @@ import ebanking.validators.IValidator;
 
 public class Card {
 
-	private long cardId;
+	private int cardId;
 	private String name;
 	private String type;
 	private LocalDateTime issuedOn;
 	private LocalDateTime validThrough;
 	private Account account;
 
-	public Card(long cardId, String name, String type, LocalDateTime issuedOn, LocalDateTime validThrough,
+	public Card(int cardId, String name, String type, LocalDateTime issuedOn, LocalDateTime validThrough,
 			Account account) throws InvalidStringException, IdException, DateTimeException, AccountException {
 		if (IValidator.isPositive(cardId)) {
 			this.cardId = cardId;

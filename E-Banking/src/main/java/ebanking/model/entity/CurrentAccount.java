@@ -8,11 +8,11 @@ import ebanking.validators.IValidator;
 
 public class CurrentAccount extends Account {
 
-	private long currentAccountId;
+	private int currentAccountId;
 	private double creditLimit;
 
-	public CurrentAccount(long acountId, double netAvlbBalance, double currentBalance,
-			String iban, long userId, String currency, long currentAccountId, double creditLimit) 
+	public CurrentAccount(int acountId, double netAvlbBalance, double currentBalance,
+			String iban, int userId, String currency, int currentAccountId, double creditLimit) 
 					throws AccountException, IbanException, InvalidStringException, IdException {
 		super(acountId, netAvlbBalance, currentBalance, iban, userId, currency);
 

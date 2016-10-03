@@ -9,16 +9,17 @@ import ebanking.validators.IbanValidator;
 
 public abstract class Account {
 
-	private long accountId;
+	private int accountId;
 	private double netAvlbBalance;
 	private double currentBalance;
 	private double blockedAmount;
 	private String iban;
-	private long userId;
+	private int userId;
 	private String currency;
-	
-	public Account(long accountId, double netAvlbBalance, double currentBalance, String iban,
-			long userId, String currency) throws AccountException, IbanException, InvalidStringException, IdException {
+	private int recipientAccountId;
+
+	public Account(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
+			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
 		if (IValidator.isPositive(accountId)) {
 			this.accountId = accountId;
 		} else {
@@ -37,7 +38,7 @@ public abstract class Account {
 
 		if (IValidator.isValidString(iban) && (IbanValidator.isValidIban(iban))) {
 			this.iban = iban;
-			
+
 		}
 		if (IValidator.isPositive(userId)) {
 			this.userId = userId;
@@ -48,8 +49,44 @@ public abstract class Account {
 			this.currency = currency;
 		} else {
 			throw new AccountException("Invalid currency!");
-		}	
-		
+		}
+
 	}
-	
+
+	public void setRecipientAccountId(int recipientAccountId) throws AccountException {
+		if (IValidator.isPositive(recipientAccountId)) {
+			this.recipientAccountId = recipientAccountId;
+		} else {
+			throw new AccountException("Incorrect account id");
+		}
+	}
+
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public double getNetAvlbBalance() {
+		return netAvlbBalance;
+	}
+
+	public double getCurrentBalance() {
+		return currentBalance;
+	}
+
+	public double getBlockedAmount() {
+		return blockedAmount;
+	}
+
+	public String getIban() {
+		return iban;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
 }

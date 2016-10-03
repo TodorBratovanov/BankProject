@@ -12,13 +12,13 @@ import ebanking.validators.IValidator;
 
 public class Deposit extends Account {
 
-	private long depositId;
+	private int depositId;
 	private LocalDateTime dateOpen;
 	private LocalDateTime maturity;
 	private double interest;
 
-	public Deposit(long accountId, double netAvlbBalance, double currentBalance, String iban, long userId,
-			String currency, long depositId, LocalDateTime dateOpen, LocalDateTime maturity, double interest)
+	public Deposit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
+			String currency, int depositId, LocalDateTime dateOpen, LocalDateTime maturity, double interest)
 			throws AccountException, IbanException, InvalidStringException, IdException, DateTimeException, InterestException {
 		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
 

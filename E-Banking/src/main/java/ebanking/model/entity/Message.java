@@ -9,13 +9,13 @@ import ebanking.validators.IValidator;
 
 public class Message {
 
-	private long messageId;
+	private int messageId;
 	private String title;
 	private String text;
 	private LocalDateTime date;
 	
 	
-	public Message(long messageId, String title, String text, LocalDateTime date) throws IdException, InvalidStringException, DateTimeException {
+	public Message(int messageId, String title, String text, LocalDateTime date) throws IdException, InvalidStringException, DateTimeException {
 		
 		if (IValidator.isPositive(messageId)) {
 			this.messageId = messageId;
@@ -42,6 +42,25 @@ public class Message {
 			throw new DateTimeException("Incorrect Date!");
 		}
 	}
-	
+
+
+	public long getMessageId() {
+		return messageId;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public String getText() {
+		return text;
+	}
+
+
+	public LocalDateTime getDate() {
+		return date;
+	}
 	
 }
