@@ -25,28 +25,28 @@ import java.util.List;
 
 public class UserTest {
 
-	@Test
-	public void testRegisterUser() throws UserException, IdException, InvalidNameException, 
-	InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException,
-	InvalidPasswordException, InvalidEgnException {
-		
-			int userid = new UserDAO().registerUser(new User(1,"SvaSe", "SKk", "SKjj", "+359877706176", 
-				"kochev.svetoslav@gmail.com", "asdAa09875dcs", "asdzcd", "8805193502",false));
-		
-		assertNotEquals(userid, 0);
-	}
-	
-	@Test
-	public void testLoginUser() throws UserException, IdException, InvalidNameException, 
-	InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException, 
-	InvalidPasswordException, InvalidEgnException {
-		
-
-		int userid = new UserDAO().loginUser(new User(1,"SvaSe", "SKk", "SKjj", "+359877706176", 
-				"kochev.svetoslav@gmail.com", "asdAa09875dcs", "asdzcd", "8805193502",false));
-		
-		assertNotEquals(userid, 0);
-	}
+//	@Test
+//	public void testRegisterUser() throws UserException, IdException, InvalidNameException, 
+//	InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException,
+//	InvalidPasswordException, InvalidEgnException {
+//		
+//			int userid = new UserDAO().registerUser(new User(1,"SvaSe", "SKk", "SKjj", "+359877706176", 
+//				"kochev.svetoslav@gmail.com", "asdAa09875dcs", "asdzcd", "8805193502",false));
+//		
+//		assertNotEquals(userid, 0);
+//	}
+//	
+//	@Test
+//	public void testLoginUser() throws UserException, IdException, InvalidNameException, 
+//	InvalidPhoneNumberException, InvalidEmailException, AddressException, InvalidStringException, 
+//	InvalidPasswordException, InvalidEgnException {
+//		
+//
+//		int userid = new UserDAO().loginUser(new User(1,"SvaSe", "SKk", "SKjj", "+359877706176", 
+//				"kochev.svetoslav@gmail.com", "asdAa09875dcs", "asdzcd", "8805193502",false));
+//		
+//		assertNotEquals(userid, 0);
+//	}
 	
 	@Test
 	public void testShowUserAccounts() throws UserException, AccountException, IbanException, 

@@ -36,13 +36,13 @@ public class UserDAO {
 	private static final String UPDATE_ACCOUNT_SQL = "UPDATE Accounts SET net_avlb_balance = ?, blocked_amount = ? WHERE account_id = ?";
 	private static final String SELECT_RECEIVING_ACCOUNT_SQL = "SELECT account_id FROM Accounts WHERE iban = ?";
 	private static final String UPDATE_RECIPIENT_ACCOUNT_ID = "UPDATE Accounts SET recipient_account_id = ? WHERE account_id = ?";
-	private static final String SELECT_CURRENT_ACCOUNTS_SQL = "SELECT ca.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, a.currency, ca.current_account_id, ca.credit_limit  FROM e_banking.accounts a "
+	private static final String SELECT_CURRENT_ACCOUNTS_SQL = "SELECT ca.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, a.currency FROM e_banking.accounts a "
 			+ " JOIN e_banking.current_accounts ca on (ca.account_id = a.account_id)" + " WHERE a.user_id = ?;";
-	private static final String SELECT_DEPOSIT_ACCOUNTS_SQL = "SELECT a.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, a.currency, da.deposit_id, da.date_open, da.maturity, da.interest FROM e_banking.accounts a "
+	private static final String SELECT_DEPOSIT_ACCOUNTS_SQL = "SELECT a.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, a.currency FROM e_banking.accounts a "
 			+ " JOIN e_banking.deposits da on (da.account_id = a.account_id)" + " WHERE a.user_id = ?;";
-	private static final String SELECT_CREDIT_ACCOUNTS_SQL = "SELECT a.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, a.currency, ca.credit_id, ca.interest, ca.expitre_date, ca.payment FROM e_banking.accounts a "
+	private static final String SELECT_CREDIT_ACCOUNTS_SQL = "SELECT a.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, a.currency FROM e_banking.accounts a "
 			+ " JOIN e_banking.credits ca on (ca.account_id = a.account_id)" + " WHERE a.user_id = ?;";
-
+	
 	public int registerUser(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
@@ -159,7 +159,7 @@ public class UserDAO {
 			while (rs.next()) {
 
 				accounts.add(new CurrentAccount(rs.getInt(1), rs.getDouble(2), rs.getDouble(3), rs.getString(4),
-						rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getDouble(8)));
+						rs.getInt(5), rs.getString(6)));
 
 			}
 			
@@ -167,13 +167,10 @@ public class UserDAO {
 			ps.setInt(1, userId);
 			rs = ps.executeQuery();
 			
-			
-			
 			while (rs.next()) {
 				
-				accounts.add(new Deposit(rs.getInt(1), rs.getDouble(2), rs.getDouble(3), rs.getString(4), 
-						rs.getInt(5), rs.getString(6), rs.getInt(7),rs.getDate(8).toLocalDate() , 
-						rs.getDate(9).toLocalDate(), rs.getDouble(10)));
+				accounts.add(new Deposit(rs.getInt(1), rs.getDouble(2), rs.getDouble(3), rs.getString(4),
+						rs.getInt(5), rs.getString(6)));
 
 			}
 			
@@ -186,8 +183,7 @@ public class UserDAO {
 			while (rs.next()) {
 
 				accounts.add(new Credit(rs.getInt(1), rs.getDouble(2), rs.getDouble(3), rs.getString(4),
-						rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getDouble(8), rs.getDate(9).toLocalDate(),
-						rs.getDouble(10)));
+						rs.getInt(5), rs.getString(6)));
 
 			}
 			return accounts;
