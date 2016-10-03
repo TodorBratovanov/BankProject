@@ -17,6 +17,7 @@ import ebanking.exceptions.InvalidStringException;
 import ebanking.exceptions.UserException;
 import ebanking.model.dao.UserDAO;
 import ebanking.model.entity.Account;
+import ebanking.model.entity.Deposit;
 import ebanking.model.entity.User;
 import static org.junit.Assert.*;
 
@@ -57,4 +58,8 @@ public class UserTest {
 		assertNotEquals(accounts.size(),0);
 	}
 
+	@Test
+	public void testTransferMoneyToOtherAccount() throws IbanException, AccountException, InvalidStringException, IdException {
+		new UserDAO().transferMoneyToOtherAccount(new Deposit(1, 100, 100, "BG61TTBB94003115068734", 1, "GBP"), 20, "BG61TTBB94003115068734");
+	}
 }

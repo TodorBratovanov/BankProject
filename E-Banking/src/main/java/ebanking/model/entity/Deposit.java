@@ -46,4 +46,8 @@ public class Deposit extends Account {
 		}
 	}
 
+	public Deposit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
+			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
+	}
 }

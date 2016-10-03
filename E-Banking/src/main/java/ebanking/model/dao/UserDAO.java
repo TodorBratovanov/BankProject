@@ -90,13 +90,13 @@ public class UserDAO {
 		}
 	}
 
-	public void transferMoneyToOtherAccount(Account account, double moneyToTransfer, String iban)
+	public void transferMoneyToOtherAccount(Account account, double moneyToTransfer, String recipientIban)
 			throws IbanException, AccountException {
 
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		if (moneyToTransfer > 0) {
-			if (IbanValidator.isValidIban(iban)) {
+			if (IbanValidator.isValidIban(recipientIban)) {
 				try {
 					connection.setAutoCommit(false);
 
@@ -114,7 +114,7 @@ public class UserDAO {
 						ps.executeUpdate();
 
 						ps = connection.prepareStatement(SELECT_RECEIVING_ACCOUNT_SQL);
-						ps.setString(1, iban);
+						ps.setString(1, recipientIban);
 						rs = ps.executeQuery();
 
 						int recipientAccountId;

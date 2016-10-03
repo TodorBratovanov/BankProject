@@ -28,4 +28,8 @@ public class CurrentAccount extends Account {
 		}
 	}
 
+	public CurrentAccount(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
+			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
+	}
 }

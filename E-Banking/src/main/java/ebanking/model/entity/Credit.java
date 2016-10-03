@@ -48,6 +48,9 @@ public class Credit extends Account {
 		}
 	}
 
-	
+	public Credit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
+			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
+	}
 	
 }

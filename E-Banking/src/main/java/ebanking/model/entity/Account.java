@@ -17,7 +17,7 @@ public abstract class Account {
 	private int userId;
 	private String currency;
 	private int recipientAccountId;
-
+	
 	public Account(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
 			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
 		if (IValidator.isPositive(accountId)) {
