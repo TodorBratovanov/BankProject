@@ -58,7 +58,7 @@ public class UserDAO {
 			ps.setString(8, user.getEgn());
 			ps.setBoolean(9, user.isAdmin());
 			ps.setBoolean(10, user.isRegistered());
-
+			
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
