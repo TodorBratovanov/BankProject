@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.util.Properties;
 
 public class DBConnection {
+	private static final int FINALIZE_TRANSACTION_TIME = 60000;
+
 	private static DBConnection instance;
 
 	private Connection connection;
@@ -19,7 +21,7 @@ public class DBConnection {
 	private static final String DB_HOST;
 	private static final String DB_PASSWORD;
 	private static final String DB_USERNAME;
-	
+
 	static {
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -42,7 +44,7 @@ public class DBConnection {
 			host = prop.getProperty("dbHost");
 			password = prop.getProperty("dbPassword");
 			username = prop.getProperty("dbUsername");
-			
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -60,14 +62,32 @@ public class DBConnection {
 			DB_PASSWORD = password;
 			DB_USERNAME = username;
 		}
-		
+
 	}
 
 	private DBConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 
-		this.connection = DriverManager.getConnection("jdbc:mysql://" + 
-			DB_HOST + ":" + DB_PORT + "/" + DB_SCHEMA + SSL_DISABLE, DB_USERNAME, DB_PASSWORD);
+		this.connection = DriverManager.getConnection(
+				"jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_SCHEMA + SSL_DISABLE, DB_USERNAME, DB_PASSWORD);
+
+		Thread transactionFinalizer = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						Thread.sleep(FINALIZE_TRANSACTION_TIME);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					new UserDAO().finalizeAllUserTransactions();
+				}
+			}
+		});
+
+		transactionFinalizer.setDaemon(true);
+		transactionFinalizer.start();
 	}
 
 	public static DBConnection getInstance() {
