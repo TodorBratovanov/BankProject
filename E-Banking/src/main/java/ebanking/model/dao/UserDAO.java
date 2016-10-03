@@ -32,7 +32,7 @@ public class UserDAO {
 
 	private static final String INSERT_USER_SQL = "INSERT INTO Users VALUES (null, ?, ?, ?, ?, ?, md5(?), ?, ?, ?, ?)";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM Users WHERE email = ? AND password = md5(?);";
-	private static final String SELECT_USER_ACCOUNT_SQL = "SELECT net_avlb_balance FROM Accounts WHERE account_id = ?";
+	private static final String SELECT_USER_ACCOUNT_SQL = "SELECT net_avlb_balance, blocked_amount FROM Accounts WHERE account_id = ?";
 	private static final String UPDATE_ACCOUNT_SQL = "UPDATE Accounts SET net_avlb_balance = ?, blocked_amount = ? WHERE account_id = ?";
 	private static final String SELECT_RECEIVING_ACCOUNT_SQL = "SELECT account_id FROM Accounts WHERE iban = ?";
 	private static final String UPDATE_RECIPIENT_ACCOUNT_ID = "UPDATE Accounts SET recipient_account_id = ? WHERE account_id = ?";
@@ -105,25 +105,26 @@ public class UserDAO {
 					ResultSet rs = ps.executeQuery();
 					rs.next();
 					double availableBalance = rs.getDouble(1);
+					double blockedAmount = rs.getDouble(2);
 
 					if (availableBalance >= moneyToTransfer) {
 						ps = connection.prepareStatement(UPDATE_ACCOUNT_SQL);
-						ps.setDouble(1, account.getNetAvlbBalance() - moneyToTransfer);
-						ps.setDouble(2, moneyToTransfer);
+						ps.setDouble(1, availableBalance - moneyToTransfer);
+						ps.setDouble(2, blockedAmount + moneyToTransfer);
 						ps.setInt(3, account.getAccountId());
 						ps.executeUpdate();
 
 						ps = connection.prepareStatement(SELECT_RECEIVING_ACCOUNT_SQL);
 						ps.setString(1, recipientIban);
 						rs = ps.executeQuery();
-
+						
 						int recipientAccountId;
 						if (rs.next()) {
 							recipientAccountId = rs.getInt(1);
 
 							ps = connection.prepareStatement(UPDATE_RECIPIENT_ACCOUNT_ID);
-							ps.setInt(1, account.getAccountId());
-							ps.setInt(2, recipientAccountId);
+							ps.setInt(1, recipientAccountId);
+							ps.setInt(2, account.getAccountId());
 							ps.executeUpdate();
 						}
 
@@ -137,7 +138,7 @@ public class UserDAO {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					throw new AccountException("Account not found");
+					e.printStackTrace();
 				}
 			}
 		} else {
