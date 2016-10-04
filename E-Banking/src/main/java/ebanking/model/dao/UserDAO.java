@@ -47,12 +47,24 @@ public class UserDAO{
 			+ "recipient_account_id = null WHERE account_id = ?";
 	private static final String FINALIZE_RECIPIENT_TRANSACTION_SQL = "UPDATE Accounts SET net_avlb_balance = ?, current_balance = ? "
 			+ "WHERE account_id = ?";
+	private static final String SELECT_USERID_SQL = "SELECT user_id FROM users WHERE user_id = ?;";
+	private static final String SELECT_ISREGISTERED_SQL = "SELECT registered FROM Users WHERE email = ?;";
+	private static final String SELECT_USER_EMAIL_SQL = "SELECT * FROM Users WHERE email = ?;";
+
 	
 	public int registerUser(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = connection.prepareStatement(SELECT_USERID_SQL);
+			ResultSet rs = ps.executeQuery();
+			boolean isRegistered = rs.next();
+			
+			if (isRegistered != false) {
+				throw new UserException("User registration failed!");
+			}
+		
+			ps = connection.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, user.getFirstName());
 			ps.setString(2, user.getMiddleName());
 			ps.setString(3, user.getLastName());
@@ -66,7 +78,7 @@ public class UserDAO{
 			
 			ps.executeUpdate();
 
-			ResultSet rs = ps.getGeneratedKeys();
+			rs = ps.getGeneratedKeys();
 			rs.next();
 			return rs.getInt(1);
 		} catch (SQLException e) {
@@ -84,17 +96,33 @@ public class UserDAO{
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
 			ResultSet rs = ps.executeQuery();
-			boolean isRegistered = rs.next();
-			if (isRegistered == false) {
-				throw new UserException("Registration not confirmed by administrator yet!");
-			}
-
 			return rs.getInt(1);
+			
 		} catch (SQLException e) {
 			throw new UserException("User login failed!");
 		}
 	}
 
+	public boolean isRegistrationConfirmed(String userEmail) throws SQLException, UserException {
+		Connection connection = DBConnection.getInstance().getConnection();
+		
+		PreparedStatement ps = connection.prepareStatement(SELECT_ISREGISTERED_SQL);
+		ps.setString(1, userEmail);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		return rs.getBoolean(1);
+	}
+	
+	public boolean isRegistered(String userEmail) throws SQLException, UserException {
+		Connection connection = DBConnection.getInstance().getConnection();
+		
+		PreparedStatement ps = connection.prepareStatement(SELECT_USER_EMAIL_SQL);
+		ps.setString(1, userEmail);
+		ResultSet rs = ps.executeQuery();
+		
+		return rs.next();
+	}
 	public boolean transferMoneyToOtherAccount(Account account, double moneyToTransfer, String recipientIban)
 			throws IbanException, AccountException {
 

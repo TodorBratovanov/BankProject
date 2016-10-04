@@ -2,6 +2,7 @@ package ebanking;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Test;
@@ -77,5 +78,17 @@ public class UserTest {
 		assertTrue(
 				new UserDAO().transferMoneyToMyAccount(new CurrentAccount(1, 80, 80, "BG62TTBB94001524310814", 1, "BG"),
 						new Deposit(1, 100, 100, "BG80BNBG96611020345678", 1, "GBP"), 1));
+	}
+	
+	@Test
+	public void testIsRegistrationConfirmed() throws SQLException, UserException {
+
+		assertTrue(new UserDAO().isRegistrationConfirmed("kochev.svetoslav@gmail.com"));
+	}
+	
+	@Test
+	public void testIsRegistred() throws SQLException, UserException {
+
+		assertTrue(new UserDAO().isRegistered("kochev.svetoslav@gmail.com"));
 	}
 }
