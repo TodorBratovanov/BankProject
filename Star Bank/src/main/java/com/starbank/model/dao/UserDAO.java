@@ -22,7 +22,7 @@ import com.starbank.model.entity.Deposit;
 import com.starbank.model.entity.User;
 import com.starbank.validators.IbanValidator;
 
-public class UserDAO{
+public class UserDAO {
 
 	private static final String INSERT_USER_SQL = "INSERT INTO Users VALUES (null, ?, ?, ?, ?, ?, md5(?), ?, ?, ?, ?)";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM Users WHERE email = ? AND password = md5(?);";
@@ -33,32 +33,25 @@ public class UserDAO{
 	private static final String SELECT_CURRENT_ACCOUNTS_SQL = "SELECT ca.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, "
 			+ "a.currency FROM e_banking.accounts a JOIN e_banking.current_accounts ca on (ca.account_id = a.account_id) WHERE a.user_id = ?;";
 	private static final String SELECT_DEPOSIT_ACCOUNTS_SQL = "SELECT a.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, "
-			+ "a.currency FROM e_banking.accounts a JOIN e_banking.deposits da on (da.account_id = a.account_id)" + " WHERE a.user_id = ?;";
+			+ "a.currency FROM e_banking.accounts a JOIN e_banking.deposits da on (da.account_id = a.account_id)"
+			+ " WHERE a.user_id = ?;";
 	private static final String SELECT_CREDIT_ACCOUNTS_SQL = "SELECT a.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, "
-			+ "a.currency FROM e_banking.accounts a JOIN e_banking.credits ca on (ca.account_id = a.account_id)" + " WHERE a.user_id = ?;";
+			+ "a.currency FROM e_banking.accounts a JOIN e_banking.credits ca on (ca.account_id = a.account_id)"
+			+ " WHERE a.user_id = ?;";
 	private static final String SELECT_ALL_ACCOUNTS_FOR_TRANSACTION_SQL = "SELECT account_id FROM Accounts WHERE blocked_amount > 0";
 	private static final String FINALIZE_SENDER_TRANSACTION_SQL = "UPDATE Accounts SET current_balance = ?, blocked_amount = 0, "
 			+ "recipient_account_id = null WHERE account_id = ?";
 	private static final String FINALIZE_RECIPIENT_TRANSACTION_SQL = "UPDATE Accounts SET net_avlb_balance = ?, current_balance = ? "
 			+ "WHERE account_id = ?";
-	private static final String SELECT_USERID_SQL = "SELECT user_id FROM users WHERE user_id = ?;";
 	private static final String SELECT_ISREGISTERED_SQL = "SELECT registered FROM Users WHERE email = ?;";
 	private static final String SELECT_USER_EMAIL_SQL = "SELECT * FROM Users WHERE email = ?;";
 
-	
 	public int registerUser(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_USERID_SQL);
-			ResultSet rs = ps.executeQuery();
-			boolean isRegistered = rs.next();
-			
-			if (isRegistered != false) {
-				throw new UserException("User registration failed!");
-			}
-		
-			ps = connection.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
+
 			ps.setString(1, user.getFirstName());
 			ps.setString(2, user.getMiddleName());
 			ps.setString(3, user.getLastName());
@@ -69,10 +62,10 @@ public class UserDAO{
 			ps.setString(8, user.getEgn());
 			ps.setBoolean(9, user.isAdmin());
 			ps.setBoolean(10, user.isRegistered());
-			
+
 			ps.executeUpdate();
 
-			rs = ps.getGeneratedKeys();
+			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
 			return rs.getInt(1);
 		} catch (SQLException e) {
@@ -91,7 +84,7 @@ public class UserDAO{
 			ps.setString(2, user.getPassword());
 			ResultSet rs = ps.executeQuery();
 			return rs.getInt(1);
-			
+
 		} catch (SQLException e) {
 			throw new UserException("User login failed!");
 		}
@@ -99,24 +92,25 @@ public class UserDAO{
 
 	public boolean isRegistrationConfirmed(String userEmail) throws SQLException, UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
-		
+
 		PreparedStatement ps = connection.prepareStatement(SELECT_ISREGISTERED_SQL);
 		ps.setString(1, userEmail);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		
+
 		return rs.getBoolean(1);
 	}
-	
+
 	public boolean isRegistered(String userEmail) throws SQLException, UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
-		
+
 		PreparedStatement ps = connection.prepareStatement(SELECT_USER_EMAIL_SQL);
 		ps.setString(1, userEmail);
 		ResultSet rs = ps.executeQuery();
-		
+
 		return rs.next();
 	}
+
 	public boolean transferMoneyToOtherAccount(Account account, double moneyToTransfer, String recipientIban)
 			throws IbanException, AccountException {
 
@@ -134,9 +128,9 @@ public class UserDAO{
 					double availableBalance = rs.getDouble(2);
 					double blockedAmount = rs.getDouble(4);
 
-					if(availableBalance >= moneyToTransfer) {
+					if (availableBalance >= moneyToTransfer) {
 						updateCurrentAccount(account, moneyToTransfer, connection, availableBalance, blockedAmount);
-                        
+
 						ps = connection.prepareStatement(SELECT_RECEIVING_ACCOUNT_SQL);
 						ps.setString(1, recipientIban);
 						rs = ps.executeQuery();
@@ -171,7 +165,7 @@ public class UserDAO{
 
 	public boolean transferMoneyToMyAccount(Account senderAccount, Account recipientAccount, double moneyToTransfer)
 			throws IbanException, AccountException {
-		
+
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		if (moneyToTransfer > 0) {
@@ -192,11 +186,11 @@ public class UserDAO{
 								blockedAmount);
 
 						int recipientAccountId = recipientAccount.getAccountId();
-						
+
 						updateRecipientAccount(senderAccount, connection, recipientAccountId);
 
 						connection.commit();
-						
+
 					} else {
 						connection.rollback();
 						throw new AccountException("Insufficient funds");
@@ -292,43 +286,43 @@ public class UserDAO{
 
 			PreparedStatement ps = connection.prepareStatement(SELECT_ALL_ACCOUNTS_FOR_TRANSACTION_SQL);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				int accountId = rs.getInt(1);
 				ps = connection.prepareStatement(SELECT_USER_ACCOUNT_SQL);
 				ps.setInt(1, accountId);
 				rs = ps.executeQuery();
-				
+
 				rs.next();
 				double senderAvailableBalance = rs.getDouble(2);
 				double senderBlockedAmount = rs.getDouble(4);
 				Integer recipient = rs.getInt(8);
-				
+
 				ps = connection.prepareStatement(FINALIZE_SENDER_TRANSACTION_SQL);
 				ps.setDouble(1, senderAvailableBalance);
 				ps.setInt(2, accountId);
 				ps.executeUpdate();
-				
+
 				if (recipient != null) {
 					ps = connection.prepareStatement(SELECT_USER_ACCOUNT_SQL);
 					ps.setInt(1, recipient);
 					rs = ps.executeQuery();
-					
+
 					rs.next();
 					double recipientAvailableBalance = rs.getDouble(2);
 					double recipientCurrentBalance = rs.getInt(3);
-					
+
 					ps = connection.prepareStatement(FINALIZE_RECIPIENT_TRANSACTION_SQL);
 					ps.setDouble(1, recipientAvailableBalance + senderBlockedAmount);
 					ps.setDouble(2, recipientCurrentBalance + senderBlockedAmount);
 					ps.setInt(3, recipient);
 					ps.executeUpdate();
 				}
-				
+
 				connection.commit();
 			}
 			return true;
-			
+
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
@@ -339,5 +333,5 @@ public class UserDAO{
 		}
 		return false;
 	}
-	
+
 }

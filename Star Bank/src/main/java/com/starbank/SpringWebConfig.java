@@ -19,13 +19,16 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.example")
+@ComponentScan("com.starbank")
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/assets/**").addResourceLocations("/static/assets/");
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
-        registry.addResourceHandler("/pdfs/**").addResourceLocations("/static/pdf/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/static/fonts/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
     }
 	
 	@Bean
