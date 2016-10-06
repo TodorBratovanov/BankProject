@@ -82,7 +82,7 @@ public class DBConnection {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					new UserDAO().finalizeAllUserTransactions();
+					new TransactionFinalizerDAO().finalizeAllUserTransactions();
 				}
 			}
 		});
