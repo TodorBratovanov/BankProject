@@ -23,7 +23,6 @@ public class AdminDAO{
 	private static final String CONFIRM_USER_SQL = "UPDATE Users SET registered = true WHERE user_id = ?";
 	private static final String DELETE_USER_SQL = "DELETE FROM Users WHERE user_id = ?";
 	private static final String SELECT_IS_USER_REGISTERED_SQL = "SELECT registered FROM Users WHERE user_id = ?";
-	private static final String INSERT_MESSAGE_SQL = "INSERT INTO Messages VALUES (null, ?, ?, ?, ?)";
 	private static final String DELETE_ACCOUNT_SQL = "DELETE FROM Accounts WHERE account_id = ?";
 
 	public boolean confirmUserRegistration(User user) throws UserException {
@@ -57,24 +56,7 @@ public class AdminDAO{
 		}
 	}
 
-	public boolean sendMessageToUser(Message message, int userId) throws MessageException {
-		Connection connection = DBConnection.getInstance().getConnection();
-		
-		try {
-			PreparedStatement ps = connection.prepareStatement(INSERT_MESSAGE_SQL);
-			ps.setString(1, message.getTitle());
-			ps.setString(2, message.getText());
-			ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setInt(4, userId);
-
-			ps.executeUpdate();
-			return true;
-		} catch (SQLException e) {
-			throw new MessageException("Sending message failed");
-		}
-	}
-
-	public boolean deleteAccount(int accountId) throws AccountException, UserException {
+		public boolean deleteAccount(int accountId) throws AccountException, UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
