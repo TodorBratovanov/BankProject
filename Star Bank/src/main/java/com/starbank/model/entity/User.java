@@ -1,9 +1,5 @@
 package com.starbank.model.entity;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 import com.starbank.exceptions.AddressException;
 import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InvalidEgnException;

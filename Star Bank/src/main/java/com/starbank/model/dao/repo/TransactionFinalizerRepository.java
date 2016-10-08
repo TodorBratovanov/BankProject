@@ -1,18 +1,19 @@
 package com.starbank.model.dao.repo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.TransactionException;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.starbank.model.dao.DBConnection;
 import com.starbank.model.dao.ITransactionFinalizerDAO;
+import com.starbank.model.dao.mapper.AccountMapper;
+import com.starbank.model.entity.Account;
 
 public class TransactionFinalizerRepository implements ITransactionFinalizerDAO {
 
@@ -22,69 +23,55 @@ public class TransactionFinalizerRepository implements ITransactionFinalizerDAO 
 	public TransactionFinalizerRepository() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Autowired
 	public TransactionFinalizerRepository(DataSource dataSource, TransactionTemplate template) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		transactionTemplate = template;
 	}
-	
-	@Override
-	public boolean finalizeAllUserTransactions() {
 
-		Connection connection = DBConnection.getInstance().getConnection();
+
+	public boolean finalizeAllUserTransactions() {
+		boolean isComplete = false;
 
 		try {
-			connection.setAutoCommit(false);
+			isComplete = transactionTemplate.execute(new TransactionCallback<Boolean>() {
 
-			PreparedStatement ps = connection
-					.prepareStatement(ITransactionFinalizerDAO.SELECT_ALL_ACCOUNTS_FOR_TRANSACTION_SQL);
-			ResultSet rs = ps.executeQuery();
+				@Override
+				public Boolean doInTransaction(TransactionStatus status) {
+					try {
+						List<Account> accounts = jdbcTemplate.query(
+								ITransactionFinalizerDAO.SELECT_ALL_ACCOUNTS_FOR_TRANSACTION_SQL, new AccountMapper());
+						for (Account account : accounts) {
 
-			while (rs.next()) {
-				int accountId = rs.getInt(1);
-				ps = connection.prepareStatement(ITransactionFinalizerDAO.SELECT_USER_ACCOUNT_SQL);
-				ps.setInt(1, accountId);
-				rs = ps.executeQuery();
+							double blockedAmount = account.getBlockedAmount();
+							Integer recipient = account.getRecipientAccountId();
+							jdbcTemplate.update(ITransactionFinalizerDAO.FINALIZE_SENDER_TRANSACTION_SQL,
+									account.getCurrentBalance() - blockedAmount, account.getAccountId());
 
-				rs.next();
-				double senderAvailableBalance = rs.getDouble(2);
-				double senderBlockedAmount = rs.getDouble(4);
-				Integer recipient = rs.getInt(8);
+							if (recipient != null) {
+								Account recipientAccount = jdbcTemplate.queryForObject(
+										ITransactionFinalizerDAO.SELECT_USER_ACCOUNT_SQL, new Object[] { recipient },
+										new AccountMapper());
 
-				ps = connection.prepareStatement(ITransactionFinalizerDAO.FINALIZE_SENDER_TRANSACTION_SQL);
-				ps.setDouble(1, senderAvailableBalance);
-				ps.setInt(2, accountId);
-				ps.executeUpdate();
+								jdbcTemplate.update(ITransactionFinalizerDAO.FINALIZE_RECIPIENT_TRANSACTION_SQL,
+										recipientAccount.getNetAvlbBalance() + blockedAmount,
+										recipientAccount.getCurrentBalance() + blockedAmount, recipient);
+							}
 
-				if (recipient != null) {
-					ps = connection.prepareStatement(ITransactionFinalizerDAO.SELECT_USER_ACCOUNT_SQL);
-					ps.setInt(1, recipient);
-					rs = ps.executeQuery();
-
-					rs.next();
-					double recipientAvailableBalance = rs.getDouble(2);
-					double recipientCurrentBalance = rs.getInt(3);
-
-					ps = connection.prepareStatement(ITransactionFinalizerDAO.FINALIZE_RECIPIENT_TRANSACTION_SQL);
-					ps.setDouble(1, recipientAvailableBalance + senderBlockedAmount);
-					ps.setDouble(2, recipientCurrentBalance + senderBlockedAmount);
-					ps.setInt(3, recipient);
-					ps.executeUpdate();
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+						status.setRollbackOnly();
+						return false;
+					}
+					return true;
 				}
-				
-				connection.commit();
-			}
-			return true;
-
-		} catch (SQLException e) {
-			try {
-				connection.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+			});
+		} catch (TransactionException e) {
 			e.printStackTrace();
 		}
-		return false;
+
+		return isComplete;
 	}
 }

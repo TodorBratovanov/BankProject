@@ -15,7 +15,8 @@ public interface IAdminDAO {
 	static final String DELETE_USER_SQL = "DELETE FROM Users WHERE user_id = ?";
 	static final String SELECT_IS_USER_REGISTERED_SQL = "SELECT registered FROM Users WHERE user_id = ?";
 	static final String DELETE_ACCOUNT_SQL = "DELETE FROM Accounts WHERE account_id = ?";
-	
+	static final String SELECT_ACCOUNT_SQL = "SELECT FROM Accounts WHERE account_id = ?";
+
 	
 	public boolean confirmUserRegistration(User user) throws UserException;
 

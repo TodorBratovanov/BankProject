@@ -24,7 +24,7 @@ public class UserRepository implements IUserDAO {
 	public UserRepository(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+
 	@Override
 	public int loginUser(String email, String password) throws UserException {
 		int userId = 0;
@@ -35,8 +35,10 @@ public class UserRepository implements IUserDAO {
 			return userId;
 		}
 		return userId;
+
 	}
 	
+
 	@Override
 	public int registerUser(User user) throws UserException {
 		
@@ -49,8 +51,10 @@ public class UserRepository implements IUserDAO {
 			e.printStackTrace();
 			return 0;
 		}
+
 	}
 	
+
 	@Override
 	public boolean isRegistrationConfirmed(String userEmail) throws SQLException, UserException {
 		
@@ -61,7 +65,7 @@ public class UserRepository implements IUserDAO {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public boolean isRegistered(String userEmail) throws SQLException, UserException {
 		

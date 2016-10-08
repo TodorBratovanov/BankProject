@@ -22,6 +22,9 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.starbank.model.dao.repo.AccountRepository;
 import com.starbank.model.dao.repo.AdminRepository;
@@ -34,6 +37,7 @@ import com.starbank.model.dao.repo.UserRepository;
 @ComponentScan("com.starbank")
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/assets/**").addResourceLocations("/static/assets/");
@@ -42,6 +46,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
 	}
+
 
 	@Bean
 	public InternalResourceViewResolver getInternalResourceViewResolver() {
@@ -81,7 +86,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/e_banking?useSSL=false");
 		dataSource.setUsername("root");
-		dataSource.setPassword("06011028");
+		dataSource.setPassword("qwerty1818");
 
 		return dataSource;
 	}
@@ -116,11 +121,13 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		return new DataSourceTransactionManager(getDataSource());
 	}
 	
+
 	@Bean
 	public TransactionTemplate transactionTemplate() {
 		TransactionTemplate transactionTemplate = new TransactionTemplate();
 		transactionTemplate.setTransactionManager(transactionManager());
 		return transactionTemplate;
 	}
+
 
 }
