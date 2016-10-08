@@ -21,16 +21,14 @@ import com.starbank.model.entity.User;
 public class AdminRepository implements IAdminDAO {
 	
 	private JdbcTemplate jdbcTemplate;
-	private TransactionTemplate transactionTemplate;
 
 	public AdminRepository() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	@Autowired
-	public AdminRepository(DataSource dataSource, TransactionTemplate template) {
+	public AdminRepository(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		transactionTemplate = template;
 	}
 	
 	@Override
