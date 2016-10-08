@@ -16,8 +16,8 @@ import com.starbank.model.entity.Message;
 public class SendMessageTest {
 	
 	
-	@Test
-	public void testSendMessageToUser() throws MessageException, IdException, InvalidStringException, DateTimeException {
-		assertTrue(new MessageRepository().sendMessageToUser(new Message(1, "Test message2", "Test OK", LocalDateTime.now()), 1));
-	}
+//	@Test
+//	public void testSendMessageToUser() throws MessageException, IdException, InvalidStringException, DateTimeException {
+//		assertTrue(new MessageRepository().sendMessageToUser(new Message(1, "Test message2", "Test OK", LocalDateTime.now()), 1));
+//	}
 }

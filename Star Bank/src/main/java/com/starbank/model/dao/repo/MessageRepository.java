@@ -13,7 +13,7 @@ import com.starbank.exceptions.MessageException;
 import com.starbank.model.dao.IMessageDAO;
 import com.starbank.model.entity.Message;
 
-public class MessageRepository {
+public class MessageRepository implements IMessageDAO {
 
 	private JdbcTemplate jdbcTemplate;
 	
@@ -26,6 +26,7 @@ public class MessageRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	@Override
 	public boolean sendMessageToUser(Message message, int userId) throws MessageException {
 		try {
 			return jdbcTemplate.update(IMessageDAO.INSERT_MESSAGE_SQL, message.getTitle(),message.getText(),

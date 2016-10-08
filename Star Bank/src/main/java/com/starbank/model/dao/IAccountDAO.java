@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.starbank.exceptions.AccountException;
 import com.starbank.exceptions.DateTimeException;
 import com.starbank.exceptions.IbanException;
@@ -13,6 +15,7 @@ import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.UserException;
 import com.starbank.model.entity.Account;
 
+@Component
 public interface IAccountDAO {
 	
 	static final String SELECT_CURRENT_ACCOUNTS_SQL = "SELECT ca.account_id, a.net_avlb_balance, a.current_balance, a.iban, a.user_id, "
@@ -36,11 +39,10 @@ public interface IAccountDAO {
 
 	public boolean transferMoneyToMyAccount(Account senderAccount, Account recipientAccount, double moneyToTransfer)
 			throws IbanException, AccountException;
-
-	public void updateRecipientAccount(Account senderAccount, Connection connection, int recipientAccountId)
-			throws SQLException;
-
-	public void updateCurrentAccount(Account senderAccount, double moneyToTransfer, Connection connection,
-			double availableBalance, double blockedAmount) throws SQLException;
+	
+	public void updateRecipientAccount(Account senderAccount, int recipientAccountId) throws SQLException;
+	
+	public void updateCurrentAccount(Account senderAccount, double moneyToTransfer, double availableBalance,
+			double blockedAmount) throws SQLException;
 
 }

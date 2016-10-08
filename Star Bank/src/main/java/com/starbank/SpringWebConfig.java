@@ -98,7 +98,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public AdminRepository getAdminRepository() {
-		return new AdminRepository(getDataSource(), transactionTemplate());
+		return new AdminRepository(getDataSource());
 	}
 
 	@Bean

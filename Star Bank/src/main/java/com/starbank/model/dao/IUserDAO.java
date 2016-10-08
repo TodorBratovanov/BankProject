@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.starbank.exceptions.UserException;
 import com.starbank.model.entity.User;
+
 @Component
 public interface IUserDAO {
 

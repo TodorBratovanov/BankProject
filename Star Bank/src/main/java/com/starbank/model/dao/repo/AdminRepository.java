@@ -12,8 +12,9 @@ import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.IAdminDAO;
 import com.starbank.model.entity.User;
 
-public class AdminRepository {
 
+public class AdminRepository implements IAdminDAO {
+	
 	private JdbcTemplate jdbcTemplate;
 
 	public AdminRepository() {
@@ -21,7 +22,7 @@ public class AdminRepository {
 	}
 
 	@Autowired
-	public AdminRepository(DataSource dataSource, TransactionTemplate template) {
+	public AdminRepository(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
@@ -38,6 +39,7 @@ public class AdminRepository {
 
 	}
 
+	@Override
 	public boolean deleteUser(int userId) throws UserException {
 		try {
 			jdbcTemplate.update(IAdminDAO.DELETE_USER_SQL, userId);
@@ -49,6 +51,7 @@ public class AdminRepository {
 
 	}
 
+	@Override
 	public boolean deleteAccount(int accountId) throws AccountException, UserException {
 		try {
 			int deletedAccounts = jdbcTemplate.update(IAdminDAO.DELETE_ACCOUNT_SQL, accountId);

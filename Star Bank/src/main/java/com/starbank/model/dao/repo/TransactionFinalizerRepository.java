@@ -15,7 +15,7 @@ import com.starbank.model.dao.ITransactionFinalizerDAO;
 import com.starbank.model.dao.mapper.AccountMapper;
 import com.starbank.model.entity.Account;
 
-public class TransactionFinalizerRepository {
+public class TransactionFinalizerRepository implements ITransactionFinalizerDAO {
 
 	private JdbcTemplate jdbcTemplate;
 	private TransactionTemplate transactionTemplate;
@@ -29,6 +29,7 @@ public class TransactionFinalizerRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		transactionTemplate = template;
 	}
+
 
 	public boolean finalizeAllUserTransactions() {
 		boolean isComplete = false;

@@ -8,8 +8,8 @@ import com.starbank.model.dao.repo.TransactionFinalizerRepository;
 
 public class TransactionFinalizerTest {
 	
-	@Test
-	public void testFinalizeAllUserTransactions() {
-		assertTrue(new TransactionFinalizerRepository().finalizeAllUserTransactions());
-	}
+//	@Test
+//	public void testFinalizeAllUserTransactions() {
+//		assertTrue(new TransactionFinalizerRepository().finalizeAllUserTransactions());
+//	}
 }
