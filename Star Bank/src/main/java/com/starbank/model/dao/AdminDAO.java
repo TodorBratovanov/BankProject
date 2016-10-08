@@ -5,13 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import com.starbank.exceptions.AccountException;
-import com.starbank.exceptions.MessageException;
 import com.starbank.exceptions.UserException;
-import com.starbank.model.entity.Message;
 import com.starbank.model.entity.User;
 
 public class AdminDAO{

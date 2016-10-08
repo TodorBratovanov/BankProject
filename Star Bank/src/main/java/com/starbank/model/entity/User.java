@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import com.starbank.exceptions.AddressException;
 import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InvalidEgnException;
@@ -18,7 +20,7 @@ import com.starbank.validators.IValidator;
 import com.starbank.validators.NameValidator;
 import com.starbank.validators.PasswordValidator;
 import com.starbank.validators.PhoneNumberValidator;
-
+@Component
 public class User {
 
 	private int userId;

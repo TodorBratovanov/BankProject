@@ -2,13 +2,10 @@ package com.starbank;
 
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
-
 import org.junit.Test;
 
 import com.starbank.exceptions.AccountException;
 import com.starbank.exceptions.AddressException;
-import com.starbank.exceptions.DateTimeException;
 import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InvalidEgnException;
 import com.starbank.exceptions.InvalidEmailException;
@@ -19,8 +16,6 @@ import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.MessageException;
 import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.AdminDAO;
-import com.starbank.model.dao.SendMessageDAO;
-import com.starbank.model.entity.Message;
 import com.starbank.model.entity.User;
 
 public class AdminTest {
