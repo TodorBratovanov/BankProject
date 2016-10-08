@@ -23,10 +23,14 @@ a, a:hover, a:focus {
 
 h1, h2 {
 	margin-top: 10px;
-	font-size: 38px;
+	font-size: 40px;
 	font-weight: 100;
 	color: #555;
 	line-height: 50px;
+}
+
+.text h1 {
+	font-family: 'Open Sans', sans-serif;
 }
 
 h3 {
@@ -163,13 +167,15 @@ img {
 	display: inline-block;
 	text-align: center;
 	margin-top: 70px;
+	border: 2px solid #19b9e7;
+	border-radius: 4px;
 }
 
 .form-top {
 	overflow: hidden;
 	padding: 0 25px 15px 25px;
 	background: #444;
-	background: rgba(0, 0, 0, 0.35);
+	background: rgba(0, 0, 0, 0.5);
 	-moz-border-radius: 4px 4px 0 0;
 	-webkit-border-radius: 4px 4px 0 0;
 	border-radius: 4px 4px 0 0;
@@ -188,7 +194,6 @@ img {
 }
 
 .form-top-left p {
-	opacity: 0.8;
 	color: #fff;
 }
 
@@ -211,6 +216,10 @@ img {
 	-webkit-border-radius: 0 0 4px 4px;
 	border-radius: 0 0 4px 4px;
 	text-align: left;
+}
+
+.form-bottom a {
+	color: #fff;
 }
 
 .form-bottom form textarea {

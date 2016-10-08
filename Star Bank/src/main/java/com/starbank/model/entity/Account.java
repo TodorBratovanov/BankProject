@@ -18,6 +18,8 @@ public abstract class Account {
 	private String currency;
 	private int recipientAccountId;
 	
+	
+
 	public Account(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
 			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
 		if (IValidator.isPositive(accountId)) {
@@ -52,7 +54,7 @@ public abstract class Account {
 		}
 
 	}
-
+	
 	public void setRecipientAccountId(int recipientAccountId) throws AccountException {
 		if (IValidator.isPositive(recipientAccountId)) {
 			this.recipientAccountId = recipientAccountId;
@@ -88,5 +90,7 @@ public abstract class Account {
 	public String getCurrency() {
 		return currency;
 	}
-
+	public int getRecipientAccountId() {
+		return recipientAccountId;
+	}
 }

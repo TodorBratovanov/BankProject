@@ -1,11 +1,5 @@
 package com.starbank.model.entity;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-import org.springframework.stereotype.Component;
-
 import com.starbank.exceptions.AddressException;
 import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InvalidEgnException;
@@ -20,7 +14,7 @@ import com.starbank.validators.IValidator;
 import com.starbank.validators.NameValidator;
 import com.starbank.validators.PasswordValidator;
 import com.starbank.validators.PhoneNumberValidator;
-@Component
+
 public class User {
 
 	private int userId;
@@ -34,9 +28,9 @@ public class User {
 	private boolean isAdmin;
 	private boolean isRegistered;
 	private String egn;
-	private Set<Message> messages = new LinkedHashSet<>();
-	private Set<Account> accounts = new HashSet<>();
-	private Set<UserSession> userSessions = new LinkedHashSet<>();
+	
+	public User(){
+	}
 	
 	public User(int userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
 			String password, String address,String egn, boolean isAdmin) throws IdException, InvalidNameException, InvalidPhoneNumberException, 
@@ -136,6 +130,42 @@ public class User {
 
 	public String getEgn() {
 		return this.egn;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public void setEgn(String egn) {
+		this.egn = egn;
 	}
 	
 }

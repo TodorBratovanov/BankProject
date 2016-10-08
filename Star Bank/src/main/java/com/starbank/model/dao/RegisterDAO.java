@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.starbank.exceptions.UserException;
 import com.starbank.model.entity.User;
 
@@ -14,10 +18,11 @@ public class RegisterDAO {
 	private static final String INSERT_USER_SQL = "INSERT INTO Users VALUES (null, ?, ?, ?, ?, ?, md5(?), ?, ?, ?, ?)";
 	private static final String SELECT_ISREGISTERED_SQL = "SELECT registered FROM Users WHERE email = ?;";
 	private static final String SELECT_USER_EMAIL_SQL = "SELECT * FROM Users WHERE email = ?;";
-
+	@Autowired
+	private DataSource dateSource;
 	
 	public int registerUser(User user) throws UserException {
-		Connection connection = DBConnection.getInstance().getConnection();
+	//	Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
 		

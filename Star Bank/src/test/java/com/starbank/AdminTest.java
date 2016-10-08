@@ -1,8 +1,12 @@
 package com.starbank;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.starbank.exceptions.AccountException;
 import com.starbank.exceptions.AddressException;
@@ -15,27 +19,47 @@ import com.starbank.exceptions.InvalidPhoneNumberException;
 import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.MessageException;
 import com.starbank.exceptions.UserException;
-import com.starbank.model.dao.AdminDAO;
+import com.starbank.model.dao.IAdminDAO;
+import com.starbank.model.dao.IUserDAO;
+import com.starbank.model.dao.repo.AdminRepository;
+import com.starbank.model.dao.repo.UserRepository;
 import com.starbank.model.entity.User;
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = TestConfig.class)
 public class AdminTest {
-
+	
+	@Autowired
+	private IAdminDAO adminRepo;
+	@Autowired
+	private User user;
+	
+	
 	@Test
 	public void testUserRegisterConfirmation()
 			throws UserException, IdException, InvalidNameException, InvalidPhoneNumberException, InvalidEmailException,
 			AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
-		assertTrue(new AdminDAO().confirmUserRegistration(new User(1, "Ivan", "Ivanov", "Ivanov", "+35987555555",
-				"ivan@abv.bg", "Ivan1234", "Sofia", "9005159015", false)));
+		user.setUserId(8);
+		user.setFirstName("Ivan");
+		user.setMiddleName("Ivanov");
+		user.setLastName("Ivanov");
+		user.setPhoneNumber("+35987555555");
+		user.setEmail("ivan@abv.bg");
+		user.setPassword("Ivan1234");
+		user.setAddress("Sofia");
+		user.setEgn("9005159015");
+		user.setAdmin(false);
+		
+		assertTrue(adminRepo.confirmUserRegistration(user));
 	}
 
-	@Test
-	public void testDeleteUser() throws UserException {
-		assertTrue(new AdminDAO().deleteUser(3));
-	}
-
-	@Test
-	public void testDeleteAccount() throws MessageException, AccountException, UserException {
-		assertTrue(new AdminDAO().deleteAccount(3));
-	}
+//	@Test
+//	public void testDeleteUser() throws UserException {
+//		assertTrue(new AdminRepository().deleteUser(3));
+//	}
+//
+//	@Test
+//	public void testDeleteAccount() throws MessageException, AccountException, UserException {
+//		assertTrue(new AdminRepository().deleteAccount(3));
+//	}
 
 }

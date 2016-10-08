@@ -8,62 +8,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
+import com.starbank.model.dao.repo.TransactionFinalizerRepository;
+
+
 public class DBConnection {
+
 	private static final int FINALIZE_TRANSACTION_TIME = 60000;
 
 	private static DBConnection instance;
 
 	private Connection connection;
 
-	private static final String DB_SCHEMA;
-	private static final String SSL_DISABLE;
-	private static final String DB_PORT;
-	private static final String DB_HOST;
-	private static final String DB_PASSWORD;
-	private static final String DB_USERNAME;
-
-	static {
-		Properties prop = new Properties();
-		InputStream input = null;
-		String schema = "";
-		String ssl = "";
-		String port = "";
-		String host = "";
-		String password = "";
-		String username = "";
-
-		try {
-			input = new FileInputStream("src" + File.separator + "main" + File.separator + "resources" + File.separator + "config.properties");
-
-			// load a properties file
-			prop.load(input);
-
-			schema = prop.getProperty("dbSchema");
-			ssl = prop.getProperty("sslDisable");
-			port = prop.getProperty("dbPort");
-			host = prop.getProperty("dbHost");
-			password = prop.getProperty("dbPassword");
-			username = prop.getProperty("dbUsername");
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			DB_SCHEMA = schema;
-			SSL_DISABLE = ssl;
-			DB_PORT = port;
-			DB_HOST = host;
-			DB_PASSWORD = password;
-			DB_USERNAME = username;
-		}
-
-	}
+	private static final String DB_SCHEMA = "e_banking";
+	private static final String SSL_DISABLE = "?autoReconnect=true&useSSL=false";
+	private static final String DB_PORT = "3306";
+	private static final String DB_HOST = "127.0.0.1";
+	private static final String DB_PASSWORD = "06011028";
+	private static final String DB_USERNAME = "root";
 
 	private DBConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -82,7 +43,7 @@ public class DBConnection {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					new TransactionFinalizerDAO().finalizeAllUserTransactions();
+					new TransactionFinalizerRepository().finalizeAllUserTransactions();
 				}
 			}
 		});

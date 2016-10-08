@@ -14,6 +14,7 @@ import com.starbank.exceptions.InterestException;
 import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.ShowAccountsDAO;
+import com.starbank.model.dao.repo.UserRepository;
 import com.starbank.model.entity.Account;
 
 public class ShowAccountsTest {
