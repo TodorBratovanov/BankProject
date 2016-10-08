@@ -2,9 +2,12 @@ package com.starbank.model.dao;
 
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Component;
+
 import com.starbank.exceptions.UserException;
 import com.starbank.model.entity.User;
 
+@Component
 public interface IUserDAO {
 
 	static final String SELECT_USER_SQL = "SELECT user_id FROM Users WHERE email = ? AND password = md5(?);";
@@ -13,7 +16,7 @@ public interface IUserDAO {
 	static final String SELECT_ISREGISTERED_SQL = "SELECT registered FROM Users WHERE email = ?;";
 	static final String SELECT_USER_EMAIL_SQL = "SELECT * FROM Users WHERE email = ?;";
 
-	public int loginUser(User user) throws UserException;
+	public int loginUser(String email, String password) throws UserException;
 
 	public int registerUser(User user) throws UserException;
 

@@ -16,7 +16,7 @@ import com.starbank.model.dao.DBConnection;
 import com.starbank.model.dao.IMessageDAO;
 import com.starbank.model.entity.Message;
 
-public class MessageRepository {
+public class MessageRepository implements IMessageDAO {
 
 	private JdbcTemplate jdbcTemplate;
 	
@@ -29,6 +29,7 @@ public class MessageRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	@Override
 	public boolean sendMessageToUser(Message message, int userId) throws MessageException {
 
 		Connection connection = DBConnection.getInstance().getConnection();

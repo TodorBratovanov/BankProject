@@ -1,5 +1,8 @@
 package com.starbank.model.dao;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public interface ITransactionFinalizerDAO {
 
 	static final String SELECT_ALL_ACCOUNTS_FOR_TRANSACTION_SQL = "SELECT account_id FROM Accounts WHERE blocked_amount > 0";

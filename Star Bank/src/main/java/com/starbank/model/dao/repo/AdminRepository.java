@@ -18,7 +18,7 @@ import com.starbank.model.dao.DBConnection;
 import com.starbank.model.dao.IAdminDAO;
 import com.starbank.model.entity.User;
 
-public class AdminRepository {
+public class AdminRepository implements IAdminDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	private TransactionTemplate transactionTemplate;
@@ -33,6 +33,7 @@ public class AdminRepository {
 		transactionTemplate = template;
 	}
 	
+	@Override
 	public boolean confirmUserRegistration(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
@@ -51,6 +52,7 @@ public class AdminRepository {
 		}
 	}
 
+	@Override
 	public boolean deleteUser(int userId) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
@@ -64,6 +66,7 @@ public class AdminRepository {
 		}
 	}
 
+	@Override
 	public boolean deleteAccount(int accountId) throws AccountException, UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
 

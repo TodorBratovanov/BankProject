@@ -14,7 +14,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import com.starbank.model.dao.DBConnection;
 import com.starbank.model.dao.ITransactionFinalizerDAO;
 
-public class TransactionFinalizerRepository {
+public class TransactionFinalizerRepository implements ITransactionFinalizerDAO {
 
 	private JdbcTemplate jdbcTemplate;
 	private TransactionTemplate transactionTemplate;
@@ -29,6 +29,7 @@ public class TransactionFinalizerRepository {
 		transactionTemplate = template;
 	}
 	
+	@Override
 	public boolean finalizeAllUserTransactions() {
 
 		Connection connection = DBConnection.getInstance().getConnection();

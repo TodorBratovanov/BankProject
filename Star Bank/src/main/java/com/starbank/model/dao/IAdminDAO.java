@@ -1,9 +1,12 @@
 package com.starbank.model.dao;
 
+import org.springframework.stereotype.Component;
+
 import com.starbank.exceptions.AccountException;
 import com.starbank.exceptions.UserException;
 import com.starbank.model.entity.User;
 
+@Component
 public interface IAdminDAO {
 
 	static final String NUMBER_OF_ACCOUNTS = "SELECT count(a.account_id) FROM accounts a JOIN users u ON(a.user_id = u.?);";

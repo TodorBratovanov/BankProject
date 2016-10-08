@@ -13,18 +13,17 @@ import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InterestException;
 import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.UserException;
-import com.starbank.model.dao.ShowAccountsDAO;
-import com.starbank.model.dao.repo.UserRepository;
+import com.starbank.model.dao.repo.AccountRepository;
 import com.starbank.model.entity.Account;
 
 public class ShowAccountsTest {
 	
-	@Test
-	public void testShowUserAccounts() throws UserException, AccountException, IbanException, InvalidStringException,
-			IdException, DateTimeException, InterestException {
-
-		List<Account> accounts = new ShowAccountsDAO().showUserAccounts(1);
-
-		assertNotEquals(accounts.size(), 0);
-	}
+//	@Test
+//	public void testShowUserAccounts() throws UserException, AccountException, IbanException, InvalidStringException,
+//			IdException, DateTimeException, InterestException {
+//
+//		List<Account> accounts = new AccountRepository().showUserAccounts(1);
+//
+//		assertNotEquals(accounts.size(), 0);
+//	}
 }
