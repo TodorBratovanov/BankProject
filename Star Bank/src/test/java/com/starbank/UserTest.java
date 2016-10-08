@@ -22,7 +22,7 @@ import com.starbank.exceptions.InvalidPhoneNumberException;
 import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.RegisterDAO;
-import com.starbank.model.dao.UserDAO;
+import com.starbank.model.dao.repo.UserRepository;
 import com.starbank.model.entity.Account;
 import com.starbank.model.entity.CurrentAccount;
 import com.starbank.model.entity.Deposit;
@@ -35,7 +35,7 @@ public class UserTest {
 			throws UserException, IdException, InvalidNameException, InvalidPhoneNumberException, InvalidEmailException,
 			AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
 
-		int userid = new UserDAO().loginUser(new User(1, "SvaSe", "SKk", "SKjj", "+359877706176",
+		int userid = new UserRepository().loginUser(new User(1, "SvaSe", "SKk", "SKjj", "+359877706176",
 				"kochev.svetoslav@gmail.com", "asdAa09875dcs", "asdzcd", "8805193502", false));
 
 		assertNotEquals(userid, 0);
