@@ -62,52 +62,48 @@
 								</div>
 							</div>
 							<div class="form-bottom">
-								<form role="form" action="" method="post"
-									class="registration-form2">
-									<div class="form-group">
-										<label class="sr-only" for="form-first-name">First
-											name</label> <input type="text" name="form-first-name"
-											placeholder="First name..."
-											class="form-first-name form-control" id="form-first-name">
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="form-middle-name">Middle
-											name</label> <input type="text" name="form-last-name"
-											placeholder="Middle name..."
-											class="form-middle-name form-control" id="form-middle-name">
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="form-last-name">Last name</label>
-										<input type="text" name="form-last-name"
-											placeholder="Last name..."
-											class="form-last-name form-control" id="form-last-name">
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="form-email">Email</label> <input
-											type="text" name="form-email" placeholder="Email..."
-											class="form-email form-control" id="form-email">
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="form-password">Password</label> <input
-											type="text" name="form-password" placeholder="Password..."
-											class="form-password form-control" id="form-password">
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="form-egn">EGN</label> <input
-											type="text" name="form-egn" placeholder="EGN..."
-											class="form-egn form-control" id="form-egn">
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="form-address">Address</label> <input
-											type="text" name="form-address" placeholder="Address..."
-											class="form-address form-control" id="form-address">
-									</div>
-									<button onclick="registerUserAJAX()" class="btn">Sign me up!</button>
-								</form>
+								<div class="form-group">
+									<label class="sr-only" for="form-first-name">First name</label>
+									<input type="text" name="form-first-name"
+										placeholder="First name..."
+										class="form-first-name form-control" id="form-first-name">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-middle-name">Middle
+										name</label> <input type="text" name="form-last-name"
+										placeholder="Middle name..."
+										class="form-middle-name form-control" id="form-middle-name">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-last-name">Last name</label> <input
+										type="text" name="form-last-name" placeholder="Last name..."
+										class="form-last-name form-control" id="form-last-name">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-email">Email</label> <input
+										type="text" name="form-email" placeholder="Email..."
+										class="form-email form-control" id="form-email">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-password">Password</label> <input
+										type="password" name="form-password" placeholder="Password..."
+										class="form-password form-control" id="form-password">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-egn">EGN</label> <input
+										type="text" name="form-egn" placeholder="EGN..."
+										class="form-egn form-control" id="form-egn">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-address">Address</label> <input
+										type="text" name="form-address" placeholder="Address..."
+										class="form-address form-control" id="form-address">
+								</div>
+								<button onclick="registerUserAJAX()" class="btn regbtn">Sign
+									me up!</button>
 								<a href="login">Already a member? Login</a>
 							</div>
 						</div>
-<button onclick="registerUserAJAX()">Test</button>
 					</div>
 
 				</div>

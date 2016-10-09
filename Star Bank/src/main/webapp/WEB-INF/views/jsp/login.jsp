@@ -62,22 +62,21 @@
 								</div>
 							</div>
 							<div class="form-bottom">
-							
-									<div class="form-group">
-										<label class="sr-only" for="form-username">Email</label> <input
-											type="text" name="form-username" placeholder="Email..."
-											class="form-username form-control" id="form-email-login">
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="form-password">Password</label> <input
-											type="password" name="form-password"
-											placeholder="Password..." class="form-password form-control"
-											id="form-password-login">
-									</div>
-									<button type="submit" class="btn">Sign in!</button>
+
+								<div class="form-group">
+									<label class="sr-only" for="form-username">Email</label> <input
+										type="text" name="form-username" placeholder="Email..."
+										class="form-username form-control" id="form-email-login">
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="form-password">Password</label> <input
+										type="password" name="form-password" placeholder="Password..."
+										class="form-password form-control" id="form-password-login">
+								</div>
+								<button onclick="loginUser()" class="btn loginbtn">Sign in!</button>
 								<a href="register">Don't have an account? Register</a>
+
 							</div>
-							<button onclick="loginUser()">Sign in!</button>
 						</div>
 
 					</div>

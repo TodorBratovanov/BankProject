@@ -14,7 +14,11 @@ import com.starbank.validators.IValidator;
 import com.starbank.validators.NameValidator;
 import com.starbank.validators.PasswordValidator;
 import com.starbank.validators.PhoneNumberValidator;
+import javax.persistence.Table;
+import javax.persistence.Entity;
 
+@Entity
+@Table(name="users")
 public class User {
 
 	private int userId;

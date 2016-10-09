@@ -82,14 +82,15 @@ function registerUserAJAX() {
 	myData['egn'] = document.getElementById("form-egn").value;
 
 	$.ajax({
-		url : "http://localhost:8080/StarBank/register2",
-		dataType : 'json',
+		url : "register2",
+		dataType : 'html',
 		data : JSON.stringify(myData),
 		type : 'POST',
 		contentType : 'application/json',
 		success : function() {
 			console.log("successThrown");
-			// relog();
+//			 relog();
+			window.location.href = "login";
 		},
 		error : function() {
 			console.log("errorThrown");
@@ -100,7 +101,7 @@ function registerUserAJAX() {
 function relog() {
 
 	$.ajax({
-		url : "http://localhost:8080/StarBank/",
+		url : "index",
 		type : 'GET'
 	});
 
@@ -112,14 +113,14 @@ function loginUser() {
 	myData['password'] = document.getElementById("form-password-login").value;
 
 	$.ajax({
-		url : 'confirmLogin',
-		type : 'POST',
-		dataType : 'html',
+		url : "confirmLogin",
+		dataType : 'json',
 		data : JSON.stringify(myData),
-		contentType : 'application/json; charset=utf-8',
+		type : 'POST',
+		contentType : 'application/json',
 		success : function(data) {
 			console.log("successThrown");
-			window.location.href = "confirmLogin";
+			window.location.href = "index";
 
 		},
 		error : function() {
