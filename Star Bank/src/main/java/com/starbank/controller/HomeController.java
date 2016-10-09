@@ -47,10 +47,10 @@ public class HomeController {
 //		
 //	}
 //	
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String showLoginForm() throws Exception{
-//		return "login";
-//	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String showLoginForm() throws Exception{
+		return "login";
+	}
 //	
 //	@RequestMapping(value = "/register", method = GET)
 //	public String register(Model model) {
