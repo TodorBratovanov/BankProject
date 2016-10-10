@@ -54,13 +54,14 @@ public class AdminRepository implements IAdminDAO {
 	@Override
 	public boolean deleteAccount(int accountId) throws AccountException, UserException {
 		try {
+			
 			int deletedAccounts = jdbcTemplate.update(IAdminDAO.DELETE_ACCOUNT_SQL, accountId);
-			int resultSetUserId = jdbcTemplate.queryForInt(IAdminDAO.SELECT_USER_ID_SQL, accountId);
-			int numberOfAccounts = jdbcTemplate.queryForInt(IAdminDAO.NUMBER_OF_ACCOUNTS, resultSetUserId);
-			if (numberOfAccounts <= 0) {
-				deleteUser(resultSetUserId);
-			}
-
+//			int resultSetUserId = jdbcTemplate.queryForInt(IAdminDAO.SELECT_USER_ID_SQL, accountId);
+//			int numberOfAccounts = jdbcTemplate.queryForInt(IAdminDAO.NUMBER_OF_ACCOUNTS, resultSetUserId);
+//			if (numberOfAccounts <= 0) {
+//				deleteUser(resultSetUserId);
+//			}
+			System.err.println("888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888" + " " + deletedAccounts);
 			return deletedAccounts >= 1;
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();

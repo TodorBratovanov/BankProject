@@ -2,15 +2,12 @@ package com.starbank.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.starbank.model.dao.IAccountDAO;
+import com.starbank.model.dao.IAdminDAO;
 import com.google.gson.Gson;
 import com.starbank.exceptions.MessageException;
 import com.starbank.exceptions.UserException;
@@ -33,10 +31,23 @@ public class HomeController {
 	@Autowired
 	private IUserDAO user;
 
+
+	@Autowired
+	private IAdminDAO admin;
+
+	@Autowired
+	private IAccountDAO account;
+	
+
 	@Autowired
 	private IMessageDAO message;
 
 	@RequestMapping(value = { "/", "/index" }, method = GET)
+	public String loadHome(Model model) {
+		return "index";
+	}
+	
+	@RequestMapping(value = { "/", "/index" }, method = POST)
 	public String home(Model model) {
 		return "index";
 	}
@@ -48,6 +59,7 @@ public class HomeController {
 		System.out.println("login");
 		System.out.println("");
 		int id = 0;
+		System.err.println("==========================   " + request.getParameter("email") + "    =================================");
 		if (user.isRegistered(request.getParameter("email"))) {
 			if (user.isRegistrationConfirmed(request.getParameter("email"))) {
 				id = user.loginUser(request.getParameter("email"), request.getParameter("password"));
@@ -62,38 +74,42 @@ public class HomeController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginForm() throws Exception {
+
+		return "login";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login() throws Exception {
 		return "login";
 	}
 
-	// @RequestMapping(value = "/messages", method = RequestMethod.GET)
-	// public String showMails() throws Exception{
-	// return "messages";
-	// }
 	@RequestMapping(value = "/register", method = GET)
-	public String register(Model model) {
+	public String loadRegister(Model model) {
 		return "register";
 	}
 
+	
+	@RequestMapping(value = "/register", method = POST)
+	public String register(Model model) {
+		return "login";
+	}
+
 	@RequestMapping(value = "/register2", method = POST)
-	public String register2(@ModelAttribute User regUser, Model model, HttpServletRequest request,
-			HttpServletResponse response) {
-		System.out.println("###############################   " + user);
-		response.setContentType("text/json");
-		response.setCharacterEncoding("UTF-8");
+	public String register2(@ModelAttribute User regUser, Model model, HttpServletRequest request) {
 
 		try {
-			response.getWriter().print(new Gson().toJson(regUser));
-			if (!user.isRegistered(regUser.getEmail())) {
+			String email = regUser.getEmail();
+			if (!user.isRegistered(email)) {
 				user.registerUser(regUser);
-				return "login";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "register";
-	}
 
+		return "login";
+	}
+	
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
 	public ModelAndView getMessages() {
 		ModelAndView model = new ModelAndView("messages");
@@ -110,5 +126,12 @@ public class HomeController {
 		return model;
 
 	}
+
+	
+	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
+	public String showAccounts() throws Exception {
+		return "accounts";
+	}
+
 
 }

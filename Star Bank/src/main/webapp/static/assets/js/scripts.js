@@ -5,7 +5,7 @@ jQuery(document)
 					/*
 					 * Fullscreen background
 					 */
-					$.backstretch("assets/img/backgrounds/1.jpg");
+				   $.backstretch("assets/img/backgrounds/1.jpg");
 
 					/*
 					 * Login form validation
@@ -72,32 +72,45 @@ jQuery(document)
 				});
 
 function registerUserAJAX() {
-	var myData = {};
-	myData["firstName"] = document.getElementById("form-first-name").value;
-	myData["middleName"] = document.getElementById("form-middle-name").value;
-	myData["lastName"] = document.getElementById("form-last-name").value;
-	myData["email"] = document.getElementById("form-email").value;
-	myData["password"] = document.getElementById("form-password").value;
-	myData["address"] = document.getElementById("form-address").value;
-	myData["egn"] = document.getElementById("form-egn").value;
-	
-        myData = JSON.stringify(myData)
-        
+// var myData = {};
+// myData['firstName'] = document.getElementById("form-first-name").value;
+// myData['middleName'] = document.getElementById("form-middle-name").value;
+// myData['lastName'] = document.getElementById("form-last-name").value;
+// myData['email'] = document.getElementById("form-email").value;
+// myData['password'] = document.getElementById("form-password").value;
+// myData['address'] = document.getElementById("form-address").value;
+// myData['egn'] = document.getElementById("form-egn").value;
+
 	$.ajax({
-		url : "/StarBank/register2",
+		url : "register2",
 		dataType : 'json',
-		data : myData,
+		data : JSON.stringify({ "email" : "asd@abv.bg" }),
 		type : 'POST',
-		contentType : 'application/json',
-		success : function(data) {
+		contentType : 'application/json; charset=utf-8',
+		async : false,
+		success : function() {
 			console.log("successThrown");
-//			 relog();
+			// relog();
 			window.location.href = "login";
 		},
 		error : function(data) {
 			console.log("errorThrown");
 		}
 	});
+	// var formData = JSON.stringify($("#reg-form").serializeArray());
+	// $.ajax({
+	// type : "POST",
+	// url : "register2",
+	// data : formData,
+	// success : function() {
+	// console.log("successThrown");
+	// },
+	// error : function() {
+	// console.log(formData);
+	// },
+	// dataType : "json",
+	// contentType : "application/json"
+	// });
 }
 
 function relog() {
@@ -117,17 +130,18 @@ function loginUser() {
 	$.ajax({
 		url : "/confirmLogin",
 		dataType : 'json',
-		data : JSON.stringify(myData),
+		 data : JSON.stringify(myData),
 		type : 'POST',
 		contentType : 'application/json',
 		success : function(data) {
 			console.log("successThrown");
+			console.log(myData);
 			window.location.href = "index";
 
 		},
 		error : function() {
 			console.log("errorThrown");
 		}
-		
+
 	});
 }

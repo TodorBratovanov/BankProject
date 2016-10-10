@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap Login &amp; Register Templates</title>
+<title>Star Bank - Today, Tomorrow, Together</title>
 
 <!-- CSS -->
 <link rel="stylesheet"
@@ -61,48 +61,54 @@
 									<i class="fa fa-lock"></i>
 								</div>
 							</div>
-							<div class="form-bottom">
-								<div class="form-group">
-									<label class="sr-only" for="form-first-name">First name</label>
-									<input type="text" name="form-first-name"
-										placeholder="First name..."
-										class="form-first-name form-control" id="form-first-name">
+
+							<form action="./login" method="post" id="reg-form">
+								<div class="form-bottom">
+									<div class="form-group">
+										<label class="sr-only" for="form-first-name">First
+											name</label> <input type="text" name="form-first-name"
+											placeholder="First name..."
+											class="form-first-name form-control" id="form-first-name">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-middle-name">Middle
+											name</label> <input type="text" name="form-last-name"
+											placeholder="Middle name..."
+											class="form-middle-name form-control" id="form-middle-name">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-last-name">Last name</label>
+										<input type="text" name="form-last-name"
+											placeholder="Last name..."
+											class="form-last-name form-control" id="form-last-name">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-email">Email</label> <input
+											type="text" name="form-email" placeholder="Email..."
+											class="form-email form-control" id="form-email">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-password">Password</label> <input
+											type="password" name="form-password"
+											placeholder="Password..." class="form-password form-control"
+											id="form-password">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-egn">EGN</label> <input
+											type="text" name="form-egn" placeholder="EGN..."
+											class="form-egn form-control" id="form-egn">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-address">Address</label> <input
+											type="text" name="form-address" placeholder="Address..."
+											class="form-address form-control" id="form-address">
+									</div>
+									<button class="btn regbtn">Sign
+										me up!</button>
+									<a href="login">Already a member? Login</a>
 								</div>
-								<div class="form-group">
-									<label class="sr-only" for="form-middle-name">Middle
-										name</label> <input type="text" name="form-last-name"
-										placeholder="Middle name..."
-										class="form-middle-name form-control" id="form-middle-name">
-								</div>
-								<div class="form-group">
-									<label class="sr-only" for="form-last-name">Last name</label> <input
-										type="text" name="form-last-name" placeholder="Last name..."
-										class="form-last-name form-control" id="form-last-name">
-								</div>
-								<div class="form-group">
-									<label class="sr-only" for="form-email">Email</label> <input
-										type="text" name="form-email" placeholder="Email..."
-										class="form-email form-control" id="form-email">
-								</div>
-								<div class="form-group">
-									<label class="sr-only" for="form-password">Password</label> <input
-										type="password" name="form-password" placeholder="Password..."
-										class="form-password form-control" id="form-password">
-								</div>
-								<div class="form-group">
-									<label class="sr-only" for="form-egn">EGN</label> <input
-										type="text" name="form-egn" placeholder="EGN..."
-										class="form-egn form-control" id="form-egn">
-								</div>
-								<div class="form-group">
-									<label class="sr-only" for="form-address">Address</label> <input
-										type="text" name="form-address" placeholder="Address..."
-										class="form-address form-control" id="form-address">
-								</div>
-								<button onclick="registerUserAJAX()" class="btn regbtn">Sign
-									me up!</button>
-								<a href="login">Already a member? Login</a>
-							</div>
+							</form>
+
 						</div>
 					</div>
 
@@ -110,10 +116,10 @@
 			</div>
 		</div>
 		<!-- Javascript -->
-		<script src="assets/js/jquery-1.11.1.min.js"></script>
-		<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-		<script src="assets/js/jquery.backstretch.min.js"></script>
-		<script src="assets/js/scripts.js"></script>
+	<script src='<c:url value="assets/js/jquery-1.11.1.min.js"/>'></script>
+	<script src='<c:url value="assets/bootstrap/js/bootstrap.min.js"/>'></script>
+	<script src='<c:url value="assets/js/jquery.backstretch.min.js"/>'></script>
+	<script src='<c:url value="assets/js/scripts.js"/>'></script>
 
 		<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
