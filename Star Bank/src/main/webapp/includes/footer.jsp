@@ -1,50 +1,102 @@
-
-<!-- //updates -->
-<!-- updates-bottom -->
-<div class="updates-bottom">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!-- //banner -->
+<!-- banner-bottom -->
+<div class="banner-bottom">
 	<div class="container">
-		<div class="col-md-3 w3_updates_bottom_grid col-md-3-left">
-			<div class="w3_updates_bottom_grid_left">
-				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		<div class="agile_banner_bottom_grids">
+			<div style="cursor: pointer;"
+				onclick="window.location='information';"
+				class="col-md-3g agile_banner_bottom_grid">
+				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
+					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+				</div>
+				<h3>Information</h3>
 			</div>
-			<div class="w3_updates_bottom_grid_right">
-				<p class="counter">886</p>
-				<h3>Users</h3>
+			<div style="cursor: pointer;" onclick="window.location='payments';"
+				class="col-md-3g agile_banner_bottom_grid">
+				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
+					<span class="glyphicon glyphicon-export" aria-hidden="true"></span>
+				</div>
+				<h3>Payments</h3>
+			</div>
+			<div style="cursor: pointer;" onclick="window.location='utility';"
+				class="col-md-3g agile_banner_bottom_grid">
+				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
+					<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+				</div>
+				<h3>Utility bills</h3>
+			</div>
+			<div style="cursor: pointer;" onclick="window.location='statements';"
+				class="col-md-3g agile_banner_bottom_grid">
+				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
+					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+				</div>
+				<h3>Statements</h3>
+			</div>
+			<div style="cursor: pointer;" onclick="window.location='accounts';"
+				class="col-md-3g agile_banner_bottom_grid">
+				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
+					<span class="glyphicon glyphicon-credit-card " aria-hidden="true"></span>
+				</div>
+				<h3>Accounts</h3>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="col-md-3 w3_updates_bottom_grid">
-			<div class="w3_updates_bottom_grid_left">
-				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-			</div>
-			<div class="w3_updates_bottom_grid_right">
-				<p class="counter">886</p>
-				<h3>Happy clients</h3>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="clearfix"></div>
-		<!-- Starts-Number-Scroller-Animation-JavaScript -->
-		<script src="js/waypoints.min.js"></script>
-		<script src="js/counterup.min.js"></script>
-		<script>
-			jQuery(document).ready(function($) {
-				$('.counter').counterUp({
-					delay : 20,
-					time : 1000
-				});
-			});
-		</script>
-
-		<!-- //Starts-Number-Scroller-Animation-JavaScript -->
 	</div>
 </div>
+<!-- //updates -->
+<!-- updates-bottom -->
+<form name="like" class="like-form">
+
+	<div class="updates-bottom">
+		<div class="container">
+			<div class="col-md-3 w3_updates_bottom_grid col-md-3-left">
+				<div class="w3_updates_bottom_grid_left">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				</div>
+				<div class="w3_updates_bottom_grid_right">
+					<p class="counter">886</p>
+					<h3>Users</h3>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="col-md-3 w3_updates_bottom_grid">
+				<div onclick="window.location.reload()"
+					class="w3_updates_bottom_grid_left like-btn">
+					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+				</div>
+				<div class="w3_updates_bottom_grid_right">
+					<p class="counter">886</p>
+					<h3>Happy clients</h3>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="clearfix"></div>
+			<!-- Starts-Number-Scroller-Animation-JavaScript -->
+			<script src="js/waypoints.min.js"></script>
+			<script src="js/counterup.min.js"></script>
+			<script>
+				jQuery(document).ready(function($) {
+					$('.counter').counterUp({
+						delay : 20,
+						time : 1000
+					});
+				});
+			</script>
+
+			<!-- //Starts-Number-Scroller-Animation-JavaScript -->
+		</div>
+	</div>
+	<input type="number" name="like" value="1" style="display: none">
+</form>
+
 <!-- //updates-bottom -->
 <!-- footer -->
 <div class="footer-copy">
 	<div class="container">
 		<div class="w3agile_footer_grids">
-		<br><br>
+			<br> <br>
 			<div class="col-md-4 w3agile_footer_grid">
 				<h3>About Us</h3>
 				<p>We deliver a broad range of financial services, including
@@ -65,7 +117,8 @@
 						000 000</li>
 				</ul>
 			</div>
-			<div class="col-md-4 col-md-4 w3agile_footer_grid w3agile_footer_grid1">
+			<div
+				class="col-md-4 col-md-4 w3agile_footer_grid w3agile_footer_grid1">
 				<h3>Navigation</h3>
 				<ul>
 					<li><span class="glyphicon glyphicon-menu-right"

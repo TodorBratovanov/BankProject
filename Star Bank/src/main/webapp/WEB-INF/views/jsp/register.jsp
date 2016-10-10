@@ -66,41 +66,41 @@
 								<div class="form-bottom">
 									<div class="form-group">
 										<label class="sr-only" for="form-first-name">First
-											name</label> <input type="text" name="form-first-name"
+											name</label> <input type="text" name="firstName"
 											placeholder="First name..."
 											class="form-first-name form-control" id="form-first-name">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-middle-name">Middle
-											name</label> <input type="text" name="form-last-name"
+											name</label> <input type="text" name="middleName"
 											placeholder="Middle name..."
 											class="form-middle-name form-control" id="form-middle-name">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-last-name">Last name</label>
-										<input type="text" name="form-last-name"
+										<input type="text" name="lastName"
 											placeholder="Last name..."
 											class="form-last-name form-control" id="form-last-name">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-email">Email</label> <input
-											type="text" name="form-email" placeholder="Email..."
+											type="text" name="email" placeholder="Email..."
 											class="form-email form-control" id="form-email">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-password">Password</label> <input
-											type="password" name="form-password"
+											type="password" name="password"
 											placeholder="Password..." class="form-password form-control"
 											id="form-password">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-egn">EGN</label> <input
-											type="text" name="form-egn" placeholder="EGN..."
+											type="text" name="egn" placeholder="EGN..."
 											class="form-egn form-control" id="form-egn">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-address">Address</label> <input
-											type="text" name="form-address" placeholder="Address..."
+											type="text" name="address" placeholder="Address..."
 											class="form-address form-control" id="form-address">
 									</div>
 									<button class="btn regbtn">Sign

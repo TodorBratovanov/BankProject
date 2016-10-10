@@ -43,12 +43,19 @@ public class HomeController {
 	private IMessageDAO message;
 
 	@RequestMapping(value = { "/", "/index" }, method = GET)
-	public String loadHome(Model model) {
+	public String loadHome(Model model, HttpServletRequest request) {
+		System.out.println("=================================== " + request.getParameter("like") + " ===========================");
 		return "index";
 	}
 	
 	@RequestMapping(value = { "/", "/index" }, method = POST)
 	public String home(Model model) {
+		try {
+			user.registerUser(null);
+		} catch (UserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "index";
 	}
 
@@ -128,9 +135,34 @@ public class HomeController {
 	}
 
 	
+	@RequestMapping(value = "/information", method = RequestMethod.GET)
+	public String showInfo() throws Exception {
+		return "information";
+	}
+	
+	@RequestMapping(value = "/payments", method = RequestMethod.GET)
+	public String showPayments() throws Exception {
+		return "payments";
+	}
+	
+	@RequestMapping(value = "/utility", method = RequestMethod.GET)
+	public String showUtility() throws Exception {
+		return "utility";
+	}
+	
+	@RequestMapping(value = "/statements", method = RequestMethod.GET)
+	public String showStatements() throws Exception {
+		return "statements";
+	}
+	
 	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
 	public String showAccounts() throws Exception {
 		return "accounts";
+	}
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String showProfile() throws Exception {
+		return "profile";
 	}
 
 
