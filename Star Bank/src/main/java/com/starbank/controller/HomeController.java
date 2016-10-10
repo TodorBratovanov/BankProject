@@ -29,23 +29,21 @@ import com.starbank.model.entity.User;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private IUserDAO user;
-	
+
 	@Autowired
 	private IMessageDAO message;
-	
-	@RequestMapping(value = {"/", "/index"}, method = GET)
+
+	@RequestMapping(value = { "/", "/index" }, method = GET)
 	public String home(Model model) {
 		return "index";
 	}
-	
 
 	@RequestMapping(value = "/confirmLogin", method = RequestMethod.POST)
-	public String confirmLogin(HttpServletRequest request, Model model, HttpSession session) 
-			throws Exception{
-		
+	public String confirmLogin(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+
 		System.out.println("");
 		System.out.println("login");
 		System.out.println("");
@@ -55,34 +53,34 @@ public class HomeController {
 				id = user.loginUser(request.getParameter("email"), request.getParameter("password"));
 			}
 		}
-		
+
 		session.setAttribute("userId", id);
-		
+
 		return "index";
-		
+
 	}
-	
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String showLoginForm() throws Exception{
+	public String showLoginForm() throws Exception {
 		return "login";
 	}
 
-//	@RequestMapping(value = "/messages", method = RequestMethod.GET)
-//	public String showMails() throws Exception{
-//		return "messages";
-//	}
+	// @RequestMapping(value = "/messages", method = RequestMethod.GET)
+	// public String showMails() throws Exception{
+	// return "messages";
+	// }
 	@RequestMapping(value = "/register", method = GET)
 	public String register(Model model) {
 		return "register";
 	}
-	
+
 	@RequestMapping(value = "/register2", method = POST)
-	public String register2(@ModelAttribute User regUser, Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String register2(@ModelAttribute User regUser, Model model, HttpServletRequest request,
+			HttpServletResponse response) {
 		System.out.println("###############################   " + user);
 		response.setContentType("text/json");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		try {
 			response.getWriter().print(new Gson().toJson(regUser));
 			if (!user.isRegistered(regUser.getEmail())) {
@@ -92,14 +90,14 @@ public class HomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "register";
 	}
-	
-	
+
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
 	public ModelAndView getMessages() {
 		ModelAndView model = new ModelAndView("messages");
+
 		List<Message> messages = new ArrayList<>();
 		try {
 			messages = message.getAllMessages(1);
@@ -112,18 +110,5 @@ public class HomeController {
 		return model;
 
 	}
-//	public String register2(Model model, @RequestBody RegisterDTO reg) throws Exception {
-//		
-//		userService.create(reg.getFirstName(), reg.getMiddleName(), reg.getLastName(),"+359877556221", reg.getEmail(), 
-//				reg.getPassword(), reg.getAddress(), reg.getEgn());
-//		
-//		System.out.println("");
-//		System.out.println("register2");
-//		System.out.println("");
-//		
-//		return "index";
-//		
-//		//return "redirect:/index";
-//	}
-	
+
 }
