@@ -40,6 +40,7 @@ html[xmlns] .slides {display: block;}
 	border: 0px;
 	position: relative;
 	zoom: 1;
+	margin-top: -26.8%;
 }
 .flex-viewport {max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;}
 .loading .flex-viewport {max-height: 300px;}

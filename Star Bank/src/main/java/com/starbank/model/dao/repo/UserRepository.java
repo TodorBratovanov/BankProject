@@ -50,7 +50,7 @@ public class UserRepository implements IUserDAO {
 //			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { user.getEmail(), user.getPassword() }, Integer.class);
 
 			jdbcTemplate.update(IUserDAO.INSERT_USER_SQL, "Koko", "Kukoto", "Dinev", "+359877663311", "koko@abv.bg", "Admin123", "Sofia", 
-					"8802021144", false, false);
+					"8802021144", false, false, true);
 			System.err.println("======================================================================================");
 			return 0;
 		} catch (EmptyResultDataAccessException e) {

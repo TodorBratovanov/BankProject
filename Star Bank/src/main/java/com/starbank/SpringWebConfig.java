@@ -4,10 +4,13 @@ import java.util.Locale;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -22,9 +25,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.starbank.model.dao.repo.AccountRepository;
 import com.starbank.model.dao.repo.AdminRepository;
@@ -35,8 +35,30 @@ import com.starbank.model.dao.repo.UserRepository;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.starbank")
+@PropertySource("classpath:config.properties")
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
+	@Value("${dbDriver}")
+	private String dbDriver;
+	@Value("${dbUrlPrefix}")
+	private String dbUrlPrefix;
+	@Value("${dbSchema}")
+	private String dbSchema;
+	@Value("${sslDisable}")
+	private String sslDisable;
+	@Value("${dbPort}")
+	private String dbPort;
+	@Value("${dbHost}")
+	private String dbHost;
+	@Value("${dbPassword}")
+	private String dbPassword;
+	@Value("${dbUsername}")
+	private String dbUsername;
+	
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -83,10 +105,11 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/e_banking?useSSL=false");
-		dataSource.setUsername("root");
-		dataSource.setPassword("qwerty1818");
+		dataSource.setDriverClassName(dbDriver);
+		System.out.println(dbUrlPrefix + dbHost + dbPort + dbSchema + sslDisable);
+		dataSource.setUrl(dbUrlPrefix + dbHost + ":" + dbPort + "/" + dbSchema + sslDisable);
+		dataSource.setUsername(dbUsername);
+		dataSource.setPassword(dbPassword);
 
 		return dataSource;
 	}

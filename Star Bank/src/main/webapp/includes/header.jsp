@@ -69,8 +69,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<nav class="link-effect-7" id="link-effect-7">
 							<ul class="nav navbar-nav">
 								<li class="active act"><a href="index" data-hover="Home">Home</a></li>
-								<li><a href="index" data-hover="Messages">Messages</a></li>
-								<li><a href="index" data-hover="Profile">Profile</a></li>
+								<li><a href="messages" data-hover="Messages">Messages</a></li>
+								<li><a href="profile" data-hover="Profile">Profile</a></li>
 								<li><a href="login" data-hover="Logout">Logout</a></li>
 							</ul>
 						</nav>

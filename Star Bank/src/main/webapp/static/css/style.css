@@ -222,15 +222,17 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 /*-- //header --*/
 /*-- banner --*/
 .banner {
-	background: url(../images/22.jpg) no-repeat 0px 0px;
+	background: url(../images/slide3.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-ms-background-size: cover;
 	position: relative;
-	min-height: 700px;
+	height: 377px;
 }
+
+
 
 .wthree_banner_info p {
 	font-size: 20px;
@@ -714,6 +716,10 @@ a.pa_italic:focus {
 	-moz-border-radius: 50px;
 	-o-border-radius: 50px;
 	-ms-border-radius: 50px;
+}
+
+.like-btn:hover {
+	cursor: pointer;
 }
 
 .w3_updates_bottom_grid_left span {
