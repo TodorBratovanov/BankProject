@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap Login &amp; Register Templates</title>
+<title>Star Bank - Today, Tomorrow, Together</title>
 
 <!-- CSS -->
 <link rel="stylesheet"
@@ -61,22 +61,25 @@
 									<i class="fa fa-lock"></i>
 								</div>
 							</div>
-							<div class="form-bottom">
+							<form action="./index" method="post">
+								<div class="form-bottom">
 
-								<div class="form-group">
-									<label class="sr-only" for="form-username">Email</label> <input
-										type="text" name="form-username" placeholder="Email..."
-										class="form-username form-control" id="form-email-login">
-								</div>
-								<div class="form-group">
-									<label class="sr-only" for="form-password">Password</label> <input
-										type="password" name="form-password" placeholder="Password..."
-										class="form-password form-control" id="form-password-login">
-								</div>
-								<button onclick="loginUser()" class="btn loginbtn">Sign in!</button>
-								<a href="register">Don't have an account? Register</a>
+									<div class="form-group">
+										<label class="sr-only" for="form-username">Email</label> <input
+											type="text" name="form-username" placeholder="Email..."
+											class="form-username form-control" id="form-email-login">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-password">Password</label> <input
+											type="password" name="form-password"
+											placeholder="Password..." class="form-password form-control"
+											id="form-password-login">
+									</div>
+									<button class="btn loginbtn">Sign in!</button>
+									<a href="register">Don't have an account? Register</a>
 
-							</div>
+								</div>
+							</form>
 						</div>
 
 					</div>
@@ -86,13 +89,13 @@
 		</div>
 	</div>
 	<!-- Javascript -->
-	<script src="assets/js/jquery-1.11.1.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery.backstretch.min.js"></script>
-	<script src="assets/js/scripts.js"></script>
+	<script src='<c:url value="assets/js/jquery-1.11.1.min.js"/>'></script>
+	<script src='<c:url value="assets/bootstrap/js/bootstrap.min.js"/>'></script>
+	<script src='<c:url value="assets/js/jquery.backstretch.min.js"/>'></script>
+	<script src='<c:url value="assets/js/scripts.js"/>'></script>
 
 	<!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
+            <script src="static/assets/js/placeholder.js"></script>
         <![endif]-->
 </body>
 

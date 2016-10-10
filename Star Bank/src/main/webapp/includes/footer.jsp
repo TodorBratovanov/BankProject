@@ -3,46 +3,28 @@
 <!-- updates-bottom -->
 <div class="updates-bottom">
 	<div class="container">
-		<div class="col-md-3 w3_updates_bottom_grid">
+		<div class="col-md-3 w3_updates_bottom_grid col-md-3-left">
 			<div class="w3_updates_bottom_grid_left">
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 			</div>
 			<div class="w3_updates_bottom_grid_right">
 				<p class="counter">886</p>
-				<h3>Happy Clients</h3>
+				<h3>Users</h3>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="col-md-3 w3_updates_bottom_grid">
-			<div class="w3_updates_bottom_grid_left">
-				<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-			</div>
-			<div class="w3_updates_bottom_grid_right">
-				<p class="counter">652</p>
-				<h3>Products Level</h3>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+
 		<div class="col-md-3 w3_updates_bottom_grid">
 			<div class="w3_updates_bottom_grid_left">
 				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 			</div>
 			<div class="w3_updates_bottom_grid_right">
 				<p class="counter">886</p>
-				<h3>Creative Design</h3>
+				<h3>Happy clients</h3>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="col-md-3 w3_updates_bottom_grid">
-			<div class="w3_updates_bottom_grid_left">
-				<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-			</div>
-			<div class="w3_updates_bottom_grid_right">
-				<p class="counter">457</p>
-				<h3>Popularity</h3>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+
 		<div class="clearfix"></div>
 		<!-- Starts-Number-Scroller-Animation-JavaScript -->
 		<script src="js/waypoints.min.js"></script>
@@ -61,54 +43,39 @@
 </div>
 <!-- //updates-bottom -->
 <!-- footer -->
-<div class="footer">
-	<div class="container">
-		<h2>
-			Subscribe to <span>Newsletter</span>
-		</h2>
-		<form action="#" method="post">
-			<input type="email" name="Email" value="Enter Your Email..."
-				onfocus="this.value = '';"
-				onblur="if (this.value == '') {this.value = 'Enter Your Email...';}"
-				required=""> <input type="submit" value="Send">
-		</form>
-	</div>
-</div>
 <div class="footer-copy">
 	<div class="container">
 		<div class="w3agile_footer_grids">
+		<br><br>
 			<div class="col-md-4 w3agile_footer_grid">
 				<h3>About Us</h3>
-				<p>
-					Duis aute irure dolor in reprehenderit in voluptate velit esse.<span>Excepteur
-						sint occaecat cupidatat non proident, sunt in culpa qui officia
-						deserunt mollit.</span>
-				</p>
+				<p>We deliver a broad range of financial services, including
+					personal banking, credit cards, mortgages, auto financing,
+					investment advice, small business loans and payment processing.</p>
 			</div>
 			<div class="col-md-4 w3agile_footer_grid">
 				<h3>Contact Info</h3>
 				<ul>
 					<li><i class="glyphicon glyphicon-map-marker"
-						aria-hidden="true"></i>1234k Avenue, 4th block, <span>New
-							York City.</span></li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
-						href="mailto:info@example.com">info@example.com</a></li>
-					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234
-						567 567</li>
+						aria-hidden="true"></i>Infinity Tower, 1404 <span>Sofia</span></li>
+					<li class="emails"><i class="glyphicon glyphicon-envelope"
+						aria-hidden="true"></i> <a href="mailto:tsb87@abv.bg">tsb87@abv.bg</a></li>
+					<li class="emails"><i class="glyphicon glyphicon-envelope"
+						aria-hidden="true"></i> <a
+						href="mailto:kochev.svetoslav@gmail.com">kochev.svetoslav@gmail.com</a></li>
+					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+359877
+						000 000</li>
 				</ul>
 			</div>
-			<div class="col-md-4 w3agile_footer_grid w3agile_footer_grid1">
+			<div class="col-md-4 col-md-4 w3agile_footer_grid w3agile_footer_grid1">
 				<h3>Navigation</h3>
 				<ul>
 					<li><span class="glyphicon glyphicon-menu-right"
-						aria-hidden="true"></span><a href="about.html">About Us</a></li>
+						aria-hidden="true"></span><a href="index">Home</a></li>
 					<li><span class="glyphicon glyphicon-menu-right"
-						aria-hidden="true"></span><a href="portfolio.html">Portfolio</a></li>
+						aria-hidden="true"></span><a href="messages">Messages</a></li>
 					<li><span class="glyphicon glyphicon-menu-right"
-						aria-hidden="true"></span><a href="short-codes.html">Short
-							Codes</a></li>
-					<li><span class="glyphicon glyphicon-menu-right"
-						aria-hidden="true"></span><a href="mail.html">Mail Us</a></li>
+						aria-hidden="true"></span><a href="profile">Profile</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -123,20 +90,9 @@
 		</div>
 		<div class="copy-right">
 			<p>
-				&copy; 2016 Barter. All rights reserved | Design by <a
-					href="http://w3layouts.com/">W3layouts</a>
+				&copy; 2016 <strong>Star Bank</strong>. All rights reserved | Design
+				by <strong>T.Bratovanov & S.Kochev</strong>
 			</p>
-		</div>
-		<div class="copy-right-social1">
-			<div class="w3l_social_icons w3l_social_icons1">
-				<ul>
-					<li><a href="#" class="facebook"></a></li>
-					<li><a href="#" class="twitter"></a></li>
-					<li><a href="#" class="google_plus"></a></li>
-					<li><a href="#" class="pinterest"></a></li>
-					<li><a href="#" class="instagram"></a></li>
-				</ul>
-			</div>
 		</div>
 		<div class="clearfix"></div>
 	</div>

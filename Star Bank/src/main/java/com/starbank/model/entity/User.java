@@ -21,6 +21,14 @@ import javax.persistence.Entity;
 @Table(name="users")
 public class User {
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
+				+ lastName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password
+				+ ", address=" + address + ", isAdmin=" + isAdmin + ", isRegistered=" + isRegistered + ", egn=" + egn
+				+ "]";
+	}
+
 	private int userId;
 	private String firstName;
 	private String middleName;

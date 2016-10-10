@@ -93,4 +93,12 @@ public abstract class Account {
 	public int getRecipientAccountId() {
 		return recipientAccountId;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [accountId=" + accountId + ", netAvlbBalance=" + netAvlbBalance + ", currentBalance="
+				+ currentBalance + ", blockedAmount=" + blockedAmount + ", iban=" + iban + ", userId=" + userId
+				+ ", currency=" + currency + ", recipientAccountId=" + recipientAccountId + "]";
+	}
+	
 }

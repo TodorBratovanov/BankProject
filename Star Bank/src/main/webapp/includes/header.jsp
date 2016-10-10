@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Star Bank</title>
+<title>Star Bank - Today, Tomorrow, Together</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords"
@@ -69,9 +69,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<nav class="link-effect-7" id="link-effect-7">
 							<ul class="nav navbar-nav">
 								<li class="active act"><a href="index" data-hover="Home">Home</a></li>
-								<li><a href="mail.html" data-hover="Messages">Messages</a></li>
-								<li><a href="login" data-hover="Profile">Profile</a></li>
-								<li><a href="register" data-hover="Logout">Logout</a></li>
+								<li><a href="index" data-hover="Messages">Messages</a></li>
+								<li><a href="index" data-hover="Profile">Profile</a></li>
+								<li><a href="login" data-hover="Logout">Logout</a></li>
 							</ul>
 						</nav>
 					</div>

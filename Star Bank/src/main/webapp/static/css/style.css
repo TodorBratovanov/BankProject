@@ -233,6 +233,7 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 }
 
 .wthree_banner_info p {
+	font-size: 20px;
 	text-transform: uppercase;
 	color: #fff;
 	line-height: 2em;
@@ -241,7 +242,7 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 }
 
 .wthree_banner_info h3 {
-	font-size: 2em;
+	font-size: 2.5em;
 	color: #fff;
 	line-height: 1.5em;
 	/*-- w3layouts --*/
@@ -692,7 +693,7 @@ a.pa_italic:focus {
 /*-- //updates --*/
 /*-- updates-bottom --*/
 .updates-bottom {
-	background: url(../images/5.jpg) no-repeat 0px 0px;
+	background: url(../images/clients6.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -864,7 +865,7 @@ a.pa_italic:focus {
 	margin: 0;
 }
 
-.copy-right p a {
+.copy-right p strong {
 	text-decoration: none;
 	color: #00BFFF;
 }
