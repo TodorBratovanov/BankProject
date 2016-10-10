@@ -1,5 +1,7 @@
 package com.starbank.model.entity;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.starbank.exceptions.DateTimeException;
@@ -9,13 +11,15 @@ import com.starbank.validators.IValidator;
 
 public class Message {
 
+
+
 	private int messageId;
 	private String title;
 	private String text;
-	private LocalDateTime date;
+	private Timestamp date;
 	
 	
-	public Message(int messageId, String title, String text, LocalDateTime date) throws IdException, InvalidStringException, DateTimeException {
+	public Message(int messageId, String title, String text, Timestamp date) throws IdException, InvalidStringException, DateTimeException {
 		
 		if (IValidator.isPositive(messageId)) {
 			this.messageId = messageId;
@@ -44,6 +48,11 @@ public class Message {
 	}
 
 
+	public Message() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public long getMessageId() {
 		return messageId;
 	}
@@ -59,8 +68,32 @@ public class Message {
 	}
 
 
-	public LocalDateTime getDate() {
+	public Timestamp getDate() {
 		return date;
+	}
+	public void setMessageId(int messageId) {
+		this.messageId = messageId;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public void setDate(Timestamp timestamp) {
+		this.date = timestamp;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Message [messageId=" + messageId + ", title=" + title + ", text=" + text + ", date=" + date + "]";
 	}
 	
 }

@@ -43,6 +43,7 @@ public class UserRepository implements IUserDAO {
 	public int registerUser(User user) throws UserException {
 		
 		try {
+			System.out.println(user);
 			jdbcTemplate.update(IUserDAO.SELECT_USER_SQL, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getPhoneNumber(),
 					user.getEmail(), user.getPassword(), user.getAddress(), user.getEgn(), user.isAdmin(), user.isRegistered());
 			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { user.getEmail(), user.getPassword() }, Integer.class);
@@ -70,7 +71,9 @@ public class UserRepository implements IUserDAO {
 	public boolean isRegistered(String userEmail) throws SQLException, UserException {
 		
 		try {
+			
 			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_EMAIL_SQL, new Object[] { userEmail }, Boolean.class);
+			
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return false;

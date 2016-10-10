@@ -1,5 +1,8 @@
 package com.starbank.model.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.starbank.exceptions.AddressException;
 import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InvalidEgnException;
@@ -14,6 +17,8 @@ import com.starbank.validators.IValidator;
 import com.starbank.validators.NameValidator;
 import com.starbank.validators.PasswordValidator;
 import com.starbank.validators.PhoneNumberValidator;
+
+
 
 public class User {
 

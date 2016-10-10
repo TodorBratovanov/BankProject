@@ -73,25 +73,28 @@ jQuery(document)
 
 function registerUserAJAX() {
 	var myData = {};
-	myData['firstName'] = document.getElementById("form-first-name").value;
-	myData['middleName'] = document.getElementById("form-middle-name").value;
-	myData['lastName'] = document.getElementById("form-last-name").value;
-	myData['email'] = document.getElementById("form-email").value;
-	myData['password'] = document.getElementById("form-password").value;
-	myData['address'] = document.getElementById("form-address").value;
-	myData['egn'] = document.getElementById("form-egn").value;
-
+	myData["firstName"] = document.getElementById("form-first-name").value;
+	myData["middleName"] = document.getElementById("form-middle-name").value;
+	myData["lastName"] = document.getElementById("form-last-name").value;
+	myData["email"] = document.getElementById("form-email").value;
+	myData["password"] = document.getElementById("form-password").value;
+	myData["address"] = document.getElementById("form-address").value;
+	myData["egn"] = document.getElementById("form-egn").value;
+	
+        myData = JSON.stringify(myData)
+        
 	$.ajax({
-		url : "http://localhost:8080/StarBank/register2",
+		url : "/StarBank/register2",
 		dataType : 'json',
-		data : JSON.stringify(myData),
+		data : myData,
 		type : 'POST',
 		contentType : 'application/json',
-		success : function() {
+		success : function(data) {
 			console.log("successThrown");
-			// relog();
+//			 relog();
+			window.location.href = "login";
 		},
-		error : function() {
+		error : function(data) {
 			console.log("errorThrown");
 		}
 	});
@@ -100,7 +103,7 @@ function registerUserAJAX() {
 function relog() {
 
 	$.ajax({
-		url : "http://localhost:8080/StarBank/",
+		url : "index",
 		type : 'GET'
 	});
 
@@ -112,14 +115,14 @@ function loginUser() {
 	myData['password'] = document.getElementById("form-password-login").value;
 
 	$.ajax({
-		url : 'confirmLogin',
-		type : 'POST',
-		dataType : 'html',
+		url : "confirmLogin",
+		dataType : 'json',
 		data : JSON.stringify(myData),
-		contentType : 'application/json; charset=utf-8',
+		type : 'POST',
+		contentType : 'application/json',
 		success : function(data) {
 			console.log("successThrown");
-			window.location.href = "confirmLogin";
+			window.location.href = "index";
 
 		},
 		error : function() {

@@ -9,40 +9,22 @@
 			</div>
 			<div class="w3_updates_bottom_grid_right">
 				<p class="counter">886</p>
-				<h3>Happy Clients</h3>
+				<h3>Users</h3>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="col-md-3 w3_updates_bottom_grid">
-			<div class="w3_updates_bottom_grid_left">
-				<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
-			</div>
-			<div class="w3_updates_bottom_grid_right">
-				<p class="counter">652</p>
-				<h3>Products Level</h3>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+		
 		<div class="col-md-3 w3_updates_bottom_grid">
 			<div class="w3_updates_bottom_grid_left">
 				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 			</div>
 			<div class="w3_updates_bottom_grid_right">
 				<p class="counter">886</p>
-				<h3>Creative Design</h3>
+				<h3>Happy Clients</h3>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="col-md-3 w3_updates_bottom_grid">
-			<div class="w3_updates_bottom_grid_left">
-				<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-			</div>
-			<div class="w3_updates_bottom_grid_right">
-				<p class="counter">457</p>
-				<h3>Popularity</h3>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+		
 		<div class="clearfix"></div>
 		<!-- Starts-Number-Scroller-Animation-JavaScript -->
 		<script src="js/waypoints.min.js"></script>
