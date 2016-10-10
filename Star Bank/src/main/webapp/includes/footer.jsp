@@ -13,7 +13,6 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-
 		<div class="col-md-3 w3_updates_bottom_grid">
 			<div class="w3_updates_bottom_grid_left">
 				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
@@ -24,7 +23,6 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-
 		<div class="clearfix"></div>
 		<!-- Starts-Number-Scroller-Animation-JavaScript -->
 		<script src="js/waypoints.min.js"></script>

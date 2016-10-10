@@ -2,20 +2,27 @@ package com.starbank.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.servlet.ModelAndView;
 import com.starbank.model.dao.IAccountDAO;
 import com.starbank.model.dao.IAdminDAO;
+import com.google.gson.Gson;
+import com.starbank.exceptions.MessageException;
+import com.starbank.exceptions.UserException;
+import com.starbank.model.dao.IMessageDAO;
 import com.starbank.model.dao.IUserDAO;
+import com.starbank.model.entity.Message;
 import com.starbank.model.entity.User;
 
 @Controller
@@ -29,6 +36,9 @@ public class HomeController {
 
 	@Autowired
 	private IAccountDAO account;
+	
+	@Autowired
+	private IMessageDAO message;
 
 	@RequestMapping(value = { "/", "/index" }, method = GET)
 	public String loadHome(Model model) {
@@ -64,10 +74,20 @@ public class HomeController {
 	public String showLoginForm() throws Exception {
 		return "login";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login() throws Exception {
+		return "login";
+	}
 
 	@RequestMapping(value = "/register", method = GET)
-	public String register(Model model) {
+	public String loadRegister(Model model) {
 		return "register";
+	}
+	
+	@RequestMapping(value = "/register", method = POST)
+	public String register(Model model) {
+		return "login";
 	}
 
 	@RequestMapping(value = "/register2", method = POST)
@@ -82,6 +102,22 @@ public class HomeController {
 		}
 
 		return "login";
+	}
+	
+	@RequestMapping(value = "/messages", method = RequestMethod.GET)
+	public ModelAndView getMessages() {
+		ModelAndView model = new ModelAndView("messages");
+		List<Message> messages = new ArrayList<>();
+		try {
+			messages = message.getAllMessages(1);
+		} catch (MessageException e) {
+			e.printStackTrace();
+		}
+
+		model.addObject("messages", messages);
+
+		return model;
+
 	}
 	
 	@RequestMapping(value = "/accounts", method = RequestMethod.GET)

@@ -76,7 +76,9 @@ public class UserRepository implements IUserDAO {
 	public boolean isRegistered(String userEmail) throws SQLException, UserException {
 		
 		try {
+			
 			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_EMAIL_SQL, new Object[] { userEmail }, Boolean.class);
+			
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return false;

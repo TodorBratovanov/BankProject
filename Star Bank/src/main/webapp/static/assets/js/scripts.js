@@ -93,7 +93,7 @@ function registerUserAJAX() {
 			// relog();
 			window.location.href = "login";
 		},
-		error : function() {
+		error : function(data) {
 			console.log("errorThrown");
 		}
 	});

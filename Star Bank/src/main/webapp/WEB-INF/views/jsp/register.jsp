@@ -62,7 +62,7 @@
 								</div>
 							</div>
 
-							<form action="./login" id="reg-form">
+							<form action="./login" method="post" id="reg-form">
 								<div class="form-bottom">
 									<div class="form-group">
 										<label class="sr-only" for="form-first-name">First
