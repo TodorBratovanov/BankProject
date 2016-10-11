@@ -59,7 +59,7 @@
 			<div id="messages">
 				<!-- Put messages from server -->
 
-				<table class="table" >
+				<table class="table table-hover" >
 					
 					<thead>
 						<tr>
