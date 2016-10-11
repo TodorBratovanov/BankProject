@@ -229,7 +229,7 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	-o-background-size: cover;
 	-ms-background-size: cover;
 	position: relative;
-	height: 377px;
+	height: 53.8%;
 }
 
 
@@ -969,6 +969,11 @@ a.pa_italic:focus {
 .price-value.three {
 	background: #FEBF14;
 	border-bottom: 1px solid #C19316;
+}
+
+.price-value.four {
+	background: #B486F4;
+	border-bottom: 1px solid #47238C;
 }
 
 .price-value ul, .pricing-grid1 ul, .pricing-grid2 ul, .pricing-grid3 ul

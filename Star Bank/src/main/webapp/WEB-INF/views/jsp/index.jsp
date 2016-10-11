@@ -47,4 +47,7 @@
 		</div>
 	</div>
 </div>
+
+<c:import url="/includes/menubar.jsp" />
+
 <c:import url="/includes/footer.jsp" />

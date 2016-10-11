@@ -1,51 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- //banner -->
-<!-- banner-bottom -->
-<div class="banner-bottom">
-	<div class="container">
-		<div class="agile_banner_bottom_grids">
-			<div style="cursor: pointer;"
-				onclick="window.location='information';"
-				class="col-md-3g agile_banner_bottom_grid">
-				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
-					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-				</div>
-				<h3>Information</h3>
-			</div>
-			<div style="cursor: pointer;" onclick="window.location='payments';"
-				class="col-md-3g agile_banner_bottom_grid">
-				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
-					<span class="glyphicon glyphicon-export" aria-hidden="true"></span>
-				</div>
-				<h3>Payments</h3>
-			</div>
-			<div style="cursor: pointer;" onclick="window.location='utility';"
-				class="col-md-3g agile_banner_bottom_grid">
-				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
-					<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-				</div>
-				<h3>Utility bills</h3>
-			</div>
-			<div style="cursor: pointer;" onclick="window.location='statements';"
-				class="col-md-3g agile_banner_bottom_grid">
-				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
-					<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-				</div>
-				<h3>Statements</h3>
-			</div>
-			<div style="cursor: pointer;" onclick="window.location='accounts';"
-				class="col-md-3g agile_banner_bottom_grid">
-				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
-					<span class="glyphicon glyphicon-credit-card " aria-hidden="true"></span>
-				</div>
-				<h3>Accounts</h3>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-</div>
+
 <!-- //updates -->
 <!-- updates-bottom -->
 <form name="like" class="like-form">
@@ -98,13 +54,13 @@
 	<div class="container">
 		<div class="w3agile_footer_grids">
 			<br> <br>
-			<div class="col-md-4 w3agile_footer_grid">
+			<div class="col-md-4 col-md-4a w3agile_footer_grid">
 				<h3>About Us</h3>
 				<p>We deliver a broad range of financial services, including
 					personal banking, credit cards, mortgages, auto financing,
 					investment advice, small business loans and payment processing.</p>
 			</div>
-			<div class="col-md-4 w3agile_footer_grid">
+			<div class="col-md-4 col-md-4b w3agile_footer_grid">
 				<h3>Contact Info</h3>
 				<ul>
 					<li><i class="glyphicon glyphicon-map-marker"
@@ -119,7 +75,7 @@
 				</ul>
 			</div>
 			<div
-				class="col-md-4 col-md-4 w3agile_footer_grid w3agile_footer_grid1">
+				class="col-md-4 col-md-4c w3agile_footer_grid w3agile_footer_grid1">
 				<h3>Navigation</h3>
 				<ul>
 					<li><span class="glyphicon glyphicon-menu-right"
