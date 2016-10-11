@@ -31,12 +31,14 @@ public class HomeController {
 	@Autowired
 	private IUserDAO user;
 
+
 	@Autowired
 	private IAdminDAO admin;
 
 	@Autowired
 	private IAccountDAO account;
 	
+
 	@Autowired
 	private IMessageDAO message;
 
@@ -79,6 +81,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginForm() throws Exception {
+
 		return "login";
 	}
 	
@@ -91,6 +94,7 @@ public class HomeController {
 	public String loadRegister(Model model) {
 		return "register";
 	}
+
 	
 	@RequestMapping(value = "/register", method = POST)
 	public String register(Model model) {
@@ -99,6 +103,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/register2", method = POST)
 	public String register2(@ModelAttribute User regUser, Model model, HttpServletRequest request) {
+
 		try {
 			String email = regUser.getEmail();
 			if (!user.isRegistered(email)) {
@@ -108,24 +113,29 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
+
 		return "login";
 	}
 	
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
 	public ModelAndView getMessages() {
 		ModelAndView model = new ModelAndView("messages");
+
 		List<Message> messages = new ArrayList<>();
 		try {
 			messages = message.getAllMessages(1);
 		} catch (MessageException e) {
 			e.printStackTrace();
 		}
+		int numberOfUser = user.countUsers();
 
+		model.addObject("countusers", numberOfUser);
 		model.addObject("messages", messages);
-
+		
 		return model;
 
 	}
+	
 	
 	@RequestMapping(value = "/information", method = RequestMethod.GET)
 	public String showInfo() throws Exception {
@@ -156,5 +166,6 @@ public class HomeController {
 	public String showProfile() throws Exception {
 		return "profile";
 	}
+
 
 }

@@ -128,7 +128,7 @@ function loginUser() {
 	myData['password'] = document.getElementById("form-password-login").value;
 
 	$.ajax({
-		url : "confirmLogin",
+		url : "/confirmLogin",
 		dataType : 'json',
 		 data : JSON.stringify(myData),
 		type : 'POST',

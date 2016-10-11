@@ -3012,6 +3012,10 @@ pre code {
 	.col-md-4 {
 		max-width: 30%;
 	}
+	.col-md-4m {
+		width: 33.3333%;
+		margin-left: 3.3333%;
+	}
 	.accounts {
 		max-width: 25%;	
 	}
