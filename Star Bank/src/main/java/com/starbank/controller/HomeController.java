@@ -127,13 +127,15 @@ public class HomeController {
 		} catch (MessageException e) {
 			e.printStackTrace();
 		}
+		int numberOfUser = user.countUsers();
 
+		model.addObject("countusers", numberOfUser);
 		model.addObject("messages", messages);
-
+		
 		return model;
 
 	}
-
+	
 	
 	@RequestMapping(value = "/information", method = RequestMethod.GET)
 	public String showInfo() throws Exception {

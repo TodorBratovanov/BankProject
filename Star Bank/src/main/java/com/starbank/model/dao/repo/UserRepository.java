@@ -85,4 +85,10 @@ public class UserRepository implements IUserDAO {
 		}
 	}
 
+	@Override
+	public int countUsers() {
+		int res = jdbcTemplate.queryForInt(IUserDAO.COUNT_USERS_SQL);
+		return res;
+	}
+
 }

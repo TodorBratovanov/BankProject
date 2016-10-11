@@ -1434,6 +1434,7 @@ li.list-group-item1 {
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
 	.table>tbody>tr>td, .table>tfoot>tr>td {
 	border-top: none !important;
+	
 }
 
 .tab-content>.active {
@@ -1489,6 +1490,8 @@ section#tables  p {
 .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td,
 	.table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 	padding: 15px !important;
+	border-bottom: 1px solid #E44C4C;
+	
 }
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,

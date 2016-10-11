@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- //banner -->
 <!-- banner-bottom -->
 <div class="banner-bottom">
@@ -56,7 +57,7 @@
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 				</div>
 				<div class="w3_updates_bottom_grid_right">
-					<p class="counter">886</p>
+					<p class="counter" ><c:out value="${countusers}" /></p>
 					<h3>Users</h3>
 				</div>
 				<div class="clearfix"></div>

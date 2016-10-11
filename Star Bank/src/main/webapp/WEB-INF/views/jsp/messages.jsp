@@ -58,13 +58,27 @@
 			<span>My Mails</span>
 			<div id="messages">
 				<!-- Put messages from server -->
-				<table>
-					<ul>
-						<c:forEach var="message" items="${messages}">
-							<li>${message}</li>
-							</br>
+
+				<table class="table" >
+					
+					<thead>
+						<tr>
+							
+							
+							<th>Subject</th>
+							<th>Received Date</th>
+							<th>Preview</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${messages}" var="message">
+							<tr >
+								<td><c:out value="${message.title}" /></td>
+								<td><c:out value="${message.date}" /></td>
+								<td><c:out value="${message.text}" /></td>
+							</tr>
 						</c:forEach>
-					</ul>
+					</tbody>
 				</table>
 			</div>
 	</div>
