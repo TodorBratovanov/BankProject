@@ -71,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="active act"><a href="index" data-hover="Home">Home</a></li>
 								<li><a href="messages" data-hover="Messages">Messages</a></li>
 								<li><a href="profile" data-hover="Profile">Profile</a></li>
-								<li><a href="login" data-hover="Logout">Logout</a></li>
+								<li><a href="logout" data-hover="Logout">Logout</a></li>
 							</ul>
 						</nav>
 					</div>

@@ -31,6 +31,7 @@ import com.starbank.model.dao.repo.AdminRepository;
 import com.starbank.model.dao.repo.MessageRepository;
 import com.starbank.model.dao.repo.TransactionFinalizerRepository;
 import com.starbank.model.dao.repo.UserRepository;
+import com.starbank.model.dao.repo.UserSessionRepository;
 
 @Configuration
 @EnableWebMvc
@@ -118,7 +119,10 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public UserRepository getUserRepository() {
 		return new UserRepository(getDataSource());
 	}
-
+//	@Bean
+//	public UserSessionRepository getUseSessionrRepository() {
+//		return new UserSessionRepository(getDataSource());
+//	}
 	@Bean
 	public AdminRepository getAdminRepository() {
 		return new AdminRepository(getDataSource());

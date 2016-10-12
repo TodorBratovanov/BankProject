@@ -2,12 +2,14 @@ package com.starbank.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,99 +17,110 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.starbank.exceptions.MessageException;
 import com.starbank.model.dao.IAccountDAO;
 import com.starbank.model.dao.IAdminDAO;
-import com.google.gson.Gson;
-import com.starbank.exceptions.MessageException;
-import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.IMessageDAO;
 import com.starbank.model.dao.IUserDAO;
+import com.starbank.model.dao.IUserSessionDAO;
 import com.starbank.model.entity.Message;
 import com.starbank.model.entity.User;
+
+import io.undertow.server.session.Session;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	private IUserDAO user;
+	private User user;
 
-
+	@Autowired
+	private IUserDAO userDao;
+	
 	@Autowired
 	private IAdminDAO admin;
 
 	@Autowired
 	private IAccountDAO account;
 	
+	@Autowired 
+	private IUserSessionDAO userSession;
 
 	@Autowired
 	private IMessageDAO message;
 
 	@RequestMapping(value = { "/", "/index" }, method = GET)
-	public String loadHome(Model model, HttpServletRequest request) {
-		System.out.println("=================================== " + request.getParameter("like") + " ===========================");
-		return "index";
+	public String loadHome(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+
+		if (session.getAttribute("user_id") != null) {
+			return "index";
+		}
+
+		return "login";
 	}
 	
 	@RequestMapping(value = { "/", "/index" }, method = POST)
 	public String home(Model model) {
-		try {
-			user.registerUser(null);
-		} catch (UserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			user.registerUser(null);
+//		} catch (UserException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return "index";
-	}
-
-	@RequestMapping(value = "/confirmLogin", method = RequestMethod.POST)
-	public String confirmLogin(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-
-		System.out.println("");
-		System.out.println("login");
-		System.out.println("");
-		int id = 0;
-		System.err.println("==========================   " + request.getParameter("email") + "    =================================");
-		if (user.isRegistered(request.getParameter("email"))) {
-			if (user.isRegistrationConfirmed(request.getParameter("email"))) {
-				id = user.loginUser(request.getParameter("email"), request.getParameter("password"));
-			}
-		}
-
-		session.setAttribute("userId", id);
-
-		return "index";
-
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String showLoginForm() throws Exception {
-
+	public String showLogIn(Model model) {
+		
 		return "login";
 	}
 	
+
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login() throws Exception {
-		return "login";
+	public String login(HttpServletRequest request) throws Exception {
+		String userEmal = request.getParameter("email");
+		String userPassword = request.getParameter("password");
+		HttpSession session = request.getSession();
+	//	session.setMaxInactiveInterval(5);
+		
+		int user_id = 0;
+		
+		if (userDao.isRegistered(userEmal)){
+			if (userDao.isRegistrationConfirmed(userEmal)) {
+				user_id = userDao.loginUser(userEmal, userPassword);
+				if (user_id > 0) {
+					session.setAttribute("user_id", user_id);
+					session.setMaxInactiveInterval(15);
+					return "index";
+				}
+				return "login";
+			}
+
+			return "login";
+		}
+
+		return "register";
+
 	}
 
 	@RequestMapping(value = "/register", method = GET)
-	public String loadRegister(Model model) {
+	public String showRegister(Model model) {
 		return "register";
 	}
 
-	
-	@RequestMapping(value = "/register", method = POST)
-	public String register(Model model) {
-		return "login";
-	}
 
-	@RequestMapping(value = "/register2", method = POST)
-	public String register2(@ModelAttribute User regUser, Model model, HttpServletRequest request) {
+
+	@RequestMapping(value = "/register", method = POST)
+	public String register(@ModelAttribute User regUser, Model model, HttpServletRequest request) {
 
 		try {
 			String email = regUser.getEmail();
-			if (!user.isRegistered(email)) {
-				user.registerUser(regUser);
+			if (!userDao.isRegistered(email)) {
+				userDao.registerUser(regUser);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,20 +131,32 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
-	public ModelAndView getMessages() {
-		ModelAndView model = new ModelAndView("messages");
-
+	public ModelAndView getMessages(ModelAndView model, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+//		System.err.println("SESSSSSSSION "+  session.equals(null));
+		if ((session == null) || (session.getAttribute("user_id") == null)) {
+			 model.setViewName("/login");
+			// session.invalidate();
+			 return model;
+		}
+	
+		model = new ModelAndView("messages");
+		
+		//session.invalidate();
 		List<Message> messages = new ArrayList<>();
 		try {
-			messages = message.getAllMessages(1);
+			messages = message.getAllMessages((Integer)session.getAttribute("user_id"));
 		} catch (MessageException e) {
 			e.printStackTrace();
 		}
-		int numberOfUser = user.countUsers();
-
-		model.addObject("countusers", numberOfUser);
-		model.addObject("messages", messages);
+		int numberOfUser = userDao.countUsers();
+		int numberOfLikes = userDao.countLikes();
 		
+		model.addObject("countusers", numberOfUser);
+		model.addObject("likes", numberOfLikes);
+		model.addObject("messages", messages);
+		model.setViewName("/messages");
+
 		return model;
 
 	}
@@ -166,6 +191,17 @@ public class HomeController {
 	public String showProfile() throws Exception {
 		return "profile";
 	}
-
-
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession(false); 
+		long lastTime = session.getLastAccessedTime();
+		System.err.println("dadadadadadadadadadadadadadadadadadad"+new Date(+lastTime));
+		System.err.println("DATE:"+session.getAttribute("user_id"));
+		System.err.println("IP:"+request.getRemoteAddr());
+		userSession.insertSessionInfo((Integer)session.getAttribute("user_id"), new Date(+lastTime), request.getRemoteAddr());
+		session.invalidate();
+		
+		return "login";
+	}
 }

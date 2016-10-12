@@ -24,7 +24,7 @@
 					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 				</div>
 				<div class="w3_updates_bottom_grid_right">
-					<p class="counter">886</p>
+					<p class="counter"><c:out value="${likes}" /></p>
 					<h3>Happy clients</h3>
 				</div>
 				<div class="clearfix"></div>

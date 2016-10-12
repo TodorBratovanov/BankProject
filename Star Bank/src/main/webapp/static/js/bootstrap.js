@@ -2315,3 +2315,8 @@ if (typeof jQuery === 'undefined') {
   })
 
 }(jQuery);
+function showMessage(){
+	document.getElementById("msg-table").style.display="none";
+	
+	document.getElementById("msg-prev").style.display="inline-block";
+}

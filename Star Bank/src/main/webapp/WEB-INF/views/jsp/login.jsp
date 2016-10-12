@@ -61,17 +61,17 @@
 									<i class="fa fa-lock"></i>
 								</div>
 							</div>
-							<form action="./index" method="post">
+							<form action="./login" method="post">
 								<div class="form-bottom">
 
 									<div class="form-group">
 										<label class="sr-only" for="form-username">Email</label> <input
-											type="text" name="form-username" placeholder="Email..."
+											type="text" name="email" placeholder="Email..."
 											class="form-username form-control" id="form-email-login">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-password">Password</label> <input
-											type="password" name="form-password"
+											type="password" name="password"
 											placeholder="Password..." class="form-password form-control"
 											id="form-password-login">
 									</div>
