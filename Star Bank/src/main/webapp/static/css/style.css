@@ -41,6 +41,11 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	-ms-transition: .5s ease-in;
 }
 
+.msg-table tr {
+	height: 50px;
+	
+}
+
 .header {
 	background: #2a2a2a;
 }

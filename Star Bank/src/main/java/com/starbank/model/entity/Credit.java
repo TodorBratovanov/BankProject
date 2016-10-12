@@ -19,10 +19,10 @@ public class Credit extends Account {
 	private double payment;
 
 	public Credit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
-			String currency, int creditId, double interest, LocalDate expireDate, double payment) 
+			String currency, int recipientAccountId, int creditId, double interest, LocalDate expireDate, double payment) 
 					throws AccountException, IbanException, InvalidStringException, IdException, InterestException, DateTimeException {
 
-		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency, recipientAccountId);
 		
 		if (IValidator.isPositive(creditId)) {
 			this.creditId = creditId;
@@ -48,8 +48,24 @@ public class Credit extends Account {
 	}
 
 	public Credit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
-			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
-		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
+			String currency, int recipientAccountId) throws AccountException, IbanException, InvalidStringException, IdException {
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency, recipientAccountId);
+	}
+
+	public int getCreditId() {
+		return creditId;
+	}
+
+	public double getInterest() {
+		return interest;
+	}
+
+	public LocalDate getExpireDate() {
+		return expireDate;
+	}
+
+	public double getPayment() {
+		return payment;
 	}
 	
 }

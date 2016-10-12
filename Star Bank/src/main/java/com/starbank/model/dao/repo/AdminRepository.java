@@ -28,8 +28,8 @@ public class AdminRepository implements IAdminDAO {
 
 	public boolean confirmUserRegistration(User user) throws UserException {
 		try {
-			jdbcTemplate.update(IAdminDAO.CONFIRM_USER_SQL, user.getUserId());
-			return jdbcTemplate.queryForObject(IAdminDAO.SELECT_IS_USER_REGISTERED_SQL,
+			this.jdbcTemplate.update(IAdminDAO.CONFIRM_USER_SQL, user.getUserId());
+			return this.jdbcTemplate.queryForObject(IAdminDAO.SELECT_IS_USER_REGISTERED_SQL,
 					new Object[] { user.getUserId() }, Boolean.class);
 
 		} catch (EmptyResultDataAccessException e) {
@@ -42,8 +42,8 @@ public class AdminRepository implements IAdminDAO {
 	@Override
 	public boolean deleteUser(int userId) throws UserException {
 		try {
-			jdbcTemplate.update(IAdminDAO.DELETE_USER_SQL, userId);
-			return jdbcTemplate.queryForObject(IAdminDAO.SELECT_USER_ID_SQL, new Object[] { userId }, Boolean.class);
+			this.jdbcTemplate.update(IAdminDAO.DELETE_USER_SQL, userId);
+			return this.jdbcTemplate.queryForObject(IAdminDAO.SELECT_USER_ID_SQL, new Object[] { userId }, Boolean.class);
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return false;
@@ -55,7 +55,7 @@ public class AdminRepository implements IAdminDAO {
 	public boolean deleteAccount(int accountId) throws AccountException, UserException {
 		try {
 			
-			int deletedAccounts = jdbcTemplate.update(IAdminDAO.DELETE_ACCOUNT_SQL, accountId);
+			int deletedAccounts = this.jdbcTemplate.update(IAdminDAO.DELETE_ACCOUNT_SQL, accountId);
 //			int resultSetUserId = jdbcTemplate.queryForInt(IAdminDAO.SELECT_USER_ID_SQL, accountId);
 //			int numberOfAccounts = jdbcTemplate.queryForInt(IAdminDAO.NUMBER_OF_ACCOUNTS, resultSetUserId);
 //			if (numberOfAccounts <= 0) {

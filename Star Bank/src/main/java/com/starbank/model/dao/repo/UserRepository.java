@@ -29,7 +29,7 @@ public class UserRepository implements IUserDAO {
 	public int loginUser(String email, String password) throws UserException {
 		int userId = 0;
 		try {
-			userId = jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { email, password }, Integer.class);
+			userId = this.jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { email, password }, Integer.class);
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return userId;
@@ -49,7 +49,7 @@ public class UserRepository implements IUserDAO {
 //			
 //			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { user.getEmail(), user.getPassword() }, Integer.class);
 
-			jdbcTemplate.update(IUserDAO.INSERT_USER_SQL, "Koko", "Kukoto", "Dinev", "+359877663311", "koko@abv.bg", "Admin123", "Sofia", 
+			this.jdbcTemplate.update(IUserDAO.INSERT_USER_SQL, "Koko", "Kukoto", "Dinev", "+359877663311", "koko@abv.bg", "Admin123", "Sofia", 
 					"8802021144", false, false, true);
 			System.err.println("======================================================================================");
 			return 0;
@@ -65,7 +65,7 @@ public class UserRepository implements IUserDAO {
 	public boolean isRegistrationConfirmed(String userEmail) throws SQLException, UserException {
 		
 		try {
-			return jdbcTemplate.queryForObject(IUserDAO.SELECT_ISREGISTERED_SQL, new Object[] { userEmail }, Boolean.class);
+			return this.jdbcTemplate.queryForObject(IUserDAO.SELECT_ISREGISTERED_SQL, new Object[] { userEmail }, Boolean.class);
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return false;
@@ -77,7 +77,7 @@ public class UserRepository implements IUserDAO {
 		
 		try {
 			
-			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_EMAIL_SQL, new Object[] { userEmail }, Boolean.class);
+			return this.jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_EMAIL_SQL, new Object[] { userEmail }, Boolean.class);
 			
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
@@ -87,7 +87,7 @@ public class UserRepository implements IUserDAO {
 
 	@Override
 	public int countUsers() {
-		int res = jdbcTemplate.queryForInt(IUserDAO.COUNT_USERS_SQL);
+		int res = this.jdbcTemplate.queryForInt(IUserDAO.COUNT_USERS_SQL);
 		return res;
 	}
 

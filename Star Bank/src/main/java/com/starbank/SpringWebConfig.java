@@ -26,8 +26,20 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.starbank.model.dao.IAccountDAO;
+import com.starbank.model.dao.IAdminDAO;
+import com.starbank.model.dao.ICardDAO;
+import com.starbank.model.dao.ICreditDAO;
+import com.starbank.model.dao.ICurrentAccountDAO;
+import com.starbank.model.dao.IDepositDAO;
+import com.starbank.model.dao.IMessageDAO;
+import com.starbank.model.dao.IUserDAO;
 import com.starbank.model.dao.repo.AccountRepository;
 import com.starbank.model.dao.repo.AdminRepository;
+import com.starbank.model.dao.repo.CardRepository;
+import com.starbank.model.dao.repo.CreditRepository;
+import com.starbank.model.dao.repo.CurrentAccountRepository;
+import com.starbank.model.dao.repo.DepositRepository;
 import com.starbank.model.dao.repo.MessageRepository;
 import com.starbank.model.dao.repo.TransactionFinalizerRepository;
 import com.starbank.model.dao.repo.UserRepository;
@@ -54,7 +66,8 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	private String dbPassword;
 	@Value("${dbUsername}")
 	private String dbUsername;
-	
+
+
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 		return new PropertySourcesPlaceholderConfigurer();
@@ -68,7 +81,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
 	}
-
 
 	@Bean
 	public InternalResourceViewResolver getInternalResourceViewResolver() {
@@ -115,22 +127,22 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public UserRepository getUserRepository() {
+	public IUserDAO getUserRepository() {
 		return new UserRepository(getDataSource());
 	}
 
 	@Bean
-	public AdminRepository getAdminRepository() {
+	public IAdminDAO getAdminRepository() {
 		return new AdminRepository(getDataSource());
 	}
 
 	@Bean
-	public AccountRepository getAccountRepository() {
+	public IAccountDAO getAccountRepository() {
 		return new AccountRepository(getDataSource(), transactionTemplate());
 	}
 
 	@Bean
-	public MessageRepository getSendMessageRepository() {
+	public IMessageDAO getSendMessageRepository() {
 		return new MessageRepository(getDataSource());
 	}
 
@@ -138,12 +150,11 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public TransactionFinalizerRepository getTransactionFinalizerRepository() {
 		return new TransactionFinalizerRepository(getDataSource(), transactionTemplate());
 	}
-
+	
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(getDataSource());
 	}
-	
 
 	@Bean
 	public TransactionTemplate transactionTemplate() {
@@ -152,5 +163,24 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		return transactionTemplate;
 	}
 
+	@Bean
+	public ICurrentAccountDAO getCurrentAccountRepository() {
+		return new CurrentAccountRepository(getDataSource());
+	}
+
+	@Bean
+	public IDepositDAO getDepositRepository() {
+		return new DepositRepository(getDataSource());
+	}
+
+	@Bean
+	public ICreditDAO getCreditRepository() {
+		return new CreditRepository(getDataSource());
+	}
+
+	@Bean
+	public ICardDAO getCardRepository() {
+		return new CardRepository(getDataSource());
+	}
 
 }

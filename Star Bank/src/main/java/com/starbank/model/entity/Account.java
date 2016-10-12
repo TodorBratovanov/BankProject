@@ -21,7 +21,7 @@ public abstract class Account {
 	
 
 	public Account(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
-			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
+			String currency, int recipientAccountId) throws AccountException, IbanException, InvalidStringException, IdException {
 		if (IValidator.isPositive(accountId)) {
 			this.accountId = accountId;
 		} else {
@@ -52,14 +52,8 @@ public abstract class Account {
 		} else {
 			throw new AccountException("Invalid currency!");
 		}
-
-	}
-	
-	public void setRecipientAccountId(int recipientAccountId) throws AccountException {
 		if (IValidator.isPositive(recipientAccountId)) {
 			this.recipientAccountId = recipientAccountId;
-		} else {
-			throw new AccountException("Incorrect account id");
 		}
 	}
 

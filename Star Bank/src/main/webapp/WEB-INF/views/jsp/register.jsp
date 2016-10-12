@@ -38,6 +38,17 @@
 </head>
 
 <body>
+	<!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+				<h1>
+					<a href="index"><strong>Star Bank</strong></a>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
 	<!-- Top content -->
 	<div class="top-content">
 
@@ -78,8 +89,7 @@
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-last-name">Last name</label>
-										<input type="text" name="lastName"
-											placeholder="Last name..."
+										<input type="text" name="lastName" placeholder="Last name..."
 											class="form-last-name form-control" id="form-last-name">
 									</div>
 									<div class="form-group">
@@ -89,9 +99,19 @@
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-password">Password</label> <input
-											type="password" name="password"
-											placeholder="Password..." class="form-password form-control"
-											id="form-password">
+											type="password" name="password" placeholder="Password..."
+											class="form-password form-control" id="form-password">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-password-2">Confirm
+											Password</label> <input type="password" name="confirm-password"
+											placeholder="Confirm Password..."
+											class="form-password form-control" id="form-confirm-password">
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="form-phone">Phone Number</label> <input
+											type="text" name="phone" placeholder="Phone Number..."
+											class="form-egn form-control" id="form-phone">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-egn">EGN</label> <input
@@ -103,8 +123,7 @@
 											type="text" name="address" placeholder="Address..."
 											class="form-address form-control" id="form-address">
 									</div>
-									<button class="btn regbtn">Sign
-										me up!</button>
+									<button class="btn regbtn">Sign me up!</button>
 									<a href="login">Already a member? Login</a>
 								</div>
 							</form>
@@ -116,10 +135,10 @@
 			</div>
 		</div>
 		<!-- Javascript -->
-	<script src='<c:url value="assets/js/jquery-1.11.1.min.js"/>'></script>
-	<script src='<c:url value="assets/bootstrap/js/bootstrap.min.js"/>'></script>
-	<script src='<c:url value="assets/js/jquery.backstretch.min.js"/>'></script>
-	<script src='<c:url value="assets/js/scripts.js"/>'></script>
+		<script src='<c:url value="assets/js/jquery-1.11.1.min.js"/>'></script>
+		<script src='<c:url value="assets/bootstrap/js/bootstrap.min.js"/>'></script>
+		<script src='<c:url value="assets/js/jquery.backstretch.min.js"/>'></script>
+		<script src='<c:url value="assets/js/scripts.js"/>'></script>
 
 		<!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>

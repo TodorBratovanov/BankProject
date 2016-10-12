@@ -28,4 +28,20 @@ public class UserSession {
 		this.ipAddress = ipAddress;
 	}
 
+	public int getSessionId() {
+		return sessionId;
+	}
+
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
 }

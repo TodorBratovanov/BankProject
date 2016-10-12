@@ -14,7 +14,7 @@ public interface IUserDAO {
 	static final String SELECT_USERID_SQL = "SELECT user_id FROM users WHERE user_id = ?;";
 	static final String INSERT_USER_SQL = "INSERT INTO Users VALUES (null, ?, ?, ?, ?, ?, md5(?), ?, ?, ?, ?, ?)";
 	static final String SELECT_ISREGISTERED_SQL = "SELECT registered FROM Users WHERE email = ?;";
-	static final String SELECT_USER_EMAIL_SQL = "SELECT * FROM Users WHERE email = ?;";
+	static final String SELECT_USER_EMAIL_SQL = "SELECT COUNT(*) FROM Users WHERE email = ?;";
 	static final String COUNT_USERS_SQL = "SELECT COUNT(user_id) FROM Users;";
 	
 	public int loginUser(String email, String password) throws UserException;

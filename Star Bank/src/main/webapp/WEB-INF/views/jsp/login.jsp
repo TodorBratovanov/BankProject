@@ -38,6 +38,17 @@
 </head>
 
 <body>
+	<!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+				<h1>
+					<a href="index"><strong>Star Bank</strong></a>
+				</h1>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
 	<!-- Top content -->
 	<div class="top-content">
 

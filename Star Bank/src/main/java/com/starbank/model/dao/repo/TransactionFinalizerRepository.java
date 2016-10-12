@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -15,16 +16,15 @@ import com.starbank.model.dao.ITransactionFinalizerDAO;
 import com.starbank.model.dao.mapper.AccountMapper;
 import com.starbank.model.entity.Account;
 
+@Component
 public class TransactionFinalizerRepository implements ITransactionFinalizerDAO {
-
 	private JdbcTemplate jdbcTemplate;
 	private TransactionTemplate transactionTemplate;
 
 	public TransactionFinalizerRepository() {
-		// TODO Auto-generated constructor stub
+		
 	}
-
-	@Autowired
+	
 	public TransactionFinalizerRepository(DataSource dataSource, TransactionTemplate template) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		transactionTemplate = template;
@@ -34,6 +34,8 @@ public class TransactionFinalizerRepository implements ITransactionFinalizerDAO 
 	public boolean finalizeAllUserTransactions() {
 		boolean isComplete = false;
 
+		System.err.println("Transaction finalizer - jdbc template and transaction template   " + jdbcTemplate + "   |   " + transactionTemplate);
+		
 		try {
 			isComplete = transactionTemplate.execute(new TransactionCallback<Boolean>() {
 
@@ -50,6 +52,7 @@ public class TransactionFinalizerRepository implements ITransactionFinalizerDAO 
 									account.getCurrentBalance() - blockedAmount, account.getAccountId());
 
 							if (recipient != null) {
+								System.err.println("not null   ****************   " + recipient + "   ***********************");
 								Account recipientAccount = jdbcTemplate.queryForObject(
 										ITransactionFinalizerDAO.SELECT_USER_ACCOUNT_SQL, new Object[] { recipient },
 										new AccountMapper());

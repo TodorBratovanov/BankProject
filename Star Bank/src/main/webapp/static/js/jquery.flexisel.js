@@ -12,7 +12,7 @@
 (function ($) {
 
     $.fn.flexisel = function (options) {
-
+    	
         var defaults = $.extend({
     		visibleItems: 4,
     		animationSpeed: 200,

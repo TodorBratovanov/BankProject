@@ -60,7 +60,7 @@ public class AccountRepository implements IAccountDAO {
 
 	private void loadAccounts(int userId, String sql, List<Account> accounts) {
 		try {
-			List<Account> currentAccounts = jdbcTemplate.query(sql,
+			List<Account> currentAccounts = this.jdbcTemplate.query(sql,
 					new Object[] { userId }, new AccountMapper());
 			accounts.addAll(currentAccounts);
 		} catch (EmptyResultDataAccessException e) {
@@ -76,7 +76,7 @@ public class AccountRepository implements IAccountDAO {
 		if (moneyToTransfer > 0) {
 			if (IbanValidator.isValidIban(recipientIban)) {
 				try {
-					isComplete = transactionTemplate.execute(new TransactionCallback<Boolean>() {
+					isComplete = this.transactionTemplate.execute(new TransactionCallback<Boolean>() {
 						@Override
 						public Boolean doInTransaction(TransactionStatus transactionStatus) {
 							try {
@@ -124,7 +124,7 @@ public class AccountRepository implements IAccountDAO {
 			if ((IbanValidator.isValidIban(senderAccount.getIban()))
 					&& (IbanValidator.isValidIban(senderAccount.getIban()))) {
 				try {
-					isComplete = transactionTemplate.execute(new TransactionCallback<Boolean>() {
+					isComplete = this.transactionTemplate.execute(new TransactionCallback<Boolean>() {
 						@Override
 						public Boolean doInTransaction(TransactionStatus transactionStatus) {
 							try {
@@ -160,7 +160,7 @@ public class AccountRepository implements IAccountDAO {
 	public void updateRecipientAccount(Account senderAccount, int recipientAccountId) throws SQLException {
 
 		try {
-			jdbcTemplate.update(IAccountDAO.UPDATE_RECIPIENT_ACCOUNT_ID, recipientAccountId,
+			this.jdbcTemplate.update(IAccountDAO.UPDATE_RECIPIENT_ACCOUNT_ID, recipientAccountId,
 					senderAccount.getAccountId());
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
@@ -172,7 +172,7 @@ public class AccountRepository implements IAccountDAO {
 			double blockedAmount) throws SQLException {
 
 		try {
-			jdbcTemplate.update(IAccountDAO.UPDATE_ACCOUNT_SQL, senderAccount.getNetAvlbBalance() - moneyToTransfer,
+			this.jdbcTemplate.update(IAccountDAO.UPDATE_ACCOUNT_SQL, senderAccount.getNetAvlbBalance() - moneyToTransfer,
 					senderAccount.getBlockedAmount() - blockedAmount);
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();

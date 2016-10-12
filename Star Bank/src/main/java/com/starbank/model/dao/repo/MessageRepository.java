@@ -34,7 +34,7 @@ public class MessageRepository implements IMessageDAO {
 	@Override
 	public boolean sendMessageToUser(Message message, int userId) throws MessageException {
 		try {
-			return jdbcTemplate.update(IMessageDAO.INSERT_MESSAGE_SQL, message.getTitle(),message.getText(),
+			return this.jdbcTemplate.update(IMessageDAO.INSERT_MESSAGE_SQL, message.getTitle(),message.getText(),
 					Timestamp.valueOf(LocalDateTime.now()),userId) > 0;
 			
 		} catch (EmptyResultDataAccessException e) {

@@ -13,6 +13,22 @@
 					<h4>Current accounts</h4>
 				</div>
 				<div class="price-bg">
+
+					<c:forEach var="account" items="${currentAccounts}">
+						<ul class="count">
+							<li><span class="glyphicon glyphicon-star-empty"
+								aria-hidden="true"></span> <c:out value="${account.iban}" /></li>
+							<li><span class="glyphicon glyphicon-star-empty"
+								aria-hidden="true"></span>
+							<c:out value="account.netAvlbBalance" /></li>
+							<li><span class="glyphicon glyphicon-star-empty"
+								aria-hidden="true"></span>
+							<c:out value="account.currency" /></li>
+						</ul>
+						<hr>
+					</c:forEach>
+
+
 					<p class="price-label-1">
 						$<span>7</span>monthly
 					</p>

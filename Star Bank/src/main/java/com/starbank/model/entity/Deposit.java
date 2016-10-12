@@ -18,9 +18,9 @@ public class Deposit extends Account {
 	private double interest;
 
 	public Deposit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
-			String currency, int depositId, LocalDate dateOpen, LocalDate maturity, double interest)
+			String currency, int recipientAccountId, int depositId, LocalDate dateOpen, LocalDate maturity, double interest)
 			throws AccountException, IbanException, InvalidStringException, IdException, DateTimeException, InterestException {
-		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency, recipientAccountId);
 
 		if (IValidator.isPositive(depositId)) {
 			this.depositId = depositId;
@@ -46,7 +46,24 @@ public class Deposit extends Account {
 	}
 
 	public Deposit(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
-			String currency) throws AccountException, IbanException, InvalidStringException, IdException {
-		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency);
+			String currency, int recipientAccountId) throws AccountException, IbanException, InvalidStringException, IdException {
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency, recipientAccountId);
 	}
+
+	public int getDepositId() {
+		return depositId;
+	}
+
+	public LocalDate getDateOpen() {
+		return dateOpen;
+	}
+
+	public LocalDate getMaturity() {
+		return maturity;
+	}
+
+	public double getInterest() {
+		return interest;
+	}
+	
 }
