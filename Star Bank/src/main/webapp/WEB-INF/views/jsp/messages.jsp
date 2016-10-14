@@ -3,6 +3,56 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/includes/header.jsp" />
 <!-- //header -->
+<div class="mail">
+	<div class="container">
+		<h3>
+			<span>My Messages</span>
+		</h3>
+		<div id="messages">
+			<!-- Put messages from server -->
+			<table class="table table-hover msg-table" id="msg-table">
+				<thead>
+					<tr>
+						<th>Subject</th>
+						<th>Received Date</th>
+						<th>Preview</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${messages}" var="message">
+
+						<tr>
+							<td><c:out value="${message.title}" /></td>
+							<td><c:out value="${message.date}" /></td>
+							<td><c:out value="${message.text}" /></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!-- //mail -->
+<script>
+	function popupCenter(url, title, w, h) {
+		var left = (screen.width / 2) - (w / 2);
+		var top = (screen.height / 2) - (h / 2);
+		return window
+				.open(
+						url,
+						title,
+						'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='
+								+ w
+								+ ', height='
+								+ h
+								+ ', top='
+								+ top
+								+ ', left=' + left);
+	}
+</script>
+
+<c:import url="/includes/menubar.jsp" />
+
 <!-- mail -->
 <div class="w3ls_map">
 	<iframe
@@ -42,53 +92,5 @@
 		</div>
 	</div>
 </div>
-<div class="mail">
-	<div class="container">
-		<h3>
-			<span>My Messages</span></h3>
-			<div id="messages">
-				<!-- Put messages from server -->
-				<table class="table table-hover" id="msg-table">
-					<thead>
-						<tr>
-							<th>Subject</th>
-							<th>Received Date</th>
-							<th>Preview</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${messages}" var="message">
-						
-							<tr onclick="showMessage()">
-								<td><c:out value="${message.title}" /></td>
-								<td><c:out value="${message.date}" /></td>
-								<td><c:out value="${message.text}" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-	</div>
-</div>
-<!-- //mail -->
-<script>
-	function popupCenter(url, title, w, h) {
-		var left = (screen.width / 2) - (w / 2);
-		var top = (screen.height / 2) - (h / 2);
-		return window
-				.open(
-						url,
-						title,
-						'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='
-								+ w
-								+ ', height='
-								+ h
-								+ ', top='
-								+ top
-								+ ', left=' + left);
-	}
-</script>
-
-<c:import url="/includes/menubar.jsp" />
 
 <c:import url="/includes/footer.jsp" />

@@ -47,7 +47,9 @@ public class TransactionFinalizerRepository implements ITransactionFinalizerDAO 
 						for (Account account : accounts) {
 
 							double blockedAmount = account.getBlockedAmount();
+							System.err.println("Blocked amount ---------------------- " + blockedAmount);
 							Integer recipient = account.getRecipientAccountId();
+							System.err.println("recipient id ---------------------- " + recipient);
 							jdbcTemplate.update(ITransactionFinalizerDAO.FINALIZE_SENDER_TRANSACTION_SQL,
 									account.getCurrentBalance() - blockedAmount, account.getAccountId());
 

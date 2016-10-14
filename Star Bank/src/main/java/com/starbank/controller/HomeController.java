@@ -80,32 +80,32 @@ public class HomeController {
 	public String loadHome(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
-//		if (!isConnectionCreated) {
-//			Thread transactionFinalizer = new Thread(new Runnable() {
-//
-//				@Override
-//				public void run() {
-//					while (true) {
-//						try {
-//							Thread.sleep(FINALIZE_TRANSACTION_TIME);
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-//						try {
-//							new TransactionFinalizerRepository(appContext.getBean(DataSource.class), 
-//									appContext.getBean(TransactionTemplate.class)).finalizeAllUserTransactions();
-//						} catch (Exception e) {
-//							System.out.println("Still not db connection. will clean later.");
-//						}
-//					}
-//				}
-//			});
-//
-//			transactionFinalizer.setDaemon(true);
-//			transactionFinalizer.start();
-//			
-//			isConnectionCreated = true;
-//		}
+		if (!isConnectionCreated) {
+			Thread transactionFinalizer = new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					while (true) {
+						try {
+							Thread.sleep(FINALIZE_TRANSACTION_TIME);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						try {
+							new TransactionFinalizerRepository(appContext.getBean(DataSource.class), 
+									appContext.getBean(TransactionTemplate.class)).finalizeAllUserTransactions();
+						} catch (Exception e) {
+							System.out.println("Still not db connection. will clean later.");
+						}
+					}
+				}
+			});
+
+			transactionFinalizer.setDaemon(true);
+			transactionFinalizer.start();
+			
+			isConnectionCreated = true;
+		}
 		
 		if (session.getAttribute("user_id") != null) {
 			return "index";

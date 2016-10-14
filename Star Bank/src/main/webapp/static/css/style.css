@@ -513,6 +513,17 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	color: #E44C4C;
 }
 
+.payments-head h3 span {
+	color: #212121;
+}
+
+.payments-head h3 {
+	font-size: 2.5em;
+	line-height: 1.5em;
+	padding: 0.2em;
+	margin-bottom: 1em;
+}
+
 .write-reply h3, .author h3, .popular-posts h6 {
 	font-size: 2em;
 	color: #212121;
@@ -1577,7 +1588,7 @@ li.list-group-item1 {
 }
 
 .input-group {
-	margin-bottom: 20px;
+	vertical-align: middle;
 }
 
 .in-gp-tl {
@@ -3074,4 +3085,33 @@ h2.typoh2 {
 
 #acc thead th {
 	color: #212121;
+}
+
+#first-iban {
+	display: none;
+}
+
+.hide-iban {
+	display: none;
+}
+
+.other-account {
+	display: none;
+}
+
+#payments {
+	text-align: center;
+}
+
+.transfer-money {
+	display: inline-block;
+}
+
+.select-send, .my-account, .other-account {
+	text-align: center;
+}
+
+.select-send h4, .select-send div, .my-account h4, .my-account select,
+	.other-account h4, .other-account div {
+	display: inline-block;
 }

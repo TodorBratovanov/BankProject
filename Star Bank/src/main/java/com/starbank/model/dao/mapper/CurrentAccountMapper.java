@@ -15,7 +15,7 @@ public class CurrentAccountMapper implements RowMapper<CurrentAccount> {
 		CurrentAccount account = null;
 		try {
 			account = new CurrentAccount(rs.getInt("account_id"), rs.getDouble("net_avlb_balance"),
-					rs.getDouble("current_balance"), rs.getString("iban"), rs.getInt("user_id"),
+					rs.getDouble("current_balance"), rs.getDouble("blocked_amount"), rs.getString("iban"), rs.getInt("user_id"),
 					rs.getString("currency"), rs.getInt("recipient_account_id"), rs.getInt("current_account_id"), 
 					rs.getDouble("credit_limit"));
 		} catch (Exception e) {
