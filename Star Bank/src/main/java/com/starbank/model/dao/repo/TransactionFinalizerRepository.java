@@ -56,7 +56,7 @@ public class TransactionFinalizerRepository implements ITransactionFinalizerDAO 
 								Account recipientAccount = jdbcTemplate.queryForObject(
 										ITransactionFinalizerDAO.SELECT_USER_ACCOUNT_SQL, new Object[] { recipient },
 										new AccountMapper());
-
+								
 								jdbcTemplate.update(ITransactionFinalizerDAO.FINALIZE_RECIPIENT_TRANSACTION_SQL,
 										recipientAccount.getNetAvlbBalance() + blockedAmount,
 										recipientAccount.getCurrentBalance() + blockedAmount, recipient);

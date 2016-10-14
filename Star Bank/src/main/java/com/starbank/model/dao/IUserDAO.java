@@ -10,7 +10,7 @@ import com.starbank.model.entity.User;
 @Component
 public interface IUserDAO {
 
-	static final String SELECT_USER_SQL = "SELECT user_id FROM Users WHERE email = ? AND password = ?;";
+	static final String SELECT_USER_SQL = "SELECT user_id FROM Users WHERE email = ? AND password = md5(?);";
 	static final String SELECT_USERID_SQL = "SELECT user_id FROM users WHERE user_id = ?;";
 	static final String INSERT_USER_SQL = "INSERT INTO Users VALUES (null, ?, ?, ?, ?, ?, md5(?), ?, ?, ?, ?, ?)";
 	static final String SELECT_ISREGISTERED_SQL = "SELECT registered FROM Users WHERE email = ?;";

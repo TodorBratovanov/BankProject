@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-
+ <script src='<c:url value ="js/JSFormValidation.js"/>'></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -123,7 +123,7 @@
 											type="text" name="address" placeholder="Address..."
 											class="form-address form-control" id="form-address">
 									</div>
-									<button class="btn regbtn">Sign me up!</button>
+									<button type ="submit" class="btn regbtn" >Sign me up!</button>
 									<a href="login">Already a member? Login</a>
 								</div>
 							</form>

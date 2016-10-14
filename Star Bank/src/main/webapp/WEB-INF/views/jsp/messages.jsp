@@ -45,31 +45,48 @@
 <div class="mail">
 	<div class="container">
 		<h3>
-			<span>My Messages</span></h3>
-			<div id="messages">
-				<!-- Put messages from server -->
-				<table class="table table-hover" id="msg-table">
-					<thead>
+			<span>My Messages</span>
+		</h3>
+
+		<div id="messages">
+			<!-- Put messages from server -->
+			<table class="table table-hover" id="msg-table">
+				<thead>
+					<tr>
+						<th>Subject</th>
+						<th>Received Date</th>
+						<th>Preview</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<c:forEach items="${messages}" var="message">
+
 						<tr>
-							<th>Subject</th>
-							<th>Received Date</th>
-							<th>Preview</th>
+							<td><c:out value="${message.title}" /></td>
+							<td><c:out value="${message.date}" /></td>
+							<td><c:out value="${message.text}" /></td>
 						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${messages}" var="message">
-						
-							<tr onclick="showMessage()">
-								<td><c:out value="${message.title}" /></td>
-								<td><c:out value="${message.date}" /></td>
-								<td><c:out value="${message.text}" /></td>
-							</tr>
+					</c:forEach>
+					
+						<c:forEach begin="1" end="${number_pages}" varStatus="index">
+
+							<button class="page-button" onclick="clickPage(${index.index})">
+								<a href="./messages?id=${index.index}">${index.index}</a>
+							</button>
+
 						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+					
+
+				</tbody>
+
+
+			</table>
+
+		</div>
 	</div>
 </div>
+
 <!-- //mail -->
 <script>
 	function popupCenter(url, title, w, h) {

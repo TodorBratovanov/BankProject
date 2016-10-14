@@ -1575,7 +1575,14 @@ h1.t-button, h2.t-button, h3.t-button, h4.t-button, h5.t-button {
 li.list-group-item1 {
 	line-height: 2.5em;
 }
-
+.page-button{
+	width: 50px;
+	height: 50px:
+	display: inline-block;
+}
+#messages{
+	text-align: center;
+}
 .input-group {
 	margin-bottom: 20px;
 }

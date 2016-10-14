@@ -9,6 +9,6 @@ public interface IUserSessionDAO {
 
 	String INSERT_SESSION_SQL = "INSERT INTO Sessions VALUES (null, ?, ?, ?, ?)";
 
-	public void insertSessionInfo(int userId, Date date, String ipAddress);
+	public void insertSessionInfo(int userId, Date date,String description, String ipAddress);
 	
 }

@@ -6,12 +6,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +26,6 @@ import com.starbank.model.dao.IDepositDAO;
 import com.starbank.model.dao.IMessageDAO;
 import com.starbank.model.dao.IUserDAO;
 import com.starbank.model.dao.IUserSessionDAO;
-import com.starbank.model.dao.repo.TransactionFinalizerRepository;
 import com.starbank.model.entity.Account;
 import com.starbank.model.entity.Card;
 import com.starbank.model.entity.Credit;
@@ -180,7 +177,7 @@ public class HomeController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/messages", method = RequestMethod.GET)
+	@RequestMapping(value = {"/messages"}, method = RequestMethod.GET)
 	public ModelAndView getMessages(ModelAndView model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		// System.err.println("SESSSSSSSION "+ session.equals(null));
@@ -194,17 +191,38 @@ public class HomeController {
 
 		// session.invalidate();
 		List<Message> messages = new ArrayList<>();
+		List<Message> partOfMessages = new ArrayList<>();
 		try {
 			messages = message.getAllMessages((Integer) session.getAttribute("user_id"));
 		} catch (MessageException e) {
 			e.printStackTrace();
 		}
+		
+		System.err.println("PAGE:"+request.getParameter("id"));
+		Integer currentPage = Integer.parseInt(request.getParameter("id"));
+		
+		int numberOfPages = (messages.size() /5) + 1;
 		int numberOfUser = userDao.countUsers();
 		int numberOfLikes = userDao.countLikes();
+		model.addObject("number_pages", numberOfPages);
+		session.setAttribute("countusers", numberOfUser);
+		session.setAttribute("likes", numberOfLikes);
+		
+		for (int index = 1; index <= 5; index++) {
+			if ((currentPage == null) || (currentPage == 1)) {
+				partOfMessages.add(messages.get(index-1));
+			}
+			else {
 
-		model.addObject("countusers", numberOfUser);
-		model.addObject("likes", numberOfLikes);
-		model.addObject("messages", messages);
+				if (((index - 1) + 5) * (currentPage - 1) == messages.size()) {
+					System.err.println("SIZE:" + ((index - 1) + 5) * (currentPage - 1));
+					break;
+				}
+				partOfMessages.add(messages.get(((index-1)+5)*(currentPage-1)));
+				
+			}
+		}
+		model.addObject("messages", partOfMessages);
 		model.setViewName("/messages");
 
 		return model;
@@ -257,10 +275,15 @@ public class HomeController {
 		System.err.println("dadadadadadadadadadadadadadadadadadad" + new Date(lastTime));
 		System.err.println("DATE:" + session.getAttribute("user_id"));
 		System.err.println("IP:" + request.getRemoteAddr());
+		String description = request.getScheme() + "://" +
+	             request.getServerName() + 
+	             ("http".equals(request.getScheme()) && request.getServerPort() == 80 || "https".equals(request.getScheme()) && request.getServerPort() == 443 ? "" : ":" + request.getServerPort() ) +
+	             request.getRequestURI() +
+	            (request.getQueryString() != null ? "?" + request.getQueryString() : "");
 		userSession.insertSessionInfo((Integer) session.getAttribute("user_id"), new Date(lastTime),
-				request.getRemoteAddr());
+				description,request.getRemoteAddr());
 		session.invalidate();
-
+		
 		return "login";
 	}
 

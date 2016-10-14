@@ -2327,3 +2327,7 @@ function showAccounts(id) {
 	document.getElementById(id).style.display="inline-block";
 }
 
+function clickPage(page){
+	url : "/messages?id=" + page;
+	type : 'GET';
+}

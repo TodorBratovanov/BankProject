@@ -23,9 +23,9 @@ public class UserSessionRepository implements IUserSessionDAO{
 	}
 	
 	@Override
-	public void insertSessionInfo(int userId, Date date, String ipAddress) {
+	public void insertSessionInfo(int userId, Date date, String description, String ipAddress) {
 		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAA"+ipAddress);
-		jdbcTemplate.update(IUserSessionDAO.INSERT_SESSION_SQL, new Object[] { date,"WTF",ipAddress,userId });
+		jdbcTemplate.update(IUserSessionDAO.INSERT_SESSION_SQL, new Object[] { date,description,ipAddress,userId });
 		
 	}
 
