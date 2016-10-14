@@ -6,12 +6,13 @@ import java.time.LocalDateTime;
 import com.starbank.exceptions.AccountException;
 import com.starbank.exceptions.CardException;
 import com.starbank.exceptions.DateTimeException;
+import com.starbank.exceptions.IbanException;
 import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InvalidStringException;
 import com.starbank.validators.CardNumberValidator;
 import com.starbank.validators.IValidator;
 
-public class Card {
+public class Card extends Account {
 
 	private int cardId;
 	private String name;
@@ -22,7 +23,9 @@ public class Card {
 	private int accountId;
 
 	public Card(int cardId, String name, String type, String number, LocalDate issuedOn, LocalDate validThrough,
-			int account) throws InvalidStringException, IdException, DateTimeException, AccountException, CardException {
+			int account, String iban) throws InvalidStringException, IdException, DateTimeException, AccountException, 
+	CardException, IbanException {
+		super(iban);
 		if (IValidator.isPositive(cardId)) {
 			this.cardId = cardId;
 		} else {

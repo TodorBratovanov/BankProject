@@ -15,7 +15,8 @@ public class CardMapper implements RowMapper<Card> {
 		Card account = null;
 		try {
 			account = new Card(rs.getInt("card_id"), rs.getString("name"), rs.getString("type"), rs.getString("number"), 
-					rs.getDate("issued_on").toLocalDate(), rs.getDate("valid_through").toLocalDate(), rs.getInt("account_id"));
+					rs.getDate("issued_on").toLocalDate(), rs.getDate("valid_through").toLocalDate(), rs.getInt("account_id"), 
+					rs.getString("iban"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

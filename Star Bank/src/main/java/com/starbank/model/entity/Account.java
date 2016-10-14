@@ -22,6 +22,7 @@ public abstract class Account {
 
 	public Account(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
 			String currency, int recipientAccountId) throws AccountException, IbanException, InvalidStringException, IdException {
+		this(iban);
 		if (IValidator.isPositive(accountId)) {
 			this.accountId = accountId;
 		} else {
@@ -40,7 +41,6 @@ public abstract class Account {
 
 		if (IValidator.isValidString(iban) && (IbanValidator.isValidIban(iban))) {
 			this.iban = iban;
-
 		}
 		if (IValidator.isPositive(userId)) {
 			this.userId = userId;
@@ -54,6 +54,12 @@ public abstract class Account {
 		}
 		if (IValidator.isPositive(recipientAccountId)) {
 			this.recipientAccountId = recipientAccountId;
+		}
+	}
+	
+	public Account(String iban) throws InvalidStringException, IbanException {
+		if (IValidator.isValidString(iban) && (IbanValidator.isValidIban(iban))) {
+			this.iban = iban;
 		}
 	}
 

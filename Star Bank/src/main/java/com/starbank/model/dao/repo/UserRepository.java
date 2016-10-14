@@ -27,9 +27,11 @@ public class UserRepository implements IUserDAO {
 
 	@Override
 	public int loginUser(String email, String password) throws UserException {
+		
 		int userId = 0;
 		try {
-			userId = this.jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { email, password }, Integer.class);
+			userId = jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { email, password }, Integer.class);
+			System.err.println(userId+"######"+password);
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return userId;
@@ -41,18 +43,18 @@ public class UserRepository implements IUserDAO {
 
 	@Override
 	public int registerUser(User user) throws UserException {
-		
+		System.err.println("*********************************** phone  " + user.getPhoneNumber());
 		try {
-//			jdbcTemplate.update(IUserDAO.INSERT_USER_SQL, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getPhoneNumber(),
-//					user.getEmail(), user.getPassword(), user.getAddress(), user.getEgn(), user.isAdmin(), user.isRegistered());
-//			
-//			
-//			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { user.getEmail(), user.getPassword() }, Integer.class);
+			jdbcTemplate.update(IUserDAO.INSERT_USER_SQL, user.getFirstName(), user.getMiddleName(), user.getLastName(), user.getPhoneNumber(),
+					user.getEmail(), user.getPassword(), user.getAddress(), user.getEgn(), user.isAdmin(), user.isRegistered(), user.isLiked());
+			
+			
+			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_SQL, new Object[] { user.getEmail(), user.getPassword() }, Integer.class);
 
-			this.jdbcTemplate.update(IUserDAO.INSERT_USER_SQL, "Koko", "Kukoto", "Dinev", "+359877663311", "koko@abv.bg", "Admin123", "Sofia", 
-					"8802021144", false, false, true);
-			System.err.println("======================================================================================");
-			return 0;
+//			jdbcTemplate.update(IUserDAO.INSERT_USER_SQL, "Koko", "Kukoto", "Dinev", "+359877663311", "koko@abv.bg", "Admin123", "Sofia", 
+//					"8802021144", false, false, true);
+//			System.err.println("======================================================================================");
+//			return 0;
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return 0;
@@ -76,9 +78,8 @@ public class UserRepository implements IUserDAO {
 	public boolean isRegistered(String userEmail) throws SQLException, UserException {
 		
 		try {
-			
-			return this.jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_EMAIL_SQL, new Object[] { userEmail }, Boolean.class);
-			
+			return jdbcTemplate.queryForObject(IUserDAO.SELECT_USER_EMAIL_SQL, new Object[] { userEmail },
+					Boolean.class);
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return false;
@@ -87,8 +88,14 @@ public class UserRepository implements IUserDAO {
 
 	@Override
 	public int countUsers() {
-		int res = this.jdbcTemplate.queryForInt(IUserDAO.COUNT_USERS_SQL);
-		return res;
+		int countedUsers = jdbcTemplate.queryForInt(IUserDAO.COUNT_USERS_SQL);
+		return countedUsers;
+	}
+
+	@Override
+	public int countLikes() {
+		int countedLikes = jdbcTemplate.queryForInt(IUserDAO.COUNT_LIKES_SQL);
+		return countedLikes;
 	}
 
 }

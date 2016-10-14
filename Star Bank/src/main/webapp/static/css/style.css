@@ -2,7 +2,7 @@
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
+License URL: http://creativecommons.org/licenses/by/3.0/		
 --*/
 html, body {
 	font-size: 100%;
@@ -43,7 +43,6 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 
 .msg-table tr {
 	height: 50px;
-	
 }
 
 .header {
@@ -237,8 +236,6 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	height: 53.8%;
 }
 
-
-
 .wthree_banner_info p {
 	font-size: 20px;
 	text-transform: uppercase;
@@ -265,6 +262,11 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 .banner-bottom {
 	background: #f5f5f5;
 	padding: 3em 0;
+}
+
+.banner-bottom-accounts {
+	background: #f5f5f5;
+	padding: 1.2em 0;
 }
 
 .agile_banner_bottom_grid {
@@ -358,7 +360,7 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 /*-- welcome --*/
 .welcome, .updates, .pricing-plans, .team, .portfolio, .typo, .mail,
 	.single {
-	padding: 5em 0;
+	
 }
 
 .about-bottom {
@@ -488,12 +490,18 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 /*-- //welcome-bottom --*/
 /*-- updates --*/
 .agileits_updates_grid_left h3, .mail h3, h3.title, .team h3, .portfolio h3,
-	.pricing-plans h3, .agileits_updates_grid_right h3,
-	.agileinfo_about_bottom_grid h3 {
+	.agileits_updates_grid_right h3, .agileinfo_about_bottom_grid h3 {
 	font-size: 2.5em;
 	color: #212121;
 	line-height: 1.5em;
 	margin-bottom: 1em;
+}
+
+.pricing-plans h3 {
+	font-size: 2.5em;
+	color: #212121;
+	line-height: 1.5em;
+	padding: 0.2em;
 }
 
 .agileits_updates_grid_left h3 span, .write-reply h3 span, .author h3 span,
@@ -950,7 +958,7 @@ a.pa_italic:focus {
 }
 /*-- pricing-plans --*/
 .pricing-plans {
-	background: #f5f5f5
+	background: #f5f5f5;
 }
 
 .price-value h4 {
@@ -960,9 +968,9 @@ a.pa_italic:focus {
 }
 
 .price-value, .price-value.two, .price-value.three {
-	background: #00BFFF;
-	padding: 1em 0em 1em;
-	border-bottom: 1px solid #057EA6;
+	background: #2574fc;
+	padding: 0.5em 0em 0.5em;
+	border-bottom: 1px solid #033282;
 	text-align: center;
 }
 
@@ -1013,7 +1021,7 @@ ul.count, .pricing-grid1 ul li a, ul.count, .pricing-grid2 ul li a, ul.count,
 
 .price-bg {
 	background: #fff;
-	padding-bottom: 3em;
+	height: 44%;
 }
 
 p.price-label-1 {
@@ -1047,6 +1055,11 @@ p.price-label-3 {
 .price-bg ul li {
 	list-style: none;
 	color: #999;
+}
+
+.count strong {
+	font-size: 13px;
+	color: #00bfff;
 }
 
 ul.count li a {
@@ -1090,13 +1103,25 @@ li.tag-now-3 a {
 	padding: 10px;
 }
 
-ul.count li {
-	border-bottom: 1px solid #999;
-	padding: 1.2em 0;
+ul.count {
+	margin-bottom: 5px;
+	border-top: 1px solid #999;
 }
 
 ul.count li {
-	padding-left: 85px;
+	border-bottom: 1px solid #999;
+	padding: 1.2em 0;
+	width: 100%;
+}
+
+ul.count li {
+	padding-left: 8px;
+	display: inline-flex;
+	font-size: 13px;
+}
+
+ul.count li p {
+	font-size: 13px;
 }
 
 .pricing-plans h3 {
@@ -1113,7 +1138,7 @@ p.bottom {
 }
 
 ul.count li span {
-	padding-right: 2em;
+	padding-right: 10px;
 	color: #212121;
 }
 
@@ -1444,7 +1469,6 @@ li.list-group-item1 {
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
 	.table>tbody>tr>td, .table>tfoot>tr>td {
 	border-top: none !important;
-	
 }
 
 .tab-content>.active {
@@ -1490,6 +1514,15 @@ section#tables  p {
 	margin-top: 1em;
 }
 
+.table tr td {
+	max-width: 50px;
+	height: 30px;
+}
+
+.table tr {
+	height: 20px;
+}
+
 .tab-container .tab-content {
 	border-radius: 0 2px 2px 2px;
 	border: 1px solid #e0e0e0;
@@ -1501,7 +1534,6 @@ section#tables  p {
 	.table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 	padding: 15px !important;
 	border-bottom: 1px solid #E44C4C;
-	
 }
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
@@ -2523,7 +2555,7 @@ h2.typoh2 {
 		font-size: 1.2em;
 		top: 1.5em;
 	}
-	.banner-bottom {
+	.banner-bottom, .banner-bottom-accounts {
 		padding: 2em 0;
 	}
 	.agile_banner_bottom_grid {
@@ -3022,4 +3054,24 @@ h2.typoh2 {
 	.agileinfo_about_bottom_grid h3, .portfolio h3, h3.title, .mail h3 {
 		font-size: 2em;
 	}
+}
+
+#currents-table, #deposits-table, #credits-table, #cards-table {
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
+	height: 357px;
+	margin: 40px;
+}
+
+.acc-table {
+	text-align: center;
+}
+
+#acc tbody th {
+	color: 00bfff;
+}
+
+#acc thead th {
+	color: #212121;
 }

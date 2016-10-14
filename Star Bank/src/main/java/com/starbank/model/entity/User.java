@@ -3,6 +3,8 @@ package com.starbank.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 import com.starbank.exceptions.AddressException;
 import com.starbank.exceptions.IdException;
 import com.starbank.exceptions.InvalidEgnException;
@@ -11,6 +13,7 @@ import com.starbank.exceptions.InvalidNameException;
 import com.starbank.exceptions.InvalidPasswordException;
 import com.starbank.exceptions.InvalidPhoneNumberException;
 import com.starbank.exceptions.InvalidStringException;
+import com.starbank.model.dao.IUserDAO;
 import com.starbank.validators.EgnValidator;
 import com.starbank.validators.EmailValidator;
 import com.starbank.validators.IValidator;
@@ -19,8 +22,8 @@ import com.starbank.validators.PasswordValidator;
 import com.starbank.validators.PhoneNumberValidator;
 
 
-
-public class User {
+@Component
+public class User{
 
 	@Override
 	public String toString() {
@@ -41,12 +44,15 @@ public class User {
 	private boolean isAdmin;
 	private boolean isRegistered;
 	private String egn;
+	private boolean isLiked;
 	
+	
+
 	public User(){
 	}
 	
 	public User(int userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
-			String password, String address,String egn, boolean isAdmin) throws IdException, InvalidNameException, InvalidPhoneNumberException, 
+			String password, String address,String egn, boolean isAdmin, boolean isRegistered, boolean isLiked) throws IdException, InvalidNameException, InvalidPhoneNumberException, 
 			InvalidEmailException, AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
 
 
@@ -180,5 +186,11 @@ public class User {
 	public void setEgn(String egn) {
 		this.egn = egn;
 	}
-	
+	public boolean isLiked() {
+		return isLiked;
+	}
+
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
+	}
 }

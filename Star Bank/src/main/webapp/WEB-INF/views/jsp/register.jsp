@@ -73,7 +73,7 @@
 								</div>
 							</div>
 
-							<form action="./login" method="post" id="reg-form">
+							<form action="./register" method="post" id="reg-form">
 								<div class="form-bottom">
 									<div class="form-group">
 										<label class="sr-only" for="form-first-name">First
@@ -110,7 +110,7 @@
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-phone">Phone Number</label> <input
-											type="text" name="phone" placeholder="Phone Number..."
+											type="text" name="phoneNumber" placeholder="Phone Number..."
 											class="form-egn form-control" id="form-phone">
 									</div>
 									<div class="form-group">

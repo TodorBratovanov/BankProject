@@ -14,9 +14,10 @@ public class PhoneNumberValidator implements IValidator {
 		Matcher matcher = pattern.matcher(phoneNumber);
 
 		if ((!phoneNumber.isEmpty()) && (phoneNumber != null) && (matcher.matches())) {
+			System.err.println(phoneNumber + "   OK ============================================");
 			return true;
 		}
-
+		System.err.println(phoneNumber + "   Incorrect ============================================");
 		throw new InvalidPhoneNumberException("Incorrect phone number!");
 	}
 }

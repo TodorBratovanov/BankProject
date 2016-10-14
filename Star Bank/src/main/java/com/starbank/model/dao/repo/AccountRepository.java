@@ -22,6 +22,9 @@ import com.starbank.exceptions.InterestException;
 import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.IAccountDAO;
+import com.starbank.model.dao.ICreditDAO;
+import com.starbank.model.dao.ICurrentAccountDAO;
+import com.starbank.model.dao.IDepositDAO;
 import com.starbank.model.dao.mapper.AccountMapper;
 import com.starbank.model.entity.Account;
 import com.starbank.validators.IbanValidator;
@@ -47,9 +50,9 @@ public class AccountRepository implements IAccountDAO {
 
 		List<Account> accounts = new ArrayList<Account>();
 		try {
-			loadAccounts(userId, IAccountDAO.SELECT_CURRENT_ACCOUNTS_SQL, accounts);
-			loadAccounts(userId, IAccountDAO.SELECT_DEPOSIT_ACCOUNTS_SQL, accounts);
-			loadAccounts(userId, IAccountDAO.SELECT_CREDIT_ACCOUNTS_SQL, accounts);
+			loadAccounts(userId, ICurrentAccountDAO.SELECT_CURRENT_ACCOUNTS_ALL_SQL, accounts);
+			loadAccounts(userId, IDepositDAO.SELECT_DEPOSITS_ALL_SQL, accounts);
+			loadAccounts(userId, ICreditDAO.SELECT_CREDITS_ALL_SQL, accounts);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new UserException("Something went wrong!");

@@ -130,7 +130,10 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public IUserDAO getUserRepository() {
 		return new UserRepository(getDataSource());
 	}
-
+//	@Bean
+//	public UserSessionRepository getUseSessionrRepository() {
+//		return new UserSessionRepository(getDataSource());
+//	}
 	@Bean
 	public IAdminDAO getAdminRepository() {
 		return new AdminRepository(getDataSource());

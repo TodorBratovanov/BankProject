@@ -3,17 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/includes/header.jsp" />
 <!-- //header -->
-<!-- about -->
-<div class="about">
-	<div class="container">
-		<h3>Mail Us</h3>
-		<ul>
-			<li><a href="index.html">Home</a><i>|</i></li>
-			<li>Mail Us</li>
-		</ul>
-	</div>
-</div>
-<!-- //about -->
 <!-- mail -->
 <div class="w3ls_map">
 	<iframe
@@ -35,7 +24,7 @@
 				</div>
 				<div class="col-md-4 col-md-4m contact-bottom-grid">
 					<div class="dot" style="cursor: pointer;"
-						onclick="window.location.href='mailto:tsb87@abv.bg kochev.svetoslav@gmail.com';">
+						onclick="window.location.href='mailto:tsb87@abv.bg, kochev.svetoslav@gmail.com';">
 						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 					</div>
 					<a href="mailto:tsb87@abv.bg">tsb87@abv.bg</a> <a
@@ -56,16 +45,12 @@
 <div class="mail">
 	<div class="container">
 		<h3>
-			<span>My Messages</span>
+			<span>My Messages</span></h3>
 			<div id="messages">
 				<!-- Put messages from server -->
-
-				<table class="table">
-
+				<table class="table table-hover" id="msg-table">
 					<thead>
 						<tr>
-
-
 							<th>Subject</th>
 							<th>Received Date</th>
 							<th>Preview</th>
@@ -73,9 +58,8 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${messages}" var="message">
-							<tr>
-								<c:set var="a" value="${message.title}"></c:set>
-
+						
+							<tr onclick="showMessage()">
 								<td><c:out value="${message.title}" /></td>
 								<td><c:out value="${message.date}" /></td>
 								<td><c:out value="${message.text}" /></td>
