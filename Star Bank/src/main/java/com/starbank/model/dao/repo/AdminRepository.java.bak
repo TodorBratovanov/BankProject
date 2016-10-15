@@ -1,4 +1,4 @@
- package com.starbank.model.dao.repo;
+package com.starbank.model.dao.repo;
 
 import javax.sql.DataSource;
 
