@@ -98,4 +98,9 @@ public class UserRepository implements IUserDAO {
 		return countedLikes;
 	}
 
+	@Override
+	public void clickLike(int userId) {
+		jdbcTemplate.update(IUserDAO.UPDATE_USER_LIKE_SQL,userId);
+	}
+
 }

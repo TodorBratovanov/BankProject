@@ -2327,27 +2327,7 @@ function showAccounts(id) {
 	document.getElementById(id).style.display="inline-block";
 }
 
-function selectIban(id) {
-	var pDiv = document.getElementById('receiver');
-	var cDiv = pDiv.children;
-	for (var i = 0; i < cDiv.length; i++) {
-	    if (cDiv[i].tagName == "OPTION") {   //or use toUpperCase()
-	        cDiv[i].style.display = "flex"  //do styling here
-	    }
-	}
-	var spDiv = document.getElementById('sender');
-	var scDiv = spDiv.children;
-	for (var i = 0; i < scDiv.length; i++) {
-	    if (scDiv[i].tagName == "OPTION") {   //or use toUpperCase()
-	        scDiv[i].style.display = "flex"  //do styling here
-	    }
-	}
-	document.getElementById(id).style.display = "none";
+function clickPage(page){
+	url : "/messages?id=" + page;
+	type : 'GET';
 }
-
-function selectAccounts(id, radio) {
-	document.getElementById("my-account").style.display="none";
-	document.getElementById("other-account").style.display="none";
-	document.getElementById(id).style.display="inline-block";
-}
-

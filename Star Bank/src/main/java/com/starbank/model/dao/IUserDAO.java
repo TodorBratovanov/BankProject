@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.starbank.exceptions.UserException;
 import com.starbank.model.entity.User;
 
-@Component
+
 public interface IUserDAO {
 
 	static final String SELECT_USER_SQL = "SELECT user_id FROM Users WHERE email = ? AND password = md5(?);";
@@ -17,7 +17,8 @@ public interface IUserDAO {
 	static final String SELECT_USER_EMAIL_SQL = "SELECT COUNT(*) FROM Users WHERE email = ?;";
 	static final String COUNT_USERS_SQL = "SELECT COUNT(user_id) FROM Users;";
 	static final String COUNT_LIKES_SQL = "SELECT COUNT(user_id) FROM e_banking.Users WHERE likes = true;";
-	
+	static final String UPDATE_USER_LIKE_SQL = "UPDATE Users SET likes=true WHERE user_id= ?;";
+
 	public int loginUser(String email, String password) throws UserException;
 
 	public int registerUser(User user) throws UserException;
@@ -29,6 +30,6 @@ public interface IUserDAO {
 	public int countUsers();
 	
 	public int countLikes();
-
 	
+	public void clickLike(int userId);
 }

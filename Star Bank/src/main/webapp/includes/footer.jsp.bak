@@ -19,11 +19,11 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="col-md-3 w3_updates_bottom_grid">
-				<div onclick="window.location.href='likes'"
+				<div onclick="window.location.reload()"
 					class="w3_updates_bottom_grid_left like-btn">
 					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 				</div>
-				<div class="w3_updates_bottom_grid_right" >
+				<div class="w3_updates_bottom_grid_right">
 					<p class="counter"><c:out value="${likes}" /></p>
 					<h3>Happy clients</h3>
 				</div>

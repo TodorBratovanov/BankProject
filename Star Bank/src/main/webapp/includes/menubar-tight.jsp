@@ -2,16 +2,16 @@
     pageEncoding="ISO-8859-1"%>
 <!-- //banner -->
 <!-- banner-bottom -->
-<div class="banner-bottom">
+<div class="banner-bottom-accounts">
 	<div class="container">
 		<div class="agile_banner_bottom_grids">
 			<div style="cursor: pointer;"
-				onclick="window.location='sessions';"
+				onclick="window.location='information';"
 				class="col-md-3g agile_banner_bottom_grid">
 				<div class="agile_banner_bottom_grid1 hvr-rectangle-out">
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 				</div>
-				<h3>Sessions</h3>
+				<h3>Information</h3>
 			</div>
 			<div style="cursor: pointer;" onclick="window.location='payments';"
 				class="col-md-3g agile_banner_bottom_grid">

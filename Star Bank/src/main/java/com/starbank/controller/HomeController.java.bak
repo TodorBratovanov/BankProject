@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.starbank.exceptions.MessageException;
@@ -198,8 +201,8 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		
-		System.err.println("PAGE:"+request.getParameter("id"));
-		Integer currentPage = Integer.parseInt(request.getParameter("id"));
+		
+		
 		
 		int numberOfPages = (messages.size() /5) + 1;
 		int numberOfUser = userDao.countUsers();
@@ -207,9 +210,16 @@ public class HomeController {
 		model.addObject("number_pages", numberOfPages);
 		session.setAttribute("countusers", numberOfUser);
 		session.setAttribute("likes", numberOfLikes);
+		Integer currentPage = null;
+		if (request.getParameter("id") != null) {
+			currentPage = Integer.parseInt(request.getParameter("id"));
+			System.err.println("PAGE:"+Integer.parseInt(request.getParameter("id")));
+		} 
+		
 		
 		for (int index = 1; index <= 5; index++) {
 			if ((currentPage == null) || (currentPage == 1)) {
+				
 				partOfMessages.add(messages.get(index-1));
 			}
 			else {
@@ -233,7 +243,20 @@ public class HomeController {
 	public String showInfo() throws Exception {
 		return "information";
 	}
+	
+	
+	@RequestMapping(value = "/likes", method = RequestMethod.GET)
+	public String  clickLike(HttpServletRequest request) throws Exception {
+		System.err.println(request.getHeader("Referer")	);
+		String url = request.getHeader("Referer");
+		System.err.println(url.substring((url.lastIndexOf('/')+1), url.length()));
+		return "redirect:"+url.substring((url.lastIndexOf('/')+1), url.length());
+		
+		
+		
+	}
 
+	
 	@RequestMapping(value = "/payments", method = RequestMethod.GET)
 	public String showPayments(HttpServletRequest request, Model model) throws Exception {
 		

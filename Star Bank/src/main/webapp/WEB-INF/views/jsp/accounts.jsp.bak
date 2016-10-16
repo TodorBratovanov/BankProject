@@ -134,7 +134,7 @@
 							<c:forEach items="${currentAccounts}" var="current">
 								<tr>
 									<th><c:out value="${current.iban}" /></th>
-									<th><c:out value="${current.netAvlbBalance}" /></th>
+									<th><c:out value="${current.iban}" /></th>
 									<th><c:out value="${current.currentBalance}" /></th>
 									<th><c:out value="${current.blockedAmount}" /></th>
 									<th><c:out value="${current.currency}" /></th>
@@ -169,7 +169,7 @@
 							<c:forEach items="${deposits}" var="deposit">
 								<tr>
 									<th><c:out value="${deposit.iban}" /></th>
-									<th><c:out value="${deposit.netAvlbBalance}" /></th>
+									<th><c:out value="${deposit.iban}" /></th>
 									<th><c:out value="${deposit.currentBalance}" /></th>
 									<th><c:out value="${deposit.blockedAmount}" /></th>
 									<th><c:out value="${deposit.currency}" /></th>
@@ -205,7 +205,7 @@
 							<c:forEach items="${credits}" var="credit">
 								<tr>
 									<th><c:out value="${credit.iban}" /></th>
-									<th><c:out value="${credit.netAvlbBalance}" /></th>
+									<th><c:out value="${credit.iban}" /></th>
 									<th><c:out value="${credit.currentBalance}" /></th>
 									<th><c:out value="${credit.blockedAmount}" /></th>
 									<th><c:out value="${credit.currency}" /></th>
@@ -243,7 +243,7 @@
 							<c:forEach items="${cards}" var="card">
 								<tr>
 									<th><c:out value="${card.iban}" /></th>
-									<th><c:out value="${card.netAvlbBalance}" /></th>
+									<th><c:out value="${card.iban}" /></th>
 									<th><c:out value="${card.currentBalance}" /></th>
 									<th><c:out value="${card.blockedAmount}" /></th>
 									<th><c:out value="${card.currency}" /></th>

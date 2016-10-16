@@ -20,7 +20,7 @@ public abstract class Account {
 	
 	
 
-	public Account(int accountId, double netAvlbBalance, double currentBalance, double blockedAmount, String iban, int userId,
+	public Account(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
 			String currency, int recipientAccountId) throws AccountException, IbanException, InvalidStringException, IdException {
 		this(iban);
 		if (IValidator.isPositive(accountId)) {
@@ -38,11 +38,7 @@ public abstract class Account {
 		} else {
 			throw new AccountException("Current balance can not be negative!");
 		}
-		if (blockedAmount >= 0) {
-			this.blockedAmount = blockedAmount;
-		} else {
-			throw new AccountException("Blocked amount can not be negative!");
-		}
+
 		if (IValidator.isValidString(iban) && (IbanValidator.isValidIban(iban))) {
 			this.iban = iban;
 		}

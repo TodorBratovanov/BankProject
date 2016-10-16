@@ -14,9 +14,7 @@ p {
 	margin: 0;
 	font-size: 14px;
 }
-.error{
-	color: #E44C4C;
-}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Maven Pro', sans-serif;
 	margin: 0;
@@ -426,7 +424,7 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	line-height: 2em;
 }
 
-.more button {
+.more a {
 	/*-- agileits --*/
 	padding: 10px 40px;
 	border: 2px solid #00BFFF;
@@ -434,10 +432,9 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 14px;
-	margin: 40px;
 }
 
-.more button:hover {
+.more a:hover {
 	color: #00BFFF;
 }
 /* Bounce To Top */
@@ -469,7 +466,7 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	-webkit-transform: scaleY(0);
 	transform: scaleY(0);
 	-webkit-transform-origin: 50% 100%;
-	transform-origin: 50% 100% 5;
+	transform-origin: 50% 100%;
 	-webkit-transition-property: transform;
 	transition-property: transform;
 	-webkit-transition-duration: 0.5s;
@@ -514,17 +511,6 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	{
 	font-weight: 300;
 	color: #E44C4C;
-}
-
-.payments-head h3 span {
-	color: #212121;
-}
-
-.payments-head h3 {
-	font-size: 2.5em;
-	line-height: 1.5em;
-	padding: 0.2em;
-	margin-bottom: 1em;
 }
 
 .write-reply h3, .author h3, .popular-posts h6 {
@@ -1598,7 +1584,7 @@ li.list-group-item1 {
 	text-align: center;
 }
 .input-group {
-	vertical-align: middle;
+	margin-bottom: 20px;
 }
 
 .in-gp-tl {
@@ -2615,7 +2601,7 @@ h2.typoh2 {
 	.welcome-bottom p {
 		margin: 2em auto 2.5em;
 	}
-	.more button {
+	.more a {
 		padding: 8px 30px;
 		border: 1px solid #00BFFF;
 		font-size: 13px;
@@ -3095,42 +3081,4 @@ h2.typoh2 {
 
 #acc thead th {
 	color: #212121;
-}
-
-#first-iban {
-	display: none;
-}
-
-.hide-iban {
-	display: none;
-}
-
-.other-account {
-	display: none;
-}
-
-#payments {
-	text-align: center;
-	height: 437px;
-}
-
-.transfer-money {
-	display: inline-block;
-}
-
-.select-send, .my-account, .other-account {
-	text-align: center;
-}
-
-.select-send h4, .select-send div, .my-account h4, .my-account select,
-	.other-account h4, .other-account div {
-	display: inline-block;
-}
-
-.transfer-money input {
-	margin-left: 20px;
-}
-
-#my-account>h4 {
-	margin-right: 20px;
 }

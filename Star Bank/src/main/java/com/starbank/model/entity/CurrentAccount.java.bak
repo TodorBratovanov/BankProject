@@ -11,10 +11,10 @@ public class CurrentAccount extends Account {
 	private int currentAccountId;
 	private double creditLimit;
 
-	public CurrentAccount(int acountId, double netAvlbBalance, double currentBalance, double blockedAmount,
+	public CurrentAccount(int acountId, double netAvlbBalance, double currentBalance,
 			String iban, int userId, String currency, int recipientAccountId, int currentAccountId, double creditLimit) 
 					throws AccountException, IbanException, InvalidStringException, IdException {
-		super(acountId, netAvlbBalance, currentBalance, blockedAmount, iban, userId, currency, recipientAccountId);
+		super(acountId, netAvlbBalance, currentBalance, iban, userId, currency, recipientAccountId);
 
 		if(IValidator.isPositive(currentAccountId)) {
 			this.currentAccountId = currentAccountId;
@@ -28,9 +28,9 @@ public class CurrentAccount extends Account {
 		}
 	}
 
-	public CurrentAccount(int accountId, double netAvlbBalance, double currentBalance, double blockedAmount, String iban, int userId,
+	public CurrentAccount(int accountId, double netAvlbBalance, double currentBalance, String iban, int userId,
 			String currency, int recipientAccountId) throws AccountException, IbanException, InvalidStringException, IdException {
-		super(accountId, netAvlbBalance, currentBalance, blockedAmount, iban, userId, currency, recipientAccountId);
+		super(accountId, netAvlbBalance, currentBalance, iban, userId, currency, recipientAccountId);
 	}
 
 	public int getCurrentAccountId() {
