@@ -78,13 +78,14 @@
 									<div class="form-group">
 										<label class="sr-only" for="form-username">Email</label> <input
 											type="text" name="email" placeholder="Email..."
-											class="form-username form-control" id="form-email-login">
+											pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+											required="required"	class="form-username form-control" id="form-email-login">
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-password">Password</label> <input
-											type="password" name="password"
-											placeholder="Password..." class="form-password form-control"
-											id="form-password-login">
+											type="password" name="password" placeholder="Password..."
+											pattern="^[a-zA-Z0-9]{8,}$" required="required"
+											class="form-password form-control" id="form-password-login">
 									</div>
 									<button class="btn loginbtn">Sign in!</button>
 									<a href="register">Don't have an account? Register</a>

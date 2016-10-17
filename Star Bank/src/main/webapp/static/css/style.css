@@ -136,6 +136,12 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	text-decoration: none;
 }
 
+.w3ls_logo h2 {
+	font-size: 40px;
+	color: #e44c4c;
+	margin-top: 14%;
+}
+
 .header_right {
 	float: right;
 }
@@ -434,7 +440,6 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 14px;
-	margin: 40px;
 }
 
 .more button:hover {
@@ -524,7 +529,7 @@ input[type="submit"], .wthree_single_grid ul li a, .author-grid-right h4 a,
 	font-size: 2.5em;
 	line-height: 1.5em;
 	padding: 0.2em;
-	margin-bottom: 1em;
+	margin-bottom: 0.5em;
 }
 
 .write-reply h3, .author h3, .popular-posts h6 {
@@ -3114,12 +3119,25 @@ h2.typoh2 {
 	height: 437px;
 }
 
+#confirm-user {
+	text-align: center;
+}
+
 .transfer-money {
 	display: inline-block;
 }
 
 .select-send, .my-account, .other-account {
 	text-align: center;
+}
+
+.open-account-amount {
+	display: inline-block;
+	text-align: center;
+}
+
+.open-account-amount h4, .open-account-amount div	{
+	display: inline-block;
 }
 
 .select-send h4, .select-send div, .my-account h4, .my-account select,
@@ -3133,4 +3151,29 @@ h2.typoh2 {
 
 #my-account>h4 {
 	margin-right: 20px;
+}
+
+.amount {
+	display: inline-block;
+}
+
+.select-send, .account-radio, .my-account, .other-account, .amount,
+	.more {
+	margin: 15px;
+}
+
+.validity{
+	margin: 20px;
+}
+
+.amount, .select-user {
+	margin: 15px;
+}
+
+.select-send.select-user > select {
+    min-width: 25%;
+}
+
+#my-account > select {
+	min-width: 10%;
 }

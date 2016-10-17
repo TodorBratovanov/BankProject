@@ -26,7 +26,6 @@ public class TransactionRepository implements ITransactionDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public TransactionRepository() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Autowired
@@ -35,9 +34,8 @@ public class TransactionRepository implements ITransactionDAO {
 	}
 
 	@Override
-	public List<Transaction> getAllTransactions(int userId,String startDate,String endDate) {
+	public List<Transaction> getAllTransactions(int userId,String startDate,String endDate) throws AccountException {
 		List<Transaction> transactions = new ArrayList<>();
-
 		try {
 			transactions =  this.jdbcTemplate.query(ITransactionDAO.SELECT_TRANSACTIONS_SQL,
 					new Object[] { userId ,startDate , endDate}, new RowMapper<Transaction>() {
@@ -49,21 +47,15 @@ public class TransactionRepository implements ITransactionDAO {
 										rs.getString("recipient_iban"), rs.getDouble("amount"), rs.getString("currency"),rs.getInt("account_id"));
 							} catch (IdException | InvalidStringException | AccountException | DateTimeException
 									| IbanException e) {
-								
 								e.printStackTrace();
 							}
 			                return transaction;
 			            }
 			        });
-			
 		} catch (EmptyResultDataAccessException e) {
-			e.printStackTrace();
-			return null;
+			throw new AccountException("Cannot get transactions!", e);
 		}
-		
 		return transactions;
-		
 	}
-	
 	
 }

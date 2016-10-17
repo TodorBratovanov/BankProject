@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,60 +74,70 @@
 								</div>
 							</div>
 
-							<form action="./register" method="post" id="reg-form">
+							<spring:form action="./register" method="post" id="reg-form" commandName="user">
 								<div class="form-bottom">
 									<div class="form-group">
 										<label class="sr-only" for="form-first-name">First
-											name</label> <input type="text" name="firstName"
+											name</label> <spring:input type="text" path="firstName"
+											pattern="[A-Z][a-zA-Z]*{2,}" required="required"
 											placeholder="First name..."
-											class="form-first-name form-control" id="form-first-name">
+											class="form-first-name form-control" id="form-first-name"/>
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-middle-name">Middle
-											name</label> <input type="text" name="middleName"
+											name</label> <spring:input type="text" path="middleName"
+											pattern="[A-Z][a-zA-Z]*{2,}" required="required"
 											placeholder="Middle name..."
-											class="form-middle-name form-control" id="form-middle-name">
+											class="form-middle-name form-control" id="form-middle-name"/>
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-last-name">Last name</label>
-										<input type="text" name="lastName" placeholder="Last name..."
-											class="form-last-name form-control" id="form-last-name">
+										<spring:input type="text" path="lastName"
+											pattern="[A-Z][a-zA-Z]*{2,}" required="required"
+											placeholder="Last name..."
+											class="form-last-name form-control" id="form-last-name"/>
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="form-email">Email</label> <input
-											type="text" name="email" placeholder="Email..."
-											class="form-email form-control" id="form-email">
+										<label class="sr-only" for="form-email">Email</label> <spring:input
+											type="email" path="email" placeholder="Email..."
+											pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required="required"
+											class="form-email form-control" id="form-email"/>
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="form-password">Password</label> <input
-											type="password" name="password" placeholder="Password..."
-											class="form-password form-control" id="form-password">
+										<label class="sr-only" for="form-password">Password</label> <spring:input
+											type="password" path="password" placeholder="Password..."
+											pattern="^[a-zA-Z0-9]{8,}$" required="required"
+											class="form-password form-control" id="form-password"/>
 									</div>
 									<div class="form-group">
 										<label class="sr-only" for="form-password-2">Confirm
-											Password</label> <input type="password" name="confirm-password"
+											Password</label> <spring:input type="password" path=""
+											pattern="^[a-zA-Z0-9]{8,}$" required="required"
 											placeholder="Confirm Password..."
-											class="form-password form-control" id="form-confirm-password">
+											class="form-password form-control" id="form-confirm-password"/>
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="form-phone">Phone Number</label> <input
-											type="text" name="phoneNumber" placeholder="Phone Number..."
-											class="form-egn form-control" id="form-phone">
+										<label class="sr-only" for="form-phone">Phone Number</label> <spring:input
+											type="text" path="phoneNumber" placeholder="Phone Number..."
+											pattern="(08)[7-9][0-9]{7}" required="required"
+											class="form-egn form-control" id="form-phone"/>
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="form-egn">EGN</label> <input
-											type="text" name="egn" placeholder="EGN..."
-											class="form-egn form-control" id="form-egn">
+										<label class="sr-only" for="form-egn">EGN</label> <spring:input
+											type="text" path="egn" placeholder="EGN..."
+											pattern="[0-9]{2}[0,1,2,4][0-9][0-9]{2}[0-9]{4}" required="required"
+											class="form-egn form-control" id="form-egn"/>
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="form-address">Address</label> <input
-											type="text" name="address" placeholder="Address..."
-											class="form-address form-control" id="form-address">
+										<label class="sr-only" for="form-address">Address</label> <spring:input
+											type="text" path="address" placeholder="Address..."
+											pattern="[A-Z][a-zA-Z]+" required="required"
+											class="form-address form-control" id="form-address"/>
 									</div>
 									<button class="btn regbtn">Sign me up!</button>
 									<a href="login">Already a member? Login</a>
 								</div>
-							</form>
+							</spring:form>
 
 						</div>
 					</div>

@@ -1,7 +1,6 @@
 package com.starbank.model.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.starbank.exceptions.AccountException;
 import com.starbank.exceptions.CardException;
@@ -40,7 +39,7 @@ public class Card extends Account {
 		if (CardNumberValidator.isValidCardNumber(number)) {
 			this.number = number;
 		}
-		if (issuedOn != null && issuedOn.isBefore(LocalDate.now())) {
+		if (issuedOn != null) {
 			this.issuedOn = issuedOn;
 		} else {
 			throw new DateTimeException("Incorrect card issue on");

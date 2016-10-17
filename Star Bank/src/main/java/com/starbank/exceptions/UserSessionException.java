@@ -2,9 +2,6 @@ package com.starbank.exceptions;
 
 public class UserSessionException extends Exception {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5011018683583080760L;
 
 	public UserSessionException() {
@@ -26,6 +23,5 @@ public class UserSessionException extends Exception {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 }

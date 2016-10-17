@@ -1,8 +1,5 @@
 package com.starbank.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import org.springframework.stereotype.Component;
 
 import com.starbank.exceptions.AddressException;
@@ -13,25 +10,14 @@ import com.starbank.exceptions.InvalidNameException;
 import com.starbank.exceptions.InvalidPasswordException;
 import com.starbank.exceptions.InvalidPhoneNumberException;
 import com.starbank.exceptions.InvalidStringException;
-import com.starbank.model.dao.IUserDAO;
 import com.starbank.validators.EgnValidator;
 import com.starbank.validators.EmailValidator;
 import com.starbank.validators.IValidator;
 import com.starbank.validators.NameValidator;
-import com.starbank.validators.PasswordValidator;
 import com.starbank.validators.PhoneNumberValidator;
 
-
 @Component
-public class User{
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
-				+ lastName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password
-				+ ", address=" + address + ", isAdmin=" + isAdmin + ", isRegistered=" + isRegistered + ", egn=" + egn
-				+ "]";
-	}
+public class User {
 
 	private int userId;
 	private String firstName;
@@ -46,56 +32,43 @@ public class User{
 	private String egn;
 	private boolean isLiked;
 	
-	
-
-	public User(){
+	public User() {
 	}
-	
-	public User(int userId, String firstName, String middleName, String lastName, String phoneNumber, String email, 
-			String password, String address,String egn, boolean isAdmin, boolean isRegistered, boolean isLiked) throws IdException, InvalidNameException, InvalidPhoneNumberException, 
-			InvalidEmailException, AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
 
+	public User(int userId, String firstName, String middleName, String lastName, String phoneNumber, String email,
+			String password, String address, String egn, boolean isAdmin, boolean isRegistered, boolean isLiked)
+			throws IdException, InvalidNameException, InvalidPhoneNumberException, InvalidEmailException,
+			AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
 
 		if (IValidator.isPositive(userId)) {
 			this.userId = userId;
 		} else {
 			throw new IdException("Invalid user ID");
 		}
-
 		if (NameValidator.isValidName(firstName)) {
 			this.firstName = firstName;
 		}
-
 		if (NameValidator.isValidName(middleName)) {
 			this.middleName = middleName;
 		}
-
 		if (NameValidator.isValidName(lastName)) {
 			this.lastName = lastName;
 		}
-
 		if (PhoneNumberValidator.isValidPhoneNumber(phoneNumber)) {
 			this.phoneNumber = phoneNumber;
 		}
-
 		if (EmailValidator.isValidEmail(email)) {
 			this.email = email;
 		}
-
-		if (PasswordValidator.isValidPassword(password)) {
-			this.password = password;
-		}
-		
+		this.password = password;
 		if (IValidator.isValidString(address)) {
 			this.address = address;
 		} else {
 			throw new AddressException("Incorrect address");
 		}
-		
 		if (EgnValidator.isValidEgn(egn)) {
 			this.egn = egn;
 		}
-		
 		this.isAdmin = isAdmin;
 	}
 
@@ -139,16 +112,16 @@ public class User{
 		return isRegistered;
 	}
 
-	public void setRegistered(boolean isRegistered) {
-		this.isRegistered = isRegistered;
+	public String getEgn() {
+		return egn;
+	}
+
+	public boolean isLiked() {
+		return isLiked;
 	}
 
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
-
-	public String getEgn() {
-		return this.egn;
 	}
 
 	public void setFirstName(String firstName) {
@@ -183,14 +156,24 @@ public class User{
 		this.isAdmin = isAdmin;
 	}
 
+	public void setRegistered(boolean isRegistered) {
+		this.isRegistered = isRegistered;
+	}
+
 	public void setEgn(String egn) {
 		this.egn = egn;
-	}
-	public boolean isLiked() {
-		return isLiked;
 	}
 
 	public void setLiked(boolean isLiked) {
 		this.isLiked = isLiked;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
+				+ lastName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password
+				+ ", address=" + address + ", isAdmin=" + isAdmin + ", isRegistered=" + isRegistered + ", egn=" + egn
+				+ ", isLiked=" + isLiked + "]";
+	}
+
 }

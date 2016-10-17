@@ -5,7 +5,7 @@
 
 <div id="payments">
 	<div class="transfer-money">
-		<form action="">
+		<form action="payments" method="post">
 			<div class="mail">
 				<div class="container">
 					<div class="payments-head">
@@ -15,7 +15,7 @@
 			</div>
 			<div class="select-send">
 				<h4>Select from</h4>
-				<select id="sender">
+				<select id="sender" name="sender">
 					<option value="0"><c:out value="- select -" /></option>
 					<c:forEach var="account" items="${accounts}" varStatus="index">
 						<option onclick="selectIban('${index.index}')"
@@ -23,38 +23,44 @@
 					</c:forEach>
 				</select>
 			</div>
-			<br><br>
-			<form action=""	class="account-radio">
+			<div class="account-radio">
 				<p>
 				<h3>Select transfer type:</h3>
-				<br> <input type="radio" name="transferTo" value="my"
-					checked="checked" onclick="selectAccounts('my-account')" />
-				Transfer to my account <input type="radio" name="transferTo"
-					value="other" onclick="selectAccounts('other-account')" />
-				Transfer to other account
+				<br> <input type="radio" name="transferType" checked="checked"
+					onclick="selectAccounts('my-account')" value="my" /> Transfer to my
+				account <input type="radio" name="transferType"
+					onclick="selectAccounts('other-account')" value="other" /> Transfer
+				to other account
 				</p>
-			</form>
-			<br>
+			</div>
 			<div class="my-account" id="my-account">
 				<h4>Transfer to my account</h4>
-				<select id="receiver">
+				<select id="receiver" name="receiverMy">
 					<option value="0"><c:out value="- select -" /></option>
 					<c:forEach var="account" items="${accounts}" varStatus="index">
 						<option onclick="selectIban('${index.index + 10}')"
 							id="${index.index}"><c:out value="${account.iban}" /></option>
 					</c:forEach>
-				</select> <br>
+				</select>
 			</div>
 			<div class="other-account" id="other-account">
 				<h4>Transfer to other account</h4>
 				<div class="input-group">
 					<input type="text" class="form-control" aria-label="..."
-						placeholder="IBAN ...">
+						pattern="[A-Z0-9]{15,31}" placeholder="IBAN ..."
+						name="receiverOther">
 				</div>
-				<br>
+			</div>
+			<br>
+			<div class="other-account amount" id="other-account">
+				<h4>Amount</h4>
+				<div class="input-group">
+					<input type="text" class="form-control" aria-label="..." pattern="^[1-9]+[0-9]{0,4}"
+						required="required" placeholder="Amount ..." name="amount">
+				</div>
 			</div>
 			<div class="more">
-				<button class="hvr-bounce-to-top">Submit</button>
+				<button type="submit" class="hvr-bounce-to-top">Submit</button>
 			</div>
 		</form>
 	</div>

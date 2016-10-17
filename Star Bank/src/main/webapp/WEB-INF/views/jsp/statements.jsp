@@ -8,7 +8,7 @@
 <div class="mail">
 	<div class="container">
 		<h3>
-			<span>Sessions</span>
+			<span>Statements</span>
 		</h3>
 		<div id="messages">
 			<!-- Put messages from server -->
@@ -40,9 +40,9 @@
 				Start date<br> <input type="date"
 					name="strdate" min="2016-01-01" max="2016-12-31"><br>
 				<br> End date:<br> <input type="date"
-					name="enddate" min="2016-01-01 23:59:59" max="2016-12-31 23:59:59"><br>
+					name="enddate" min="2016-01-01" max="2016-12-31"><br>
 				<br> 
-				<div class="more"><button type="submit" class = "hvr-bounce-to-top" >Get Sessions</button></div>
+				<div class="more"><button type="submit" class = "hvr-bounce-to-top" >Get Statements</button></div>
 			</form>
 			<div class = "error"><c:if test="${not empty error_time}"><c:out value="${error_time}"/></c:if>
 			</div>

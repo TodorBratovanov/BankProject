@@ -29,23 +29,23 @@ public class AdminTest {
 	private User user;
 	
 	
-	@Test
-	public void testUserRegisterConfirmation()
-			throws UserException, IdException, InvalidNameException, InvalidPhoneNumberException, InvalidEmailException,
-			AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
-		user.setUserId(8);
-		user.setFirstName("Ivan");
-		user.setMiddleName("Ivanov");
-		user.setLastName("Ivanov");
-		user.setPhoneNumber("+35987555555");
-		user.setEmail("ivan@abv.bg");
-		user.setPassword("Ivan1234");
-		user.setAddress("Sofia");
-		user.setEgn("9005159015");
-		user.setAdmin(false);
-		
-		assertTrue(adminRepo.confirmUserRegistration(user));
-	}
+//	@Test
+//	public void testUserRegisterConfirmation()
+//			throws UserException, IdException, InvalidNameException, InvalidPhoneNumberException, InvalidEmailException,
+//			AddressException, InvalidStringException, InvalidPasswordException, InvalidEgnException {
+//		user.setUserId(8);
+//		user.setFirstName("Ivan");
+//		user.setMiddleName("Ivanov");
+//		user.setLastName("Ivanov");
+//		user.setPhoneNumber("+35987555555");
+//		user.setEmail("ivan@abv.bg");
+//		user.setPassword("Ivan1234");
+//		user.setAddress("Sofia");
+//		user.setEgn("9005159015");
+//		user.setAdmin(false);
+//		
+//		assertTrue(adminRepo.confirmUserRegistration(user));
+//	}
 
 //	@Test
 //	public void testDeleteUser() throws UserException {

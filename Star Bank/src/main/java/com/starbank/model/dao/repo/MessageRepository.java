@@ -23,7 +23,6 @@ public class MessageRepository implements IMessageDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public MessageRepository() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Autowired
@@ -36,7 +35,6 @@ public class MessageRepository implements IMessageDAO {
 		try {
 			return this.jdbcTemplate.update(IMessageDAO.INSERT_MESSAGE_SQL, message.getTitle(),message.getText(),
 					Timestamp.valueOf(LocalDateTime.now()),userId) > 0;
-			
 		} catch (EmptyResultDataAccessException e) {
 			e.printStackTrace();
 			return false;

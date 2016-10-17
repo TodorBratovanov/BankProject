@@ -1,10 +1,6 @@
 package com.starbank.model.entity;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import org.springframework.stereotype.Component;
 
 import com.starbank.exceptions.DateTimeException;
 import com.starbank.exceptions.IdException;
@@ -12,7 +8,6 @@ import com.starbank.exceptions.InvalidStringException;
 import com.starbank.validators.IValidator;
 
 public class UserSession {
-
 
 	private int sessionId;
 	private Timestamp dateTime;
@@ -27,7 +22,6 @@ public class UserSession {
 		}else {
 			throw new IdException("Incorrect session ID!");
 		}
-		
 		if (dateTime != null) {
 			this.dateTime = dateTime;
 		} else {
@@ -45,48 +39,27 @@ public class UserSession {
 		}
 		if (IValidator.isValidString(description)) {
 			this.description = description;
-		} else {
-
 		}
 	}
+
 	public int getSessionId() {
 		return sessionId;
-	}
-
-	public void setSessionId(int sessionId) {
-		this.sessionId = sessionId;
 	}
 
 	public Timestamp getDateTime() {
 		return dateTime;
 	}
 
-	public void setDateTime(Timestamp dateTime) {
-		this.dateTime = dateTime;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getIpAddress() {
 		return ipAddress;
 	}
 
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
-	}
-
 	public int getUserId() {
 		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 }

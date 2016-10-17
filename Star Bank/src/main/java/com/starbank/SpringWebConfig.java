@@ -41,8 +41,8 @@ import com.starbank.model.dao.repo.CreditRepository;
 import com.starbank.model.dao.repo.CurrentAccountRepository;
 import com.starbank.model.dao.repo.DepositRepository;
 import com.starbank.model.dao.repo.MessageRepository;
-import com.starbank.model.dao.repo.TransactionFinalizerRepository;
 import com.starbank.model.dao.repo.UserRepository;
+import com.starbank.model.entity.User;
 
 @Configuration
 @EnableWebMvc
@@ -92,7 +92,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	// localization configuration
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -128,12 +127,14 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public IUserDAO getUserRepository() {
-		return new UserRepository(getDataSource());
+		return new UserRepository(getDataSource(), transactionTemplate());
 	}
-//	@Bean
-//	public UserSessionRepository getUseSessionrRepository() {
-//		return new UserSessionRepository(getDataSource());
-//	}
+	
+	@Bean
+	public User getUser() {
+		return new User();
+	}
+
 	@Bean
 	public IAdminDAO getAdminRepository() {
 		return new AdminRepository(getDataSource());
@@ -147,11 +148,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public IMessageDAO getSendMessageRepository() {
 		return new MessageRepository(getDataSource());
-	}
-
-	@Bean
-	public TransactionFinalizerRepository getTransactionFinalizerRepository() {
-		return new TransactionFinalizerRepository(getDataSource(), transactionTemplate());
 	}
 	
 	@Bean

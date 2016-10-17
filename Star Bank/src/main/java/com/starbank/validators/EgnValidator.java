@@ -10,13 +10,10 @@ public class EgnValidator {
 
 	public static boolean isValidEgn(String enteredEgn) throws InvalidEgnException {
 		Pattern pattern = Pattern.compile(EGN_REGIX);
-
 		Matcher matcher = pattern.matcher(enteredEgn);
-
 		if ((!enteredEgn.isEmpty()) && (enteredEgn != null) && (matcher.matches())) {
 			return true;
 		}
-
 		throw new InvalidEgnException("Incorrect EGN!");
 	}
 

@@ -4,6 +4,7 @@ import com.starbank.exceptions.InterestException;
 import com.starbank.exceptions.InvalidStringException;
 
 public interface IValidator {
+	
 	 static final int MIN_INTEREST = 0;
 	 static final int MAX_INTEREST = 2;
 	
@@ -13,7 +14,6 @@ public interface IValidator {
 		}
 		throw new InvalidStringException("Incorrect string");
 	}
-
 	
 	static boolean isPositive(double number) {
 		return number > 0;

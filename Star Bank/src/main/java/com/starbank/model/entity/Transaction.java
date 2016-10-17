@@ -1,7 +1,6 @@
 package com.starbank.model.entity;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 import com.starbank.exceptions.AccountException;
 import com.starbank.exceptions.DateTimeException;
@@ -12,8 +11,8 @@ import com.starbank.validators.IValidator;
 import com.starbank.validators.IbanValidator;
 
 public class Transaction {
+	
 	private int tansactionId;
-
 	private Timestamp date;
 	private String senderIban;
 	private String recipientIban;
@@ -60,63 +59,34 @@ public class Transaction {
 		} else {
 			throw new IdException("Invalid account id!");
 		}
-
-	}
-
-	public int getAccountId() {
-		return accountId;
-	}
-
-	public String getCurrency() {
-		return currency;
 	}
 
 	public int getTansactionId() {
 		return tansactionId;
 	}
 
-	public void setTansactionId(int tansactionId) {
-		this.tansactionId = tansactionId;
-	}
-
 	public Timestamp getDate() {
 		return date;
-	}
-
-	public void setDate(Timestamp date) {
-		this.date = date;
 	}
 
 	public String getSenderIban() {
 		return senderIban;
 	}
 
-	public void setSenderIban(String senderIban) {
-		this.senderIban = senderIban;
-	}
-
 	public String getRecipientIban() {
 		return recipientIban;
-	}
-
-	public void setRecipientIban(String recipientIban) {
-		this.recipientIban = recipientIban;
 	}
 
 	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public String getCurrency() {
+		return currency;
 	}
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
-
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public int getAccountId() {
+		return accountId;
 	}
 
 }

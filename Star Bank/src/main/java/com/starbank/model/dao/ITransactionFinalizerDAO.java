@@ -11,7 +11,10 @@ public interface ITransactionFinalizerDAO {
 			+ "recipient_account_id = null WHERE account_id = ?";
 	static final String FINALIZE_RECIPIENT_TRANSACTION_SQL = "UPDATE Accounts SET net_avlb_balance = ?, current_balance = ? "
 			+ "WHERE account_id = ?";
+	static final String INSERT_USER_TRANSACTION_SQL = "INSERT INTO Transactions VALUES (null, ?, ?, ?, ?, ?, ?)";
 
 	public boolean finalizeAllUserTransactions();
+	
+	public void insertTransactions(String senderIban, String receiverIban, double amount);
 
 }

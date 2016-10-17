@@ -3,10 +3,6 @@ package com.starbank.model.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
-import com.starbank.exceptions.DateTimeException;
-import com.starbank.exceptions.InvalidStringException;
 import com.starbank.exceptions.UserSessionException;
 import com.starbank.model.entity.UserSession;
 

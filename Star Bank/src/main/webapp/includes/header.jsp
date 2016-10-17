@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords"
-	content="Barter Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	content="Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
@@ -70,7 +70,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<ul class="nav navbar-nav">
 								<li class="active act"><a href="index" data-hover="Home">Home</a></li>
 								<li><a href="messages" data-hover="Messages">Messages</a></li>
-								<li><a href="profile" data-hover="Profile">Profile</a></li>
 								<li><a href="logout" data-hover="Logout">Logout</a></li>
 							</ul>
 						</nav>

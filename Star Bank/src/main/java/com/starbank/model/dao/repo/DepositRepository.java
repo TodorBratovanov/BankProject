@@ -6,7 +6,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.IDepositDAO;
@@ -18,7 +17,6 @@ public class DepositRepository implements IDepositDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public DepositRepository() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public DepositRepository(DataSource dataSource) {
@@ -27,7 +25,6 @@ public class DepositRepository implements IDepositDAO {
 
 	@Override
 	public List<Deposit> showDeposits(int userId) throws UserException {
-		
 		List<Deposit> accounts = new ArrayList<Deposit>();
 		try {
 			accounts = this.jdbcTemplate.query(IDepositDAO.SELECT_DEPOSITS_ALL_SQL, new Object[] { userId }, new DepositMapper());

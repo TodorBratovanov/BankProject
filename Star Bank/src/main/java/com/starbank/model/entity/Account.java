@@ -18,8 +18,6 @@ public abstract class Account {
 	private String currency;
 	private int recipientAccountId;
 	
-	
-
 	public Account(int accountId, double netAvlbBalance, double currentBalance, double blockedAmount, String iban, int userId,
 			String currency, int recipientAccountId) throws AccountException, IbanException, InvalidStringException, IdException {
 		this(iban);
@@ -94,6 +92,7 @@ public abstract class Account {
 	public String getCurrency() {
 		return currency;
 	}
+	
 	public int getRecipientAccountId() {
 		return recipientAccountId;
 	}

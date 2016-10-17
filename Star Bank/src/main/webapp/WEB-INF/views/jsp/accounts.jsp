@@ -117,146 +117,150 @@
 	<div class="mail" id="currents-table">
 		<div class="container">
 			<h3>
-				<span>Current accounts</span></h3>
-				<div id="messages">
-					<table class="table table-hover" id="acc">
-						<thead>
+				<span>Current accounts</span>
+			</h3>
+			<div id="messages">
+				<table class="table table-hover" id="acc">
+					<thead>
+						<tr>
+							<th>IBAN</th>
+							<th>Net available balance</th>
+							<th>Current balance</th>
+							<th>Blocked amount</th>
+							<th>Currency</th>
+							<th>Credit limit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${currentAccounts}" var="current">
 							<tr>
-								<th>IBAN</th>
-								<th>Net available balance</th>
-								<th>Current balance</th>
-								<th>Blocked amount</th>
-								<th>Currency</th>
-								<th>Credit limit</th>
+								<th><c:out value="${current.iban}" /></th>
+								<th><c:out value="${current.netAvlbBalance}" /></th>
+								<th><c:out value="${current.currentBalance}" /></th>
+								<th><c:out value="${current.blockedAmount}" /></th>
+								<th><c:out value="${current.currency}" /></th>
+								<th><c:out value="${current.creditLimit}" /></th>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${currentAccounts}" var="current">
-								<tr>
-									<th><c:out value="${current.iban}" /></th>
-									<th><c:out value="${current.netAvlbBalance}" /></th>
-									<th><c:out value="${current.currentBalance}" /></th>
-									<th><c:out value="${current.blockedAmount}" /></th>
-									<th><c:out value="${current.currency}" /></th>
-									<th><c:out value="${current.creditLimit}" /></th>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 
 	<div class="mail" id="deposits-table">
 		<div class="container">
 			<h3>
-				<span>Deposits</span></h3>
-				<div id="messages">
-					<table class="table table-hover" id="acc">
-						<thead>
+				<span>Deposits</span>
+			</h3>
+			<div id="messages">
+				<table class="table table-hover" id="acc">
+					<thead>
+						<tr>
+							<th>IBAN</th>
+							<th>Net available balance</th>
+							<th>Current balance</th>
+							<th>Blocked amount</th>
+							<th>Currency</th>
+							<th>Date open</th>
+							<th>Maturity</th>
+							<th>Interest</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${deposits}" var="deposit">
 							<tr>
-								<th>IBAN</th>
-								<th>Net available balance</th>
-								<th>Current balance</th>
-								<th>Blocked amount</th>
-								<th>Currency</th>
-								<th>Date open</th>
-								<th>Maturity</th>
-								<th>Interest</th>
+								<th><c:out value="${deposit.iban}" /></th>
+								<th><c:out value="${deposit.netAvlbBalance}" /></th>
+								<th><c:out value="${deposit.currentBalance}" /></th>
+								<th><c:out value="${deposit.blockedAmount}" /></th>
+								<th><c:out value="${deposit.currency}" /></th>
+								<th><c:out value="${deposit.dateOpen}" /></th>
+								<th><c:out value="${deposit.maturity}" /></th>
+								<th><c:out value="${deposit.interest}" /></th>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${deposits}" var="deposit">
-								<tr>
-									<th><c:out value="${deposit.iban}" /></th>
-									<th><c:out value="${deposit.netAvlbBalance}" /></th>
-									<th><c:out value="${deposit.currentBalance}" /></th>
-									<th><c:out value="${deposit.blockedAmount}" /></th>
-									<th><c:out value="${deposit.currency}" /></th>
-									<th><c:out value="${deposit.dateOpen}" /></th>
-									<th><c:out value="${deposit.maturity}" /></th>
-									<th><c:out value="${deposit.interest}" /></th>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 
 	<div class="mail" id="credits-table">
 		<div class="container">
 			<h3>
-				<span>Credits</span></h3>
-				<div id="messages">
-					<table class="table table-hover" id="acc">
-						<thead>
+				<span>Credits</span>
+			</h3>
+			<div id="messages">
+				<table class="table table-hover" id="acc">
+					<thead>
+						<tr>
+							<th>IBAN</th>
+							<th>Net available balance</th>
+							<th>Current balance</th>
+							<th>Blocked amount</th>
+							<th>Currency</th>
+							<th>Interest</th>
+							<th>Payment</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${credits}" var="credit">
 							<tr>
-								<th>IBAN</th>
-								<th>Net available balance</th>
-								<th>Current balance</th>
-								<th>Blocked amount</th>
-								<th>Currency</th>
-								<th>Interest</th>
-								<th>Payment</th>
+								<th><c:out value="${credit.iban}" /></th>
+								<th><c:out value="${credit.netAvlbBalance}" /></th>
+								<th><c:out value="${credit.currentBalance}" /></th>
+								<th><c:out value="${credit.blockedAmount}" /></th>
+								<th><c:out value="${credit.currency}" /></th>
+								<th><c:out value="${credit.interest}" /></th>
+								<th><c:out value="${credit.payment}" /></th>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${credits}" var="credit">
-								<tr>
-									<th><c:out value="${credit.iban}" /></th>
-									<th><c:out value="${credit.netAvlbBalance}" /></th>
-									<th><c:out value="${credit.currentBalance}" /></th>
-									<th><c:out value="${credit.blockedAmount}" /></th>
-									<th><c:out value="${credit.currency}" /></th>
-									<th><c:out value="${credit.interest}" /></th>
-									<th><c:out value="${credit.payment}" /></th>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 
 	<div class="mail" id="cards-table">
 		<div class="container">
 			<h3>
-				<span>Cards</span></h3>
-				<div id="messages">
-					<table class="table table-hover" id="acc">
-						<thead>
+				<span>Cards</span>
+			</h3>
+			<div id="messages">
+				<table class="table table-hover" id="acc">
+					<thead>
+						<tr>
+							<th>IBAN</th>
+							<th>Net available balance</th>
+							<th>Current balance</th>
+							<th>Blocked amount</th>
+							<th>Currency</th>
+							<th>Holder</th>
+							<th>Type</th>
+							<th>Card number</th>
+							<th>Issued on</th>
+							<th>Valid through</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${cards}" var="card">
 							<tr>
-								<th>IBAN</th>
-								<th>Net available balance</th>
-								<th>Current balance</th>
-								<th>Blocked amount</th>
-								<th>Currency</th>
-								<th>Holder</th>
-								<th>Type</th>
-								<th>Card number</th>
-								<th>Issued on</th>
-								<th>Valid through</th>
+								<th><c:out value="${card.iban}" /></th>
+								<th><c:out value="${card.netAvlbBalance}" /></th>
+								<th><c:out value="${card.currentBalance}" /></th>
+								<th><c:out value="${card.blockedAmount}" /></th>
+								<th><c:out value="${card.currency}" /></th>
+								<th><c:out value="${card.name}" /></th>
+								<th><c:out value="${card.type}" /></th>
+								<th><c:out value="${card.number}" /></th>
+								<th><c:out value="${card.issuedOn}" /></th>
+								<th><c:out value="${card.validThrough}" /></th>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${cards}" var="card">
-								<tr>
-									<th><c:out value="${card.iban}" /></th>
-									<th><c:out value="${card.netAvlbBalance}" /></th>
-									<th><c:out value="${card.currentBalance}" /></th>
-									<th><c:out value="${card.blockedAmount}" /></th>
-									<th><c:out value="${card.currency}" /></th>
-									<th><c:out value="${card.name}" /></th>
-									<th><c:out value="${card.type}" /></th>
-									<th><c:out value="${card.number}" /></th>
-									<th><c:out value="${card.issuedOn}" /></th>
-									<th><c:out value="${card.validThrough}" /></th>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

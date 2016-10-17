@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.starbank.exceptions.CardException;
-import com.starbank.exceptions.IbanException;
 
 public class CardNumberValidator {
 
@@ -13,7 +12,6 @@ public class CardNumberValidator {
 			+ "(?<diners>3(?:0[0-5]|[68][0-9])?[0-9]{11})|" + "(?<jcb>(?:2131|1800|35[0-9]{3})[0-9]{11}))$";
 
 	public static boolean isValidCardNumber(String cardNumber) throws CardException {
-
 		Pattern pattern = Pattern.compile(regex);
 
 		// Strip all hyphens
@@ -22,12 +20,9 @@ public class CardNumberValidator {
 
 		// Match the card
 		Matcher matcher = pattern.matcher(cardNumber);
-
 		if (matcher.matches()) {
-			// If card is valid then verify which group it belong
 			return true;
 		}
 		return false;
-
 	}
 }

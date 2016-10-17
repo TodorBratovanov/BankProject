@@ -15,7 +15,7 @@
 						<th>Date</th>
 						<th>Description</th>
 						<th>IP Address</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>
@@ -29,10 +29,8 @@
 					</c:forEach>
 
 					<c:forEach begin="1" end="${numberofsessions}" varStatus="index">
-
-						<button class="page-button" >
-							<a href="./sessions?id=${index.index}">${index.index}</a>
-						</button>
+						<a href="./sessions?id=${index.index}"><button
+								class="page-button">${index.index}</button></a>
 					</c:forEach>
 				</tbody>
 			</table>

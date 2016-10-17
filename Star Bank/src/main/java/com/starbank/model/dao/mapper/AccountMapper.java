@@ -23,7 +23,6 @@ public class AccountMapper implements RowMapper<Account> {
 			e.printStackTrace();
 		}
 		return account;
-
 	}
 
 }

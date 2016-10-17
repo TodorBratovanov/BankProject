@@ -27,19 +27,16 @@ public class Deposit extends Account {
 		} else {
 			throw new IdException("Invalid deposit ID");
 		}
-
 		if (dateOpen != null && dateOpen.isBefore(LocalDate.now())) {
 			this.dateOpen = dateOpen;
 		} else {
 			throw new DateTimeException("Incorrect deposit opening");
 		}
-
 		if (maturity != null && maturity.isAfter(LocalDate.now())) {
 			this.maturity = maturity;
 		} else {
 			throw new DateTimeException("Incorrect deposit maturity");
 		}
-
 		if (IValidator.isValidInterest(interest)) {
 			this.interest = interest;
 		}

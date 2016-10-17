@@ -6,7 +6,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import com.starbank.exceptions.UserException;
 import com.starbank.model.dao.ICardDAO;
@@ -18,7 +17,6 @@ public class CardRepository implements ICardDAO{
 	private JdbcTemplate jdbcTemplate;
 
 	public CardRepository() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public CardRepository(DataSource dataSource) {
@@ -27,7 +25,6 @@ public class CardRepository implements ICardDAO{
 
 	@Override
 	public List<Card> showCards(int userId) throws UserException {
-
 		List<Card> accounts = new ArrayList<Card>();
 		try {
 			accounts = this.jdbcTemplate.query(ICardDAO.SELECT_CARDS_ALL_SQL, new Object[] { userId }, new CardMapper());
@@ -35,7 +32,6 @@ public class CardRepository implements ICardDAO{
 			e.printStackTrace();
 			throw new UserException("Something went wrong!");
 		}
-
 		return accounts;
 	}
 	
