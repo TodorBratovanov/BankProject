@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- mail -->
 	<div class="w3ls_map">
 		<iframe
-			src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBCjqOr7fON-XrxJjkGEXqjIXriyngjSLc&q=Infinity+Tower,1404+Sofia"
+			src=""
 			style="border: 0"></iframe>
 		<div class="w3ls_map_color">
 			<div class="contact-bottom-grids">
